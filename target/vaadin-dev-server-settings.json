@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "/Users/luis/Desktop/Proyecto_NvidiaCorp/src/main/frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "/Users/luis/Desktop/Proyecto_NvidiaCorp/src/main/frontend/generated/jar-resources",
+  "staticOutput": "/Users/luis/Desktop/Proyecto_NvidiaCorp/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "/Users/luis/Desktop/Proyecto_NvidiaCorp/target/classes/META-INF/VAADIN/config",
+  "frontendBundleOutput": "/Users/luis/Desktop/Proyecto_NvidiaCorp/target/classes/META-INF/VAADIN/webapp",
+  "devBundleOutput": "/Users/luis/Desktop/Proyecto_NvidiaCorp/target/dev-bundle/webapp",
+  "devBundleStatsOutput": "/Users/luis/Desktop/Proyecto_NvidiaCorp/target/dev-bundle/config",
+  "jarResourcesFolder": "/Users/luis/Desktop/Proyecto_NvidiaCorp/src/main/frontend/generated/jar-resources",
+  "themeName": "default",
+  "clientServiceWorkerSource": "/Users/luis/Desktop/Proyecto_NvidiaCorp/target/sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
