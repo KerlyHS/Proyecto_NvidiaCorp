@@ -11,7 +11,6 @@ public class Factura {
     private Boolean Entregado;
     private MetodoPagoEnum MetodoPago;
     private Double Iva;
-    
     private Transaccion Transaccion;
 
     public Integer getId() {

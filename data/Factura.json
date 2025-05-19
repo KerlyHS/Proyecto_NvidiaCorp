@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "Fecha": "May 18, 2025, 8:38:08 PM",
+        "SubTotal": 100.0,
+        "Total": 100.0,
+        "Entregado": true,
+        "MetodoPago": "TARJETA",
+        "Iva": 0.15
+    },
+    {
+        "id": 2,
+        "Fecha": "May 18, 2025, 9:10:34 PM",
+        "SubTotal": 100.0,
+        "Total": 100.0,
+        "Entregado": true,
+        "MetodoPago": "TARJETA",
+        "Iva": 0.15
+    }
+]
