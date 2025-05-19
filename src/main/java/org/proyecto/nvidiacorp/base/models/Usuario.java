@@ -1,6 +1,6 @@
 package org.proyecto.nvidiacorp.base.models;
 
-public class Usuario extends Persona {
+public class Usuario {
     private Integer id;
     private String correo;
     private String clave;

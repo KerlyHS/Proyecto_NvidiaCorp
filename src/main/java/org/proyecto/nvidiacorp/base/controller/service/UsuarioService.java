@@ -24,12 +24,11 @@ public class UsuarioService {
         this.du = new DaoUsuario();
     }
     
-    public void create(@NotEmpty String correo, @NotEmpty String clave, Boolean estado, @NonNull String direccion, Integer id_Persona, @NonNull String rol) throws Exception {
-        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null) {
+    public void create(@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona, @NonNull String rol) throws Exception {
+        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0 && rol.trim().length() > 0) {
             du.getUsuario().setCorreo(correo);
             du.getUsuario().setClave(clave);
             du.getUsuario().setEstado(estado);
-            du.getUsuario().setDireccion(direccion);
             du.getUsuario().setId_Persona(id_Persona);
             du.getUsuario().setRol(RolEnum.valueOf(rol));
             if (!du.save()) {
@@ -38,13 +37,12 @@ public class UsuarioService {
         }
     }
 
-    public void update(Integer id,@NotEmpty String correo, @NotEmpty String clave, Boolean estado, @NonNull String direccion, Integer id_Persona, @NonNull String rol) throws Exception {
-        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null) {
+    public void update(Integer id,@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona, @NonNull String rol) throws Exception {
+        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0 && rol.trim().length() > 0) {
             du.setUsuario(du.listAll().get(id - 1));
             du.getUsuario().setCorreo(correo);
             du.getUsuario().setClave(clave);
             du.getUsuario().setEstado(estado);
-            du.getUsuario().setDireccion(direccion);
             du.getUsuario().setId_Persona(id_Persona);
             du.getUsuario().setRol(RolEnum.valueOf(rol));
             if (!du.save()) {
@@ -71,7 +69,6 @@ public class UsuarioService {
                 aux.put("correo", arreglo[i].getCorreo().toString());
                 aux.put("clave", arreglo[i].getClave().toString());
                 aux.put("estado", arreglo[i].getEstado().toString());
-                aux.put("direccion", arreglo[i].getDireccion().toString());
                 aux.put("persona", new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getNombre());
                 aux.put("id_persona", new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getId().toString());
                 lista.add(aux);
