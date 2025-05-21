@@ -62,5 +62,21 @@
         "id_marca": 1,
         "precio": 900.0,
         "categoria": "ACCESORIOS"
+    },
+    {
+        "id": 9,
+        "nombre": "RTX 4080",
+        "descripcion": "JS",
+        "id_marca": 1,
+        "precio": 800.0,
+        "categoria": "ACCESORIOS"
+    },
+    {
+        "id": 10,
+        "nombre": "GTX 1660",
+        "descripcion": "JS",
+        "id_marca": 1,
+        "precio": 300.0,
+        "categoria": "ACCESORIOS"
     }
 ]
