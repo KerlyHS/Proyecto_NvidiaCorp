@@ -58,7 +58,7 @@
     {
         "id": 8,
         "nombre": "RTX 4090",
-        "descripcion": "JS",
+        "descripcion": "Gama Ultra",
         "id_marca": 1,
         "precio": 900.0,
         "categoria": "ACCESORIOS"
