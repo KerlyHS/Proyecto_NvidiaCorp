@@ -82,13 +82,23 @@ public class AdapterDao <T> implements InterfaceDao<T> {
         
 
     } 
-
     
-@Override
-public void update_by_id(T obj, Integer id) throws Exception {
+    @Override
+    public void update_by_id(T obj, Integer id) throws Exception {
+        LinkedList<T> list = listAll();
+        for (int i = 0; i < list.getLength(); i++) {
+            T current = list.get(i);
+            Integer currentId = (Integer) current.getClass().getMethod("getId").invoke(current);
+            if (currentId.equals(id)) {
+                list.update(obj, i);
+                saveFile(g.toJson(list.toArray()));
+                return;
+            }
+        }
+        throw new Exception("No se encontro el ID: " + id);
+    }
+    
 
-    throw  new  UnsupportedOperationException("Unimplemented method 'update_by_id'");
-}
 
 
 @Override

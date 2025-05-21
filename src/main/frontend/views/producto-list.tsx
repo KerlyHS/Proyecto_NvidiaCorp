@@ -11,6 +11,7 @@ import Marca from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Marca'
 import CategoriaEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/CategoriaEnum';
 import { MarcaService } from 'Frontend/generated/endpoints';
 import { useEffect, useState } from 'react';
+import './producto-list.css';
 
 
 export const config: ViewConfig = {
@@ -18,7 +19,7 @@ export const config: ViewConfig = {
     menu: {
         icon: 'vaadin:clipboard-check',
         order: 2,
-        title: 'Productoes',
+        title: 'Productos',
     },
 };
 
@@ -187,7 +188,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     const close = () => {
         dialogOpened.value = false;
     };
-
+    const ident = props.arguments.id;
     const nombre = useSignal('');
     const descripcion = useSignal('');
     const marca = useSignal(0);
@@ -206,7 +207,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
         try {
             if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0) {
                 const CategoriaEnum = categoria.value as CategoriaEnum;
-                await ProductoService.createProducto(nombre.value, descripcion.value, marca.value, precio.value, categoria.value);
+                await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value);
                 if (props.onProductoUpdated) {
                     props.onProductoUpdated();
                 }
@@ -328,40 +329,58 @@ function index({ model }: { model: GridItemModel<Producto> }) {
     );
 }
 
-
-
-export default function ProductoListView() {
-    const dataProvider = useDataProvider({
-        list: () => ProductoService.listAll(),
-    });
-
-    function link({ item }: { item: Producto }) {
-        return (
-            <span>
-                <ProductoEntryFormUpdate arguments={item} onProductoUpdated={dataProvider.refresh} />
-            </span>
-        );
-    }
-
+function ProductoCard({ item, onProductoUpdated }: { item: any, onProductoUpdated: () => void }) {
     return (
-        <main className="w-full h-full flex flex-col box-border gap-s p-m">
-            <ViewToolbar title="Productoes">
-                <Group>
-                    <ProductoEntryForm onProductoCreated={dataProvider.refresh} />
-                </Group>
-            </ViewToolbar>
-            <Grid dataProvider={dataProvider.dataProvider}>
-                <GridColumn header="Nro" renderer={index} />
-                <GridColumn path="nombre" header="Producto" />
-                <GridColumn path="descripcion" header="Descripcion" />
-                <GridColumn path="marca" header="Marca" />
-                <GridColumn path="precio" header="Precio" />
-                <GridColumn path="categoria" header="Categoria" />
-                <GridColumn header="Acciones" renderer={link} />
-
-            </Grid>
-        </main>
+        <div className="producto-card">
+            <img
+                src={item.imagen && item.imagen.trim() !== "" 
+                    ? item.imagen 
+                    : "https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/graphic-cards/50-series/geforce-rtx-50series-og-1200x630.jpg"}
+                alt={item.nombre}
+                className="producto-imagen"
+            />
+            <div className="producto-info">
+                <h3>{item.nombre}</h3>
+                <p className="producto-descripcion">{item.descripcion}</p>
+                <div className="producto-meta">
+                    <span className="producto-marca">{item.marca}</span>
+                    <span className="producto-categoria">{item.categoria}</span>
+                </div>
+                <div className="producto-precio">${item.precio}</div>
+                <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
+            </div>
+        </div>
     );
 }
 
+
+
+export default function ProductoListView() {
+    const [productos, setProductos] = useState<any[]>([]);
+
+    const cargarProductos = async () => {
+        const data = await ProductoService.listAll();
+        setProductos(data);
+        console.log("Productos recibidos:", data);
+    };
+
+    useEffect(() => {
+        cargarProductos();
+    }, []);
+
+    return (
+        <main className="w-full h-full flex flex-col box-border gap-s p-m">
+            <ViewToolbar title="Catalogo de Productos">
+                <Group>
+                    <ProductoEntryForm onProductoCreated={cargarProductos} />
+                </Group>
+            </ViewToolbar>
+            <div className="producto-grid">
+                {productos.map((item: any, idx: number) => (
+                    <ProductoCard key={item.id ?? idx} item={item} onProductoUpdated={cargarProductos} />
+                ))}
+            </div>
+        </main>
+    );
+}
 

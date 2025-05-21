@@ -1,1 +1,66 @@
-[{"id":1,"nombre":"RTX 3070","descripcion":"Tarjeta grafica de alta gama","id_marca":1,"precio":800.0,"categoria":"ACCESORIOS"}]
+[
+    {
+        "id": 1,
+        "nombre": "RTX 3070",
+        "descripcion": "Gama Media ",
+        "id_marca": 1,
+        "precio": 700.0,
+        "categoria": "COMPONENTES"
+    },
+    {
+        "id": 2,
+        "nombre": "RTX 3080",
+        "descripcion": "Tarjeta grafica de alta gama",
+        "id_marca": 1,
+        "precio": 1200.0,
+        "categoria": "ACCESORIOS"
+    },
+    {
+        "id": 3,
+        "nombre": "RTX 3090",
+        "descripcion": "Tarjeta grafica de alta gama",
+        "id_marca": 1,
+        "precio": 1500.0,
+        "categoria": "ACCESORIOS"
+    },
+    {
+        "id": 4,
+        "nombre": "GTX 1660",
+        "descripcion": "Tarjeta grafica de gama media",
+        "id_marca": 1,
+        "precio": 300.0,
+        "categoria": "ACCESORIOS"
+    },
+    {
+        "id": 5,
+        "nombre": "GTX 1650",
+        "descripcion": "Tarjeta grafica de gama media",
+        "id_marca": 1,
+        "precio": 250.0,
+        "categoria": "ACCESORIOS"
+    },
+    {
+        "id": 6,
+        "nombre": "RTX 4080",
+        "descripcion": "Gama Alta",
+        "id_marca": 1,
+        "precio": 900.0,
+        "categoria": "COMPONENTES"
+    },
+    {
+        "id": 7,
+        "nombre": "RTX 4090",
+        "descripcion": "Gama Ultra",
+        "id_marca": 1,
+        "precio": 1000.0,
+        "categoria": "COMPONENTES"
+    },
+    {
+        "id": 8,
+        "nombre": "RTX 4090",
+        "descripcion": "JS",
+        "id_marca": 1,
+        "precio": 900.0,
+        "categoria": "ACCESORIOS"
+    }
+]

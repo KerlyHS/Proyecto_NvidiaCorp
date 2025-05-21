@@ -29,7 +29,7 @@ public class MarcaService {
         if(id != null && id > 0 && nombre.trim().length() > 0 ) {
             db.setObj(db.listAll().get(id - 1));
             db.getObj().setNombre(nombre);
-            if(!db.update(id - 1))
+            if(!db.update(id ))
                 throw new  Exception("No se pudo modificar los datos de la Marca");
         }
     }

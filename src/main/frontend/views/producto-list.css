@@ -1,0 +1,71 @@
+.producto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.producto-card {
+    background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    transition: box-shadow 0.2s, transform 0.2s;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.producto-card:hover {
+    box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.producto-imagen {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.producto-info {
+    padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.producto-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.35rem;
+    color: #1a237e;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.producto-descripcion {
+    color: #374151;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    min-height: 48px;
+}
+
+.producto-meta {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.98rem;
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.producto-precio {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #16a34a;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+}

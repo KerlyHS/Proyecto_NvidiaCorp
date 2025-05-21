@@ -10,6 +10,8 @@ import org.proyecto.nvidiacorp.base.models.Producto;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoProducto;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoMarca;
 import org.proyecto.nvidiacorp.base.models.CategoriaEnum;
+
+import com.github.javaparser.quality.NotNull;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import java.text.SimpleDateFormat;
@@ -26,11 +28,11 @@ public class ProductoService {
         db = new DaoProducto();
     }
 
-    public void createProducto(@NotEmpty String nombre, @NotEmpty String descripcion,@NotEmpty Integer id_marca , @NotEmpty Double precio , @NotEmpty @NotEmpty CategoriaEnum categoria ) throws Exception {
+    public void createProducto(@NotEmpty String nombre, @NotEmpty String descripcion,@NotNull Integer id_marca , Double precio , @NotNull CategoriaEnum categoria ) throws Exception {
         if (nombre.trim().length() > 0 && descripcion.trim().length() > 0 && id_marca != null && precio != null && categoria != null) {
             db.getObj().setNombre(nombre);
             db.getObj().setDescripcion(descripcion);
-            db.getObj().setId(id_marca);
+            db.getObj().setId_marca(id_marca);
             db.getObj().setPrecio(precio);
             db.getObj().setCategoria(categoria);   
             if (!db.save())
@@ -38,18 +40,19 @@ public class ProductoService {
         }
     }
 
-    public void updateProducto(Integer id, @NotEmpty String nombre,@NotEmpty String descripcion,@NotEmpty Integer id_marca , @NotEmpty Double precio , @NotEmpty @NotEmpty CategoriaEnum categoria) throws Exception {
+    public void updateProducto(Integer id, @NotEmpty String nombre,@NotEmpty String descripcion, @ NotNull Integer id_marca ,  Double precio , @NotNull CategoriaEnum categoria) throws Exception {
         if (id != null && id > 0 && nombre.trim().length() > 0 && descripcion.trim().length() > 0 && id_marca != null && precio != null && categoria != null) {
-            db.setObj(db.listAll().get(id - 1));
-            db.getObj().setNombre(nombre);
-            db.getObj().setDescripcion(descripcion);
-            db.getObj().setId(id_marca);
-            db.getObj().setPrecio(precio);
-            db.getObj().setCategoria(categoria);
-            if (!db.update(id - 1))
-                throw new Exception("No se pudo modificar los datos de la banda");
+            Producto aux = new Producto();
+            aux.setId(id);
+            aux.setNombre(nombre);
+            aux.setDescripcion(descripcion);
+            aux.setId_marca(id_marca);
+            aux.setPrecio(precio);
+            aux.setCategoria(categoria);
+            db.update_by_id(aux , id);
         }
     }
+        
 
     public List<Producto> listAllProducto() {
         return Arrays.asList(db.listAll().toArray());
