@@ -1,3 +1,4 @@
+import { CarritoProvider } from './CarritoContext';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import {
   AppLayout,
@@ -66,17 +67,20 @@ function UserMenu() {
   );
 }
 
+
 export default function MainLayout() {
   return (
-    <AppLayout primarySection="drawer">
-      <Header />
-      <Scroller slot="drawer">
-        <MainMenu />
-      </Scroller>
-      <UserMenu />
-      <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
-        <Outlet />
-      </Suspense>
-    </AppLayout>
+    <CarritoProvider>
+      <AppLayout primarySection="drawer">
+        <Header />
+        <Scroller slot="drawer">
+          <MainMenu />
+        </Scroller>
+        <UserMenu />
+        <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
+          <Outlet />
+        </Suspense>
+      </AppLayout>
+    </CarritoProvider>
   );
 }

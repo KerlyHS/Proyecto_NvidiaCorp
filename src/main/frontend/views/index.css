@@ -1,0 +1,60 @@
+.nvidia-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 0.5rem 2.5rem;
+  box-shadow: 0 2px 12px #00000010;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 64px;
+}
+
+.nvidia-navbar-logo .nvidia-logo {
+  height: 38px;
+}
+
+.nvidia-navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.nvidia-navbar-btn {
+  font-family: inherit;
+}
+
+.main-nvidia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 80%, #76b900 100%);
+}
+
+.nvidia-card {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 3rem 4rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(34, 255, 0, 0.15);
+  text-align: center;
+  margin-top: 7rem;
+}
+
+.nvidia-title {
+  color: #76b900;
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: 900;
+  text-shadow: 0 2px 8px #000;
+}
+
+.nvidia-desc {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+}

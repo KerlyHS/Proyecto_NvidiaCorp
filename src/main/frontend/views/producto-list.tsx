@@ -11,7 +11,10 @@ import Marca from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Marca'
 import CategoriaEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/CategoriaEnum';
 import { MarcaService } from 'Frontend/generated/endpoints';
 import { useEffect, useState } from 'react';
+import { useCarrito } from './CarritoContext';
+import { createContext, useContext } from 'react';
 import './producto-list.css';
+import { Upload } from '@vaadin/react-components';
 
 
 export const config: ViewConfig = {
@@ -36,6 +39,12 @@ type ProductoEntryFormPropsUpdate = {
 function ProductoEntryForm(props: ProductoEntryFormProps) {
     const dialogOpened = useSignal(false);
     const [Marca, setMarcas] = useState<Marca[]>([]);
+    const [imagenUrl, setImagenUrl] = useState('');
+
+    const handleUploadSuccess = (event: any) => {
+        const response = event.detail.xhr.response;
+        setImagenUrl(response); // Guarda la URL devuelta por el backend
+    };
 
     const open = () => {
         dialogOpened.value = true;
@@ -62,9 +71,9 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
 
     const createProducto = async () => {
         try {
-            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0) {
+            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl){
                 const CategoriaEnum = categoria.value as CategoriaEnum;
-                await ProductoService.createProducto(nombre.value, descripcion.value, marca.value, precio.value, categoria.value);
+                await ProductoService.createProducto(nombre.value, descripcion.value, marca.value, precio.value, categoria.value, imagenUrl);
                 if (props.onProductoCreated) {
                     props.onProductoCreated();
                 }
@@ -73,7 +82,7 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
                 marca.value = 0;
                 precio.value = 0;
                 categoria.value = '';
-
+                setImagenUrl('');
                 dialogOpened.value = false;
                 Notification.show('Producto creada exitosamente', { duration: 5000, position: 'bottom-end', theme: 'success' });
             } else {
@@ -125,6 +134,15 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
                     style={{ width: '300px', maxWidth: '100%', alignItems: 'stretch' }}
                 >
                     <VerticalLayout style={{ alignItems: 'stretch' }}>
+                        <Upload
+                            accept="image/png,image/jpeg"
+                            maxFiles={1}
+                            target="/api/upload"
+                            onUploadSuccess={handleUploadSuccess}
+                        />
+                        {imagenUrl && (
+                            <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                        )}
                         <TextField label="Nombre"
                             placeholder='Ingrese el nombre de la Producto'
                             aria-label='Ingrese el nombre de la Producto'
@@ -179,6 +197,12 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     const Producto = props.arguments;
     const dialogOpened = useSignal(false);
     const [Marca, setMarcas] = useState<Marca[]>([]);
+    const [imagenUrl, setImagenUrl] = useState('');
+
+    const handleUploadSuccess = (event: any) => {
+        const response = event.detail.xhr.response;
+        setImagenUrl(response); // Guarda la URL devuelta por el backend
+    };
 
     const open = () => {
         dialogOpened.value = true;
@@ -205,9 +229,9 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
 
     const updateProducto = async () => {
         try {
-            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0) {
+            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl.trim().length > 0) {
                 const CategoriaEnum = categoria.value as CategoriaEnum;
-                await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value);
+                await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value , imagenUrl);
                 if (props.onProductoUpdated) {
                     props.onProductoUpdated();
                 }
@@ -216,6 +240,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                 marca.value = 0;
                 precio.value = 0;
                 categoria.value = '';
+                imagenUrl = '';
 
                 dialogOpened.value = false;
                 Notification.show('Producto creada exitosamente', { duration: 5000, position: 'bottom-end', theme: 'success' });
@@ -268,6 +293,15 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                     style={{ width: '300px', maxWidth: '100%', alignItems: 'stretch' }}
                 >
                     <VerticalLayout style={{ alignItems: 'stretch' }}>
+                        <Upload
+                            accept="image/png,image/jpeg"
+                            maxFiles={1}
+                            target="/api/upload"
+                            onUploadSuccess={handleUploadSuccess}
+                        />
+                        {imagenUrl && (
+                            <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                        )}
                         <TextField label="Nombre"
                             placeholder='Ingrese el nombre de la Producto'
                             aria-label='Ingrese el nombre de la Producto'
@@ -315,6 +349,8 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     );
 }
 
+//DELETE PRODUCTO
+
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: 'medium',
@@ -329,16 +365,10 @@ function index({ model }: { model: GridItemModel<Producto> }) {
     );
 }
 
-function ProductoCard({ item, onProductoUpdated }: { item: any, onProductoUpdated: () => void }) {
+export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: any, onProductoUpdated?: () => void, onEliminar?: () => void }) {
+    const { agregar } = useCarrito();
     return (
         <div className="producto-card">
-            <img
-                src={item.imagen && item.imagen.trim() !== "" 
-                    ? item.imagen 
-                    : "https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/graphic-cards/50-series/geforce-rtx-50series-og-1200x630.jpg"}
-                alt={item.nombre}
-                className="producto-imagen"
-            />
             <div className="producto-info">
                 <h3>{item.nombre}</h3>
                 <p className="producto-descripcion">{item.descripcion}</p>
@@ -347,12 +377,22 @@ function ProductoCard({ item, onProductoUpdated }: { item: any, onProductoUpdate
                     <span className="producto-categoria">{item.categoria}</span>
                 </div>
                 <div className="producto-precio">${item.precio}</div>
-                <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
+                {onEliminar ? (
+                    <Button theme="error" onClick={onEliminar}>
+                        Eliminar
+                    </Button>
+                ) : (
+                    <Button theme="primary" onClick={() => agregar(item)}>
+                        Agregar al Carrito
+                    </Button>
+                )}
+                {onProductoUpdated && (
+                    <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
+                )}
             </div>
         </div>
     );
 }
-
 
 
 export default function ProductoListView() {

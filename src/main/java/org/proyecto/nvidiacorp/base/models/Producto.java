@@ -7,6 +7,7 @@ public class Producto {
     private Integer id_marca;
     private Double precio;
     private CategoriaEnum categoria;
+    private String imagen;
 
     public Integer getId() {
         return this.id;
@@ -56,5 +57,12 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
 }
