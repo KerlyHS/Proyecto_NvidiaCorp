@@ -1,4 +1,4 @@
-package org.proyecto.nvidiacorp.base.controller.service;
+package org.proyecto.nvidiacorp.base.controller.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class PersonaService {
             dp.getPersona().setDireccion(direccion);
             dp.getPersona().setEdad(edad);
             if (!dp.save()) {
-                throw new Exception("Error al guardar datos");
+                throw new Exception("Error al guardar los datos del usuario");
             }
         }
     }
@@ -43,7 +43,7 @@ public class PersonaService {
             dp.getPersona().setDireccion(direccion);
             dp.getPersona().setEdad(edad);
             if (!dp.update(id - 1)) {
-                throw new Exception("Error al actualizar");
+                throw new Exception("Error al actualizar los datos del usuario");
             }
         }
     }

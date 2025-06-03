@@ -1,4 +1,4 @@
-package org.proyecto.nvidiacorp.base.controller.service;
+package org.proyecto.nvidiacorp.base.controller.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +24,8 @@ public class UsuarioService {
         this.du = new DaoUsuario();
     }
     
-    public void create(@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona, @NonNull String rol) throws Exception {
-        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0 && rol.trim().length() > 0) {
+    public void create(@NotEmpty String correo, @NotEmpty String clave, Boolean estado, @NonNull String direccion, Integer id_Persona, @NonNull String rol) throws Exception {
+        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null) {
             du.getUsuario().setCorreo(correo);
             du.getUsuario().setClave(clave);
             du.getUsuario().setEstado(estado);
@@ -37,8 +37,8 @@ public class UsuarioService {
         }
     }
 
-    public void update(Integer id,@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona, @NonNull String rol) throws Exception {
-        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0 && rol.trim().length() > 0) {
+    public void update(Integer id,@NotEmpty String correo, @NotEmpty String clave, Boolean estado, @NonNull String direccion, Integer id_Persona, @NonNull String rol) throws Exception {
+        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null) {
             du.setUsuario(du.listAll().get(id - 1));
             du.getUsuario().setCorreo(correo);
             du.getUsuario().setClave(clave);
