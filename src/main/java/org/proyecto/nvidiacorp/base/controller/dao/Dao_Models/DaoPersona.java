@@ -3,11 +3,7 @@ package org.proyecto.nvidiacorp.base.controller.dao.Dao_Models;
 import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
 import org.proyecto.nvidiacorp.base.models.Persona;
 
-<<<<<<< HEAD
 public class DaoPersona extends AdapterDao<Persona> {
-=======
-public class DaoPersona extends AdapterDao<Persona>{
->>>>>>> Kevin_Nole
     private Persona obj;
 
     public DaoPersona(){
@@ -18,10 +14,7 @@ public class DaoPersona extends AdapterDao<Persona>{
         try {
             this.obj.setId(listAll().getLength()+1);
             this.persist(obj);
-<<<<<<< HEAD
             this.save();
-=======
->>>>>>> Kevin_Nole
             return true;
         } catch (Exception e) {
             return false;

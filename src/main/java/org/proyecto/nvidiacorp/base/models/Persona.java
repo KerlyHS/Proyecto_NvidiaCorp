@@ -1,11 +1,7 @@
 package org.proyecto.nvidiacorp.base.models;
 
 public class Persona {
-<<<<<<< HEAD
 private Integer id;
-=======
-    private Integer id;
->>>>>>> Kevin_Nole
     private String nombre;
     private String apellido;
     private String direccion;
@@ -60,8 +56,4 @@ private Integer id;
     public void setEdad(Integer edad) {
         this.edad = edad;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> Kevin_Nole
 }

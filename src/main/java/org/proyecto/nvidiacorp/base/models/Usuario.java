@@ -2,19 +2,12 @@ package org.proyecto.nvidiacorp.base.models;
 
 public class Usuario {
     private Integer id;
-<<<<<<< HEAD
-=======
-    private Integer id_Persona;
->>>>>>> Kevin_Nole
     private String correo;
     private String clave;
     private Boolean estado;
     private RolEnum rol;
-<<<<<<< HEAD
     private Integer id_Persona;
 
-=======
->>>>>>> Kevin_Nole
 
     public Integer getId() {
         return this.id;
@@ -24,17 +17,6 @@ public class Usuario {
         this.id = id;
     }
 
-<<<<<<< HEAD
-=======
-    public Integer getId_Persona() {
-        return this.id_Persona;
-    }
-
-    public void setId_Persona(Integer id_Persona) {
-        this.id_Persona = id_Persona;
-    }
-
->>>>>>> Kevin_Nole
     public String getCorreo() {
         return this.correo;
     }
@@ -71,7 +53,6 @@ public class Usuario {
         this.rol = rol;
     }
 
-<<<<<<< HEAD
     public Integer getId_Persona() {
         return this.id_Persona;
     }
@@ -79,6 +60,4 @@ public class Usuario {
     public void setId_Persona(Integer id_Persona) {
         this.id_Persona = id_Persona;
     }
-=======
->>>>>>> Kevin_Nole
 }
