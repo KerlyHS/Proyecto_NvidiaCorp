@@ -24,22 +24,23 @@ public class PersonaServices {
         this.dp = new DaoPersona();
     }
 
-    public void create(@NotEmpty String nombre, @NotEmpty String apellido, @NonNull String identificacion,
-        String direccion, @NonNull Integer edad, @NotEmpty String nroIdentificacion) throws Exception {
+    public void create(@NotEmpty String nombre, @NotEmpty String apellido, @NonNull String telefono, @NonNull String identificacion,
+        String direccion, @NonNull Integer edad, @NotEmpty String codIdent) throws Exception {
     if (nombre.trim().length() > 0 && apellido.trim().length() > 0 && identificacion.trim().length() > 0
-            && edad != null && nroIdentificacion.trim().length() > 0) {
+            && edad != null && codIdent.trim().length() > 0) {
         dp.getPersona().setNombre(nombre);
         dp.getPersona().setApellido(apellido);
+        dp.getPersona().setTelefono(telefono);
         dp.getPersona().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
         dp.getPersona().setDireccion(direccion);
         dp.getPersona().setEdad(edad);
-        dp.getPersona().setNroIdentificacion(nroIdentificacion); // <-- aquí
+        dp.getPersona().setCodIdent(codIdent); // <-- aquí
         if (identificacion.equals("CEDULA")) {
-            if (!nroIdentificacion.matches("\\d{10}")) {
+            if (!codIdent.matches("\\d{10}")) {
                 throw new Exception("La cédula debe tener 10 dígitos numéricos");
             }
         } else if (identificacion.equals("PASAPORTE")) {
-            if (!nroIdentificacion.matches("[A-Za-z0-9]{6,15}")) {
+            if (!codIdent.matches("[A-Za-z0-9]{6,15}")) {
                 throw new Exception("El pasaporte debe tener entre 6 y 15 caracteres alfanuméricos");
             }
         }
@@ -49,16 +50,18 @@ public class PersonaServices {
     }
 }
 
-    public void update(Integer id, @NotEmpty String nombre, @NotEmpty String apellido, @NonNull String identificacion,
-            String direccion, @NonNull Integer edad) throws Exception {
+    public void update(Integer id, @NotEmpty String nombre, @NotEmpty String apellido, @NonNull String telefono ,@NonNull String identificacion,
+            String direccion, @NonNull Integer edad, @NotEmpty String codIdent) throws Exception {
         if (id != null && nombre.trim().length() > 0 && apellido.trim().length() > 0
                 && identificacion.trim().length() > 0 && edad != null) {
             dp.setPersona(dp.listAll().get(id - 1));
             dp.getPersona().setNombre(nombre);
             dp.getPersona().setApellido(apellido);
+            dp.getPersona().setTelefono(telefono);
             dp.getPersona().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
             dp.getPersona().setDireccion(direccion);
             dp.getPersona().setEdad(edad);
+            dp.getPersona().setCodIdent(codIdent); // Mantener el código de identificación
             if (!dp.update(id - 1)) {
                 throw new Exception("Error al actualizar");
             }

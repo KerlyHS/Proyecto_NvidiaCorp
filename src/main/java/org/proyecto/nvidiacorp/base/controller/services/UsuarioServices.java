@@ -77,7 +77,7 @@ public class UsuarioServices {
             for (int i = 0; i < arreglo.length; i++) {
                 HashMap<String, String> aux = new HashMap<>();
                 aux.put("value", arreglo[i].getId().toString());
-                aux.put("label", arreglo[i].getNombre() + " (" + arreglo[i].getNroIdentificacion() + ")");
+                aux.put("label", arreglo[i].getNombre() + " (" + arreglo[i].getCodIdent() + ")");
                 lista.add(aux);
             }
         }
@@ -90,13 +90,14 @@ public class UsuarioServices {
             Usuario[] arreglo = du.listAll().toArray();
             for (int i = 0; i < arreglo.length; i++) {
                 HashMap<String, String> aux = new HashMap<>();
+                Persona persona = new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1);
                 aux.put("id", arreglo[i].getId().toString(i));
                 aux.put("correo", arreglo[i].getCorreo().toString());
                 aux.put("clave", arreglo[i].getClave().toString());
                 aux.put("estado", arreglo[i].getEstado().toString());
-                aux.put("persona", new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getNombre());
-                aux.put("nroIdentificacion",
-                        new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getNroIdentificacion());
+                aux.put("persona", persona.getNombre() + " " + persona.getApellido());
+                aux.put("codIdent",
+                        new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getCodIdent());
                 aux.put("id_persona",
                         new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getId().toString());
                 aux.put("rol", arreglo[i].getRol().toString());

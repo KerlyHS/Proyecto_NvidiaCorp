@@ -1,13 +1,14 @@
 package org.proyecto.nvidiacorp.base.models;
 
 public class Persona {
-private Integer id;
+    private Integer id;
     private String nombre;
     private String apellido;
+    private String telefono;
     private String direccion;
     private IdentificacionEnum identificacion;
     private Integer edad;
-    private String nroIdentificacion;
+    private String codIdent;
 
 
     public Integer getId() {
@@ -34,6 +35,14 @@ private Integer id;
         this.apellido = apellido;
     }
 
+    public String getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getDireccion() {
         return this.direccion;
     }
@@ -58,11 +67,11 @@ private Integer id;
         this.edad = edad;
     }
 
-    public String getNroIdentificacion() {
-        return this.nroIdentificacion;
+    public String getCodIdent() {
+        return this.codIdent;
     }
 
-    public void setNroIdentificacion(String nroIdentificacion) {
-        this.nroIdentificacion = nroIdentificacion;
+    public void setCodIdent(String codIdent) {
+        this.codIdent = codIdent;
     }
 }
