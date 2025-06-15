@@ -3,17 +3,15 @@ package org.proyecto.nvidiacorp.base.controller;
 import java.text.DecimalFormat;
 
 public class Utiles {
-    public static Integer ASCEDENTE = 1;
+    public static Integer ASCENDENTE = 1;
     public static Integer DESCENDENTE = 2;
-    public static Integer START;// 1
-    public static Integer END;// 2
-    public static Integer CONSTIANS;// lo que dios quiera
+    public static Integer START; // 1
+    public static Integer END;   // 2
+    public static Integer CONSTIANS; // lo que dios quiera
 
     public String tranformStringFloatTwoDecimal(float dato) {
-        // 67.876
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(dato);
-
     }
 
     public Boolean constanceArray(Object[] array, String text) {
@@ -45,7 +43,7 @@ public class Utiles {
             } else {
                 cmp = valA.toString().compareTo(valB.toString());
             }
-            if (orden == ASCEDENTE) {
+            if (orden == ASCENDENTE) {
                 return cmp < 0;
             } else {
                 return cmp > 0;
