@@ -1,5 +1,7 @@
 package org.proyecto.nvidiacorp.base.models;
 
+import java.util.HashMap;
+
 public class Producto {
     private Integer id;
     private String nombre;
@@ -63,6 +65,44 @@ public class Producto {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public Producto copy(Producto obj){
+        Producto aux = new Producto();
+        aux.setId(obj.getId());
+        aux.setNombre(obj.getNombre());
+        aux.setDescripcion(obj.getDescripcion());
+        aux.setId_marca(obj.getId_marca());
+        aux.setPrecio(obj.getPrecio());
+        aux.setCategoria(obj.getCategoria());
+        aux.setImagen(obj.getImagen());
+        return aux;
+    }
+
+    public HashMap<String , String> toMap(){
+        HashMap<String, String> diccionario = new HashMap<>();
+        diccionario.put("id", this.id.toString());  
+        diccionario.put("nombre", this.nombre);
+        diccionario.put("descripcion", this.descripcion);
+        diccionario.put("id_marca", this.id_marca.toString());
+        diccionario.put("precio", this.precio.toString());
+        diccionario.put("categoria", this.categoria.toString());
+        diccionario.put("imagen", this.imagen);
+        return diccionario;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", id_marca=" + id_marca +
+                ", precio=" + precio +
+                ", categoria=" + categoria +
+                ", imagen='" + imagen + '\'' +
+                '}';
     }
 
 }
