@@ -1,6 +1,6 @@
 import { Button } from '@vaadin/react-components';
 import { useNavigate } from 'react-router';
-import './index.css';
+import "themes/default/css/index.css";
 
 export default function IndexList() {
     const navigate = useNavigate();

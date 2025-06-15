@@ -1,82 +1,74 @@
 [
     {
         "id": 1,
-        "nombre": "RTX 3070",
-        "descripcion": "Gama Media ",
+        "nombre": "RTX 4080 Super",
+        "descripcion": "Tarjeta grafica de alta gama",
         "id_marca": 1,
-        "precio": 700.0,
-        "categoria": "COMPONENTES"
+        "precio": 800.0,
+        "categoria": "COMPONENTES",
+        "imagen": "/imagenes/1749961339797_nvidia-geforce-rtx-4080-super-founders-edition (1).jpg"
     },
     {
         "id": 2,
-        "nombre": "RTX 3080",
-        "descripcion": "Tarjeta grafica de alta gama",
+        "nombre": "RTX 4030",
+        "descripcion": "Tarjeta grafica de alta baja",
         "id_marca": 1,
-        "precio": 1200.0,
-        "categoria": "ACCESORIOS"
+        "precio": 600.0,
+        "categoria": "COMPONENTES",
+        "imagen": "/imagenes/1749961398506_tarjetas-graficas-de-nvidia-de-mejor-a-peor-2.jpg"
     },
     {
         "id": 3,
-        "nombre": "RTX 3090",
+        "nombre": "RTX 4090",
         "descripcion": "Tarjeta grafica de alta gama",
         "id_marca": 1,
-        "precio": 1500.0,
-        "categoria": "ACCESORIOS"
+        "precio": 1000.0,
+        "categoria": "ACCESORIOS",
+        "imagen": "/imagenes/1749961442118_geforce-rtx-40-series-new.jpeg"
     },
     {
         "id": 4,
-        "nombre": "GTX 1660",
-        "descripcion": "Tarjeta grafica de gama media",
+        "nombre": "RTX 4070",
+        "descripcion": "Tarjeta grafica de alta gama",
         "id_marca": 1,
-        "precio": 300.0,
-        "categoria": "ACCESORIOS"
+        "precio": 700.0,
+        "categoria": "COMPONENTES",
+        "imagen": "/imagenes/1749961483231_tarjetas-graficas-de-nvidia-de-mejor-a-peor.jpg"
     },
     {
         "id": 5,
-        "nombre": "GTX 1650",
-        "descripcion": "Tarjeta grafica de gama media",
+        "nombre": "RTX 5070 TI",
+        "descripcion": "Tarjeta grafica de alta gama",
         "id_marca": 1,
-        "precio": 250.0,
-        "categoria": "ACCESORIOS"
+        "precio": 750.0,
+        "categoria": "ACCESORIOS",
+        "imagen": "/imagenes/1749961869865_NVIDIA-GeForce-RTX-5070-Ti.jpg"
     },
     {
         "id": 6,
-        "nombre": "RTX 4080",
-        "descripcion": "Gama Alta",
+        "nombre": "RTX 5060 TI",
+        "descripcion": "Tarjeta grafica de alta media",
         "id_marca": 1,
-        "precio": 900.0,
-        "categoria": "COMPONENTES"
+        "precio": 700.0,
+        "categoria": "COMPONENTES",
+        "imagen": "/imagenes/1749961907225_Blog-DE-NVIDIA-GeForce-RTX-4060-Family-02.jpg"
     },
     {
         "id": 7,
-        "nombre": "RTX 4090",
-        "descripcion": "Gama Ultra",
+        "nombre": "RTX 5000",
+        "descripcion": "Tarjeta grafica de alta baja",
         "id_marca": 1,
-        "precio": 1000.0,
-        "categoria": "COMPONENTES"
+        "precio": 300.0,
+        "categoria": "COMPONENTES",
+        "imagen": "/imagenes/1749961940790_nvidianin-yeni-rtx-50-serisi-muazzam-bir-guce-ihtiyac-duyabilir-qoqh.jpg"
     },
     {
         "id": 8,
-        "nombre": "RTX 4090",
-        "descripcion": "Gama Ultra",
+        "nombre": "RTX 5050 ",
+        "descripcion": "Tarjeta grafica de alta media",
         "id_marca": 1,
-        "precio": 900.0,
-        "categoria": "ACCESORIOS"
-    },
-    {
-        "id": 9,
-        "nombre": "RTX 4080",
-        "descripcion": "JS",
-        "id_marca": 1,
-        "precio": 800.0,
-        "categoria": "ACCESORIOS"
-    },
-    {
-        "id": 10,
-        "nombre": "GTX 1660",
-        "descripcion": "JS",
-        "id_marca": 1,
-        "precio": 300.0,
-        "categoria": "ACCESORIOS"
+        "precio": 500.0,
+        "categoria": "COMPONENTES",
+        "imagen": "/imagenes/1749961967649_NVIDIA-RTX-50-Serisi-Ekran-Kartlarini-ve-DLSS-4-Teknolojisini-Duyurdu.jpg"
     }
 ]

@@ -12,13 +12,15 @@ import java.nio.file.*;
 @RequestMapping("/api/upload")
 public class ImageUploadController {
 
-    @PostMapping
-    public String uploadImage(@RequestParam("file") MultipartFile file) throws Exception {
-        String folder = "uploads/";
-        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        Path path = Paths.get(folder + filename);
-        Files.createDirectories(path.getParent());
-        Files.write(path, file.getBytes());
-        return "/uploads/" + filename;
-    }
+@PostMapping
+public String uploadImage(@RequestParam("file") MultipartFile file) throws Exception {
+    String folder = "src/main/frontend/themes/imagenes/";
+    String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+    Path path = Paths.get(folder + filename);
+    Files.createDirectories(path.getParent());
+    Files.write(path, file.getBytes());
+    System.out.println("Imagen subida: " + path.toAbsolutePath()); 
+    System.out.println("URL devuelta al frontend: /imagenes/" + filename); 
+    return "/imagenes/" + filename;
+}
 }

@@ -1,5 +1,5 @@
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
-import { Button, DatePicker, Dialog, Grid, GridColumn, GridItemModel, TextArea, TextField, VerticalLayout, ComboBox } from '@vaadin/react-components';
+import { Button, DatePicker, Dialog, Grid, GridColumn, GridItemModel, TextArea, TextField, VerticalLayout, ComboBox, HorizontalLayout, Select, Icon } from '@vaadin/react-components';
 import { Notification } from '@vaadin/react-components/Notification';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
@@ -13,8 +13,10 @@ import { MarcaService } from 'Frontend/generated/endpoints';
 import { useEffect, useState } from 'react';
 import { useCarrito } from './CarritoContext';
 import { createContext, useContext } from 'react';
-import './producto-list.css';
+import "themes/default/css/producto-list.css";
 import { Upload } from '@vaadin/react-components';
+import { useNavigate } from 'react-router';
+
 
 
 export const config: ViewConfig = {
@@ -71,7 +73,7 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
 
     const createProducto = async () => {
         try {
-            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl){
+            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl) {
                 const CategoriaEnum = categoria.value as CategoriaEnum;
                 await ProductoService.createProducto(nombre.value, descripcion.value, marca.value, precio.value, categoria.value, imagenUrl);
                 if (props.onProductoCreated) {
@@ -141,7 +143,10 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
                             onUploadSuccess={handleUploadSuccess}
                         />
                         {imagenUrl && (
-                            <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                            <>
+                                <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                                <Button theme="error" onClick={() => setImagenUrl('')}>Eliminar imagen</Button>
+                            </>
                         )}
                         <TextField label="Nombre"
                             placeholder='Ingrese el nombre de la Producto'
@@ -197,7 +202,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     const Producto = props.arguments;
     const dialogOpened = useSignal(false);
     const [Marca, setMarcas] = useState<Marca[]>([]);
-    const [imagenUrl, setImagenUrl] = useState('');
+    const [imagenUrl, setImagenUrl] = useState(Producto.imagen || '');
 
     const handleUploadSuccess = (event: any) => {
         const response = event.detail.xhr.response;
@@ -231,7 +236,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
         try {
             if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl.trim().length > 0) {
                 const CategoriaEnum = categoria.value as CategoriaEnum;
-                await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value , imagenUrl);
+                await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value, imagenUrl);
                 if (props.onProductoUpdated) {
                     props.onProductoUpdated();
                 }
@@ -240,7 +245,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                 marca.value = 0;
                 precio.value = 0;
                 categoria.value = '';
-                imagenUrl = '';
+                setImagenUrl('');
 
                 dialogOpened.value = false;
                 Notification.show('Producto creada exitosamente', { duration: 5000, position: 'bottom-end', theme: 'success' });
@@ -300,7 +305,10 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                             onUploadSuccess={handleUploadSuccess}
                         />
                         {imagenUrl && (
-                            <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                            <>
+                                <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                                <Button theme="error" onClick={() => setImagenUrl('')}>Eliminar imagen</Button>
+                            </>
                         )}
                         <TextField label="Nombre"
                             placeholder='Ingrese el nombre de la Producto'
@@ -352,23 +360,15 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
 //DELETE PRODUCTO
 
 
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-    dateStyle: 'medium',
-});
 
-
-function index({ model }: { model: GridItemModel<Producto> }) {
-    return (
-        <span>
-            {model.index + 1}
-        </span>
-    );
-}
 
 export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: any, onProductoUpdated?: () => void, onEliminar?: () => void }) {
     const { agregar } = useCarrito();
     return (
         <div className="producto-card">
+            {item.imagen && (
+                <img className="producto-imagen" src={item.imagen} alt={item.nombre} />
+            )}
             <div className="producto-info">
                 <h3>{item.nombre}</h3>
                 <p className="producto-descripcion">{item.descripcion}</p>
@@ -396,8 +396,18 @@ export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: an
 
 
 export default function ProductoListView() {
-    const [productos, setProductos] = useState<any[]>([]);
+    const [productos, setProductos] = useState<Producto[]>([]);
+    const criterio = useSignal('');
+    const text = useSignal('');
+    const navigate = useNavigate();
+    const itemSelect = [
+        { label: 'Nombre', value: 'nombre' },
+        { label: 'Descripcion', value: 'descripcion' },
+        { label: 'Precio', value: 'precio' },
+        { label: 'Categoria', value: 'categoria' },
+    ];
 
+    // Cargar todos los productos al inicio
     const cargarProductos = async () => {
         const data = await ProductoService.listAll();
         setProductos(data);
@@ -408,13 +418,105 @@ export default function ProductoListView() {
         cargarProductos();
     }, []);
 
+    // Búsqueda usando el backend
+    const search = async () => {
+        try {
+            if (!criterio.value || !text.value) {
+                Notification.show('Ingrese criterio y texto de búsqueda', { duration: 3000, position: 'top-center', theme: 'error' });
+                return;
+            }
+            ProductoService.busqueda(criterio.value, text.value, 0).then(function (data) {
+                setProductos(data);
+                console.log("Resultados de búsqueda:", data);
+            });
+            Notification.show('Busqueda realizada', { duration: 3000, position: 'bottom-end', theme: 'success' });
+        } catch (error) {
+            console.log(error);
+            handleError(error);
+        }
+    };
+
     return (
-        <main className="w-full h-full flex flex-col box-border gap-s p-m">
-            <ViewToolbar title="Catalogo de Productos">
+        <main
+            className="w-full h-full flex flex-col box-border gap-s p-m"
+            style={{
+                minHeight: '100vh',
+                background: 'transparent', 
+            }}
+        >
+            <ViewToolbar
+                title={
+                    <span style={{ color: '#76b900', fontWeight: 900, fontSize: '2rem', letterSpacing: 2 }}>
+                        Productos
+                    </span>
+                }
+            >
                 <Group>
+                    <Button
+                        theme="primary"
+                        style={{
+                            background: '#76b900',
+                            color: '#0f0f0f',
+                            fontWeight: 'bold',
+                            borderRadius: '8px',
+                            fontSize: '1.1rem',
+                            marginRight: '1rem',
+                            border: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                        }}
+                        onClick={() => navigate('/carrito-list')}
+                    >
+                        <Icon icon="vaadin:cart" style={{ marginRight: 8 }} />
+                        Ver Carrito
+                    </Button>
                     <ProductoEntryForm onProductoCreated={cargarProductos} />
                 </Group>
             </ViewToolbar>
+            <HorizontalLayout theme="spacing">
+                <Select
+                    items={itemSelect}
+                    value={criterio.value}
+                    onValueChanged={(e) => (criterio.value = e.detail.value)}
+                    label="Criterio de busqueda"
+                />
+                <TextField
+                    className="producto-busqueda-input"
+                    placeholder="Buscar"
+                    style={{ width: '50%' }}
+                    value={text.value}
+                    onValueChanged={(evt) => (text.value = evt.detail.value)}
+                >
+                    <Icon slot="prefix" icon="vaadin:search" />
+                </TextField>
+                <Button
+                    onClick={search}
+                    theme="primary"
+                    style={{
+                        background: '#76b900',
+                        color: '#0f0f0f',
+                        fontWeight: 'bold',
+                        borderRadius: '8px',
+                        border: 'none',
+                    }}
+                >
+                    BUSCAR
+                </Button>
+                <Button
+                    onClick={cargarProductos}
+                    theme="secondary"
+                    style={{
+                        background: '#fff',
+                        color: '#76b900',
+                        fontWeight: 'bold',
+                        borderRadius: '8px',
+                        border: '2px solid #76b900',
+                    }}
+                >
+                    Ver toda la lista
+                </Button>
+            </HorizontalLayout>
             <div className="producto-grid">
                 {productos.map((item: any, idx: number) => (
                     <ProductoCard key={item.id ?? idx} item={item} onProductoUpdated={cargarProductos} />
