@@ -363,7 +363,9 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
 
 
 export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: any, onProductoUpdated?: () => void, onEliminar?: () => void }) {
-    const { agregar } = useCarrito();
+    const { agregar, carrito } = useCarrito();
+    const yaEnCarrito = carrito.some((p: any) => p.id === item.id);
+
     return (
         <div className="producto-card">
             {item.imagen && (
@@ -382,8 +384,12 @@ export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: an
                         Eliminar
                     </Button>
                 ) : (
-                    <Button theme="primary" onClick={() => agregar(item)}>
-                        Agregar al Carrito
+                    <Button
+                        theme="primary"
+                        onClick={() => agregar(item)}
+                        disabled={yaEnCarrito}
+                    >
+                        {yaEnCarrito ? "En el carrito" : "Agregar al Carrito"}
                     </Button>
                 )}
                 {onProductoUpdated && (
@@ -474,48 +480,38 @@ export default function ProductoListView() {
                     <ProductoEntryForm onProductoCreated={cargarProductos} />
                 </Group>
             </ViewToolbar>
-            <HorizontalLayout theme="spacing">
-                <Select
-                    items={itemSelect}
-                    value={criterio.value}
-                    onValueChanged={(e) => (criterio.value = e.detail.value)}
-                    label="Criterio de busqueda"
-                />
-                <TextField
-                    className="producto-busqueda-input"
-                    placeholder="Buscar"
-                    style={{ width: '50%' }}
-                    value={text.value}
-                    onValueChanged={(evt) => (text.value = evt.detail.value)}
-                >
-                    <Icon slot="prefix" icon="vaadin:search" />
-                </TextField>
-                <Button
-                    onClick={search}
-                    theme="primary"
-                    style={{
-                        background: '#76b900',
-                        color: '#0f0f0f',
-                        fontWeight: 'bold',
-                        borderRadius: '8px',
-                        border: 'none',
-                    }}
-                >
-                    BUSCAR
-                </Button>
-                <Button
-                    onClick={cargarProductos}
-                    theme="secondary"
-                    style={{
-                        background: '#fff',
-                        color: '#76b900',
-                        fontWeight: 'bold',
-                        borderRadius: '8px',
-                        border: '2px solid #76b900',
-                    }}
-                >
-                    Ver toda la lista
-                </Button>
+            <HorizontalLayout className="producto-barra-busqueda" theme="spacing">
+              <Select
+                className="producto-select"
+                items={itemSelect}
+                value={criterio.value}
+                onValueChanged={(e) => (criterio.value = e.detail.value)}
+                label="Criterio"
+                style={{ minWidth: 160 }}
+              />
+              <TextField
+                className="producto-busqueda-input"
+                placeholder="Buscar producto..."
+                style={{ width: '50%' }}
+                value={text.value}
+                onValueChanged={(evt) => (text.value = evt.detail.value)}
+              >
+                <Icon slot="prefix" icon="vaadin:search" />
+              </TextField>
+              <Button
+                onClick={search}
+                theme="primary"
+                className="producto-buscar-btn"
+              >
+                BUSCAR
+              </Button>
+              <Button
+                onClick={cargarProductos}
+                theme="secondary"
+                className="producto-ver-todo-btn"
+              >
+                Ver toda la lista
+              </Button>
             </HorizontalLayout>
             <div className="producto-grid">
                 {productos.map((item: any, idx: number) => (

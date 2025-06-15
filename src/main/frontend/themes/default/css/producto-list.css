@@ -11,9 +11,18 @@ html, body, #root {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    justify-content: center;     
+    max-width: 1100px;           
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2rem;
 }
 
 .producto-card {
+    max-width: 380px;             
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     background: rgba(20, 20, 20, 0.95);
     border-radius: 18px;
     box-shadow: 0 4px 24px rgba(44, 62, 80, 0.18);
@@ -79,23 +88,54 @@ html, body, #root {
     letter-spacing: 0.01em;
 }
 
-vaadin-text-field,
+.producto-barra-busqueda {
+  background: rgba(34, 34, 34, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #76b90022;
+  padding: 1.2rem 2rem;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 900px;
+}
+
+.producto-select vaadin-select-text-field,
+.producto-select {
+  background: #fff !important;
+  border-radius: 8px !important;
+  border: 2px solid #76b900 !important;
+  color: #222 !important;
+  font-weight: bold;
+  min-width: 160px;
+}
+
 .producto-busqueda-input {
-    background: #fff !important;
-    border-radius: 8px !important;
-    border: 2px solid #76b900 !important;
-    color: #222 !important;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(34, 255, 0, 0.08);
+  background: #fff !important;
+  border-radius: 8px !important;
+  border: 2px solid #76b900 !important;
+  color: #222 !important;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(34, 255, 0, 0.08);
 }
 
-vaadin-text-field::part(input-field) {
-    background: #fff !important;
-    color: #222 !important;
+.producto-buscar-btn {
+  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
+  color: #222 !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  border: none !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 2px 8px #76b90044;
 }
 
-vaadin-text-field[theme~="dark"],
-.producto-busqueda-input[theme~="dark"] {
-    background: #222 !important;
-    color: #76b900 !important;
+.producto-ver-todo-btn {
+  background: #fff !important;
+  color: #76b900 !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  border: 2px solid #76b900 !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1.1rem !important;
 }

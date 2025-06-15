@@ -96,40 +96,6 @@ public class DaoProducto extends AdapterDao<Producto> {
         LinkedList<Producto> lista = listAll();
         return lista.busquedaLinealBinaria(attribute, text, type);
     }
-public static void main(String[] args) {
-    DaoProducto dao = new DaoProducto();
-    try {
-        // Mostrar todos los productos
-        System.out.println("=== Todos los productos ===");
-        LinkedList<Producto> productos = dao.listAll();
-        for (int i = 0; i < productos.getLength(); i++) {
-            System.out.println(productos.get(i));
-        }
 
-        // Prueba de búsqueda lineal
-        System.out.println("\n=== Búsqueda lineal por nombre 'rtx' ===");
-        LinkedList<Producto> resultadoLineal = dao.busquedaLineal("nombre", "rtx", 0);
-        for (int i = 0; i < resultadoLineal.getLength(); i++) {
-            System.out.println(resultadoLineal.get(i));
-        }
-
-        // Prueba de búsqueda binaria
-        System.out.println("\n=== Búsqueda binaria por nombre 'rtx' ===");
-        LinkedList<Producto> resultadoBinaria = dao.busquedaBinaria("nombre", "rtx", 0);
-        for (int i = 0; i < resultadoBinaria.getLength(); i++) {
-            System.out.println(resultadoBinaria.get(i));
-        }
-
-        // Prueba de búsqueda combinada
-        System.out.println("\n=== Búsqueda linealBinaria por nombre 'rtx' ===");
-        LinkedList<Producto> resultadoLinealBinaria = dao.busquedaLinealBinaria("nombre", "rtx", 0);
-        for (int i = 0; i < resultadoLinealBinaria.getLength(); i++) {
-            System.out.println(resultadoLinealBinaria.get(i));
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
 
 }
