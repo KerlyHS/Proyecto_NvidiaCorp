@@ -52,7 +52,7 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
     const createPersona = async () => {
         try {
             if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && nroIdentificacion.value.trim().length > 0) {
-                
+
                 if (identificacion.value === 'CEDULA') {
                     if (!/^\d{10}$/.test(nroIdentificacion.value)) {
                         Notification.show('La cédula debe tener 10 dígitos numéricos', { theme: 'error' });
@@ -64,7 +64,7 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
                         return;
                     }
                 }
-                
+
                 await PersonaServices.create(nombre.value, apellido.value, identificacion.value, direccion.value, parseInt(edad.value), nroIdentificacion.value);
                 if (props.onPersonaCreated) {
                     props.onPersonaCreated();
@@ -198,13 +198,23 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
     const apellido = useSignal(props.arguments.apellido);
     const direccion = useSignal(props.arguments.direccion);
     const identificacion = useSignal(props.arguments.identificacion);
-    const edad = useSignal(props.arguments.edad);
+    const edad = useSignal(props.arguments.edad?.toString() ?? '');
     const nroIdentificacion = useSignal(props.arguments.nroIdentificacion);
     const ident = useSignal(props.arguments.id);
 
+    useEffect(() => {
+        nombre.value = props.arguments.nombre;
+        apellido.value = props.arguments.apellido;
+        direccion.value = props.arguments.direccion;
+        identificacion.value = props.arguments.identificacion;
+        edad.value = props.arguments.edad?.toString() ?? '';
+        nroIdentificacion.value = props.arguments.nroIdentificacion;
+        ident.value = props.arguments.id;
+    }, [props.arguments]);
+
     const updatePersona = async () => {
         try {
-            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0  && nroIdentificacion.value.trim().length > 0) {
+            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && nroIdentificacion.value.trim().length > 0) {
                 if (identificacion.value === 'CEDULA') {
                     if (!/^\d{10}$/.test(nroIdentificacion.value)) {
                         Notification.show('La cédula debe tener 10 dígitos numéricos', { theme: 'error' });
