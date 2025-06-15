@@ -1,1 +1,83 @@
-[{"id":1,"nombre":"Rene","apellido":"Guaman","direccion":"10 de agosto","identificacion":"CEDULA","edad":45},{"id":2,"nombre":"Elena","apellido":"Gutierrez","direccion":"Av. Eloy Alfaro","identificacion":"CEDULA","edad":27},{"id":3,"nombre":"Carolina","apellido":"Balcazar","direccion":"Calle Manuel Monteros","identificacion":"PASAPORTE","edad":20},{"id":4,"nombre":"John","apellido":"Morales","direccion":"Calle Praga e Indiapolis","identificacion":"CEDULA","edad":25},{"id":5,"nombre":"Unicua","apellido":"Gonzàlez","direccion":"Clodoveo y Piura","identificacion":"PASAPORTE","edad":32},{"id":6,"nombre":"Pablo","apellido":"Ontaneda","direccion":"Menfis","identificacion":"PASAPORTE","edad":29},{"id":7,"nombre":"Tyron","apellido":"Silva","direccion":"Av. Eugenio Espejo","identificacion":"CEDULA","edad":22},{"id":8,"nombre":"Tasha","apellido":"Chilliguano","direccion":"Calle Faraday","identificacion":"CEDULA","edad":34},{"id":9,"nombre":"Austin","apellido":"Jimenez","direccion":"Calle Romerillos","identificacion":"PASAPORTE","edad":41}]
+[
+    {
+        "id": 1,
+        "nombre": "Rene",
+        "apellido": "Guaman",
+        "direccion": "10 de agosto",
+        "identificacion": "CEDULA",
+        "nroIdentificacion": "0912345678",
+        "edad": 45
+    },
+    {
+        "id": 2,
+        "nombre": "Elena",
+        "apellido": "Gutierrez",
+        "direccion": "Av. Eloy Alfaro",
+        "identificacion": "CEDULA",
+        "nroIdentificacion": "1723456789",
+        "edad": 27
+    },
+    {
+        "id": 3,
+        "nombre": "Carolina",
+        "apellido": "Balcazar",
+        "direccion": "Calle Manuel Monteros",
+        "identificacion": "PASAPORTE",
+        "nroIdentificacion": "A928374650",
+        "edad": 20
+    },
+    {
+        "id": 4,
+        "nombre": "John",
+        "apellido": "Morales",
+        "direccion": "Calle Praga e Indiapolis",
+        "identificacion": "CEDULA",
+        "nroIdentificacion": "0801122334",
+        "edad": 25
+    },
+    {
+        "id": 5,
+        "nombre": "Unicua",
+        "apellido": "Gonzàlez",
+        "direccion": "Clodoveo y Piura",
+        "identificacion": "PASAPORTE",
+        "nroIdentificacion": "A123456789",
+        "edad": 32
+    },
+    {
+        "id": 6,
+        "nombre": "Pablo",
+        "apellido": "Ontaneda",
+        "direccion": "Menfis",
+        "identificacion": "PASAPORTE",
+        "nroIdentificacion": "X987653432",
+        "edad": 29
+    },
+    {
+        "id": 7,
+        "nombre": "Tyron",
+        "apellido": "Silva",
+        "direccion": "Av. Eugenio Espejo",
+        "identificacion": "CEDULA",
+        "nroIdentificacion": "0609988776",
+        "edad": 22
+    },
+    {
+        "id": 8,
+        "nombre": "Tasha",
+        "apellido": "Chilliguano",
+        "direccion": "Calle Faraday",
+        "identificacion": "CEDULA",
+        "nroIdentificacion": "1105566778",
+        "edad": 34
+    },
+    {
+        "id": 9,
+        "nombre": "Austin",
+        "apellido": "Jimenez",
+        "direccion": "Calle Romerillos",
+        "identificacion": "PASAPORTE",
+        "nroIdentificacion": "P005874132",
+        "edad": 41
+    }
+]

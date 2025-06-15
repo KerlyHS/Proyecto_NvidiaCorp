@@ -25,19 +25,29 @@ public class PersonaServices {
     }
 
     public void create(@NotEmpty String nombre, @NotEmpty String apellido, @NonNull String identificacion,
-            String direccion, @NonNull Integer edad) throws Exception {
-        if (nombre.trim().length() > 0 && apellido.trim().length() > 0 && identificacion.trim().length() > 0
-                && edad != null) {
-            dp.getPersona().setNombre(nombre);
-            dp.getPersona().setApellido(apellido);
-            dp.getPersona().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
-            dp.getPersona().setDireccion(direccion);
-            dp.getPersona().setEdad(edad);
-            if (!dp.save()) {
-                throw new Exception("Error al guardar datos");
+        String direccion, @NonNull Integer edad, @NotEmpty String nroIdentificacion) throws Exception {
+    if (nombre.trim().length() > 0 && apellido.trim().length() > 0 && identificacion.trim().length() > 0
+            && edad != null && nroIdentificacion.trim().length() > 0) {
+        dp.getPersona().setNombre(nombre);
+        dp.getPersona().setApellido(apellido);
+        dp.getPersona().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
+        dp.getPersona().setDireccion(direccion);
+        dp.getPersona().setEdad(edad);
+        dp.getPersona().setNroIdentificacion(nroIdentificacion); // <-- aquí
+        if (identificacion.equals("CEDULA")) {
+            if (!nroIdentificacion.matches("\\d{10}")) {
+                throw new Exception("La cédula debe tener 10 dígitos numéricos");
+            }
+        } else if (identificacion.equals("PASAPORTE")) {
+            if (!nroIdentificacion.matches("[A-Za-z0-9]{6,15}")) {
+                throw new Exception("El pasaporte debe tener entre 6 y 15 caracteres alfanuméricos");
             }
         }
+        if (!dp.save()) {
+            throw new Exception("Error al guardar datos");
+        }
     }
+}
 
     public void update(Integer id, @NotEmpty String nombre, @NotEmpty String apellido, @NonNull String identificacion,
             String direccion, @NonNull Integer edad) throws Exception {
