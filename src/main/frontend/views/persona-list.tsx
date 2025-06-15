@@ -9,6 +9,7 @@ import { PersonaServices } from 'Frontend/generated/endpoints';
 import Persona from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Persona';
 import { useEffect, useState } from 'react';
 import IdentificacionEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/IdentificacionEnum';
+import "themes/default/css/persona-list.css";
 
 
 export const config: ViewConfig = {
@@ -226,7 +227,6 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
                 direccion.value = '';
                 identificacion.value = '';
                 edad.value = '';
-                nroIdentificacion.value = '';
                 ident.value = '';
 
                 dialogOpened.value = false;
@@ -354,6 +354,10 @@ export default function PersonaListView() {
         list: () => PersonaServices.listAllPersona(),
     });
 
+    function index({ model }: { model: GridItemModel<Persona> }) {
+        return <span>{model.index + 1}</span>;
+    }
+
     function link({ item }: { item: Persona }) {
         return (
             <span>
@@ -363,22 +367,24 @@ export default function PersonaListView() {
     }
 
     return (
-        <main className="w-full h-full flex flex-col box-border gap-s p-m">
-            <ViewToolbar title="Personas">
+        <main className="persona-main">
+            <ViewToolbar title={<span className="persona-title">Personas</span>}>
                 <Group>
                     <PersonaEntryForm onPersonaCreated={dataProvider.refresh} />
                 </Group>
             </ViewToolbar>
-            <Grid dataProvider={dataProvider.dataProvider}>
-                <GridColumn header="Nro" renderer={index} />
-                <GridColumn path="nombre" header="Nombre del usuario" />
-                <GridColumn path="apellido" header="Apellido del usuario" />
-                <GridColumn path="direccion" header="Direccion del usuario" />
-                <GridColumn path="identificacion" header="Identificacion del usuario" />
-                <GridColumn path="nroIdentificacion" header="Nro de identificacion del usuario" />
-                <GridColumn path="edad" header="Edad del usuario" />
-                <GridColumn header="Acciones" renderer={link} />
-            </Grid>
+            <div className="persona-grid">
+                <Grid dataProvider={dataProvider.dataProvider}>
+                    <GridColumn header="Nro" renderer={index} />
+                    <GridColumn path="nombre" header="Nombre" />
+                    <GridColumn path="apellido" header="Apellido" />
+                    <GridColumn path="direccion" header="Dirección" />
+                    <GridColumn path="identificacion" header="Identificación" />
+                    <GridColumn path="nroIdentificacion" header="Nro Identificación" />
+                    <GridColumn path="edad" header="Edad" />
+                    <GridColumn header="Acciones" renderer={link} />
+                </Grid>
+            </div>
         </main>
     );
 }

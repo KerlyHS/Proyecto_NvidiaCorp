@@ -3,7 +3,8 @@ import { useCarrito } from './CarritoContext';
 import { ProductoCard } from './producto-list';
 import { useNavigate } from 'react-router';
 import "themes/default/css/carrito-list.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { PagoServices } from 'Frontend/generated/endpoints';
 
 export default function CarritoList() {
   const { carrito, eliminar, setCarrito } = useCarrito();
@@ -11,6 +12,9 @@ export default function CarritoList() {
   const [cantidades, setCantidades] = useState<{ [id: number]: number }>(
     Object.fromEntries(carrito.map((item: any) => [item.id, item.cantidad || 1]))
   );
+  const [checkoutId, setCheckoutId] = useState<string | null>(null);
+  const [mensaje, setMensaje] = useState<string | null>(null);
+  const [showPagoModal, setShowPagoModal] = useState(false);
 
   const handleCantidad = (id: number, valor: number) => {
     setCantidades((prev) => ({
@@ -18,6 +22,29 @@ export default function CarritoList() {
       [id]: Math.max(1, (prev[id] || 1) + valor),
     }));
   };
+
+  const iniciarPago = async () => {
+    const resp = await PagoServices.checkout(10.00, 'USD');
+    if (resp && typeof resp.id === 'string') {
+      setCheckoutId(resp.id);
+      setShowPagoModal(true);
+    } else {
+      Notification.show('No se pudo iniciar el pago', { position: 'top-center', duration: 3000, theme: 'error' });
+    }
+  };
+
+  useEffect(() => {
+    if (checkoutId && showPagoModal) {
+      const script = document.createElement('script');
+      script.src = `https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId=${checkoutId}`;
+      script.async = true;
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [checkoutId, showPagoModal]);
 
   const handleComprar = async () => {
   // mandar datos al factuea
@@ -84,10 +111,31 @@ export default function CarritoList() {
               boxShadow: '0 4px 16px #76b90044',
               border: 'none',
             }}
-            onClick={handleComprar}
+            onClick={iniciarPago}
           >
-            Finalizar Compra
+            Pagar
           </Button>
+        </div>
+      )}
+
+      {/* MODAL DE PAGO */}
+      {showPagoModal && (
+        <div className="modal-pago-overlay">
+          <div className="modal-pago-content">
+            <button className="modal-pago-close" onClick={() => setShowPagoModal(false)}>✕</button>
+            <h2 style={{ color: "#76b900", marginBottom: 16 }}>Completa tu pago</h2>
+            {!mensaje && (
+              <form
+                className="paymentWidgets"
+                data-brands="VISA MASTER AMEX"
+              ></form>
+            )}
+            {mensaje && (
+              <div style={{ textAlign: "center", fontWeight: "bold", fontSize: "1.2rem", color: mensaje.includes("éxito") ? "#76b900" : "#ff5722" }}>
+                {mensaje}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </main>
