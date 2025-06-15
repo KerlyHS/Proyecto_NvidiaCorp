@@ -9,6 +9,7 @@ import { PersonaServices } from 'Frontend/generated/endpoints';
 import Persona from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Persona';
 import { useEffect, useState } from 'react';
 import IdentificacionEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/IdentificacionEnum';
+import "themes/default/css/persona-list.css";
 
 
 export const config: ViewConfig = {
@@ -42,31 +43,30 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
 
     const nombre = useSignal('');
     const apellido = useSignal('');
-    const telefono = useSignal('');
     const direccion = useSignal('');
     const identificacion = useSignal('');
     const edad = useSignal('');
-    const codIdent = useSignal('');
+    const nroIdentificacion = useSignal('');
 
     console.log(identificacion.value);
 
     const createPersona = async () => {
         try {
-            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && telefono.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && codIdent.value.trim().length > 0) {
-
+            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && nroIdentificacion.value.trim().length > 0) {
+                
                 if (identificacion.value === 'CEDULA') {
-                    if (!/^\d{10}$/.test(codIdent.value)) {
+                    if (!/^\d{10}$/.test(nroIdentificacion.value)) {
                         Notification.show('La cédula debe tener 10 dígitos numéricos', { theme: 'error' });
                         return;
                     }
                 } else if (identificacion.value === 'PASAPORTE') {
-                    if (!/^(?=.*[A-Za-z])[A-Za-z\d]{6,15}$/.test(codIdent.value)) {
+                    if (!/^(?=.*[A-Za-z])[A-Za-z\d]{6,15}$/.test(nroIdentificacion.value)) {
                         Notification.show('El pasaporte debe tener entre 6 y 15 caracteres alfanuméricos', { theme: 'error' });
                         return;
                     }
                 }
-
-                await PersonaServices.create(nombre.value, apellido.value, telefono.value ,identificacion.value, direccion.value, parseInt(edad.value), codIdent.value);
+                
+                await PersonaServices.create(nombre.value, apellido.value, identificacion.value, direccion.value, parseInt(edad.value), nroIdentificacion.value);
                 if (props.onPersonaCreated) {
                     props.onPersonaCreated();
                 }
@@ -75,7 +75,7 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
                 direccion.value = '';
                 identificacion.value = '';
                 edad.value = '';
-                codIdent.value = '';
+                nroIdentificacion.value = '';
 
                 dialogOpened.value = false;
                 Notification.show('Persona creada exitosamente', { duration: 5000, position: 'bottom-end', theme: 'success' });
@@ -147,12 +147,6 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
                             value={apellido.value}
                             onValueChanged={(evt) => (apellido.value = evt.detail.value)}
                         />
-                        <TextField label="Telefono"
-                            placeholder='Ingrese el telefono de la Persona'
-                            aria-label='Ingrese el telefono de la Persona'
-                            value={telefono.value}
-                            onValueChanged={(evt) => (telefono.value = evt.detail.value)}
-                        />
                         <TextField label="Direccion"
                             placeholder='Ingrese la direccion de la Persona'
                             aria-label='Ingrese la direccion de la Persona'
@@ -171,8 +165,8 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
                             label={identificacion.value === 'CEDULA' ? 'Nro de cédula' : 'Nro de pasaporte'}
                             placeholder={identificacion.value === 'CEDULA' ? 'Ej: 0123456789' : 'Ej: X123456'}
                             aria-label="Ingrese el número de identificación"
-                            value={codIdent.value}
-                            onValueChanged={(evt) => (codIdent.value = evt.detail.value)}
+                            value={nroIdentificacion.value}
+                            onValueChanged={(evt) => (nroIdentificacion.value = evt.detail.value)}
                         />
                         <TextField label="Edad"
                             placeholder='Ingrese la edad de la Persona'
@@ -203,40 +197,28 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
 
     const nombre = useSignal(props.arguments.nombre);
     const apellido = useSignal(props.arguments.apellido);
-    const telefono = useSignal(props.arguments.telefono);
     const direccion = useSignal(props.arguments.direccion);
     const identificacion = useSignal(props.arguments.identificacion);
-    const edad = useSignal(props.arguments.edad?.toString() ?? '');
-    const codIdent = useSignal(props.arguments.codIdent);
+    const edad = useSignal(props.arguments.edad);
+    const nroIdentificacion = useSignal(props.arguments.nroIdentificacion);
     const ident = useSignal(props.arguments.id);
-
-    useEffect(() => {
-        nombre.value = props.arguments.nombre;
-        apellido.value = props.arguments.apellido;
-        telefono.value = props.arguments.telefono?.toString() ?? '';
-        direccion.value = props.arguments.direccion;
-        identificacion.value = props.arguments.identificacion;
-        edad.value = props.arguments.edad?.toString() ?? '';
-        codIdent.value = props.arguments.codIdent;
-        ident.value = props.arguments.id;
-    }, [props.arguments]);
 
     const updatePersona = async () => {
         try {
-            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && telefono.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && codIdent.value.trim().length > 0) {
+            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0  && nroIdentificacion.value.trim().length > 0) {
                 if (identificacion.value === 'CEDULA') {
-                    if (!/^\d{10}$/.test(codIdent.value)) {
+                    if (!/^\d{10}$/.test(nroIdentificacion.value)) {
                         Notification.show('La cédula debe tener 10 dígitos numéricos', { theme: 'error' });
                         return;
                     }
                 } else if (identificacion.value === 'PASAPORTE') {
-                    if (!/^(?=.*[A-Za-z])[A-Za-z\d]{6,15}$/.test(codIdent.value)) {
+                    if (!/^(?=.*[A-Za-z])[A-Za-z\d]{6,15}$/.test(nroIdentificacion.value)) {
                         Notification.show('El pasaporte debe tener entre 6 y 15 caracteres alfanuméricos', { theme: 'error' });
                         return;
                     }
                 }
 
-                await PersonaServices.update(parseInt(ident.value), nombre.value, apellido.value, telefono.value ,identificacion.value, direccion.value, parseInt(edad.value), codIdent.value);
+                await PersonaServices.update(parseInt(ident.value), nombre.value, apellido.value, identificacion.value, direccion.value, parseInt(edad.value), nroIdentificacion.value);
                 if (props.onPersonaUpdated) {
                     props.onPersonaUpdated();
                 }
@@ -245,7 +227,6 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
                 direccion.value = '';
                 identificacion.value = '';
                 edad.value = '';
-                codIdent.value = '';
                 ident.value = '';
 
                 dialogOpened.value = false;
@@ -318,12 +299,6 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
                             value={apellido.value}
                             onValueChanged={(evt) => (apellido.value = evt.detail.value)}
                         />
-                        <TextField label="Telefono"
-                            placeholder='Ingrese el telefono de la Persona'
-                            aria-label='Ingrese el telefono de la Persona'
-                            value={telefono.value}
-                            onValueChanged={(evt) => (telefono.value = evt.detail.value)}
-                        />
                         <TextField label="Direccion"
                             placeholder='Ingrese la direccion de la Persona'
                             aria-label='Ingrese la direccion de la Persona'
@@ -342,8 +317,8 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
                             label={identificacion.value === 'CEDULA' ? 'Nro de cédula' : 'Nro de pasaporte'}
                             placeholder={identificacion.value === 'CEDULA' ? 'Ej: 0123456789' : 'Ej: X123456'}
                             aria-label="Ingrese el número de identificación"
-                            value={codIdent.value}
-                            onValueChanged={(evt) => (codIdent.value = evt.detail.value)}
+                            value={nroIdentificacion.value}
+                            onValueChanged={(evt) => (nroIdentificacion.value = evt.detail.value)}
                         />
                         <TextField label="Edad"
                             placeholder='Ingrese la edad de la Persona'
@@ -379,6 +354,10 @@ export default function PersonaListView() {
         list: () => PersonaServices.listAllPersona(),
     });
 
+    function index({ model }: { model: GridItemModel<Persona> }) {
+        return <span>{model.index + 1}</span>;
+    }
+
     function link({ item }: { item: Persona }) {
         return (
             <span>
@@ -388,23 +367,24 @@ export default function PersonaListView() {
     }
 
     return (
-        <main className="w-full h-full flex flex-col box-border gap-s p-m">
-            <ViewToolbar title="Personas">
+        <main className="persona-main">
+            <ViewToolbar title={<span className="persona-title">Personas</span>}>
                 <Group>
                     <PersonaEntryForm onPersonaCreated={dataProvider.refresh} />
                 </Group>
             </ViewToolbar>
-            <Grid dataProvider={dataProvider.dataProvider}>
-                <GridColumn header="Nro" renderer={index} />
-                <GridColumn path="nombre" header="Nombre" />
-                <GridColumn path="apellido" header="Apellido" />
-                <GridColumn path="telefono" header="Telefono" />
-                <GridColumn path="direccion" header="Direccion" />
-                <GridColumn path="identificacion" header="Identificacion del usuario" />
-                <GridColumn path="codIdent" header="codigo de identificacion" />
-                <GridColumn path="edad" header="Edad" />
-                <GridColumn header="Acciones" renderer={link} />
-            </Grid>
+            <div className="persona-grid">
+                <Grid dataProvider={dataProvider.dataProvider}>
+                    <GridColumn header="Nro" renderer={index} />
+                    <GridColumn path="nombre" header="Nombre" />
+                    <GridColumn path="apellido" header="Apellido" />
+                    <GridColumn path="direccion" header="Dirección" />
+                    <GridColumn path="identificacion" header="Identificación" />
+                    <GridColumn path="nroIdentificacion" header="Nro Identificación" />
+                    <GridColumn path="edad" header="Edad" />
+                    <GridColumn header="Acciones" renderer={link} />
+                </Grid>
+            </div>
         </main>
     );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PagoServices } from 'Frontend/generated/endpoints';
+import "themes/default/css/pago-list.css";
 
 export default function PagoForm() {
   const [checkoutId, setCheckoutId] = useState<string | null>(null);
@@ -48,19 +49,24 @@ export default function PagoForm() {
   }, [checkoutId]);
 
   return (
-    <div>
-      {!checkoutId && !mensaje && (
-        <button onClick={iniciarPago}>Pagar</button>
-      )}
-      {checkoutId && !mensaje && (
-        <form
-          className="paymentWidgets"
-          data-brands="VISA MASTER AMEX"
-        ></form>
-      )}
-      {mensaje && (
-        <div>{mensaje}</div>
-      )}
-    </div>
+    <main className="pago-main">
+      <h1 className="pago-title">Realizar Pago</h1>
+      <div className="pago-grid" style={{ maxWidth: 500, margin: "0 auto" }}>
+        {!checkoutId && !mensaje && (
+          <button className="pago-btn-primary" onClick={iniciarPago}>Pagar</button>
+        )}
+        {checkoutId && !mensaje && (
+          <form
+            className="paymentWidgets"
+            data-brands="VISA MASTER AMEX"
+          ></form>
+        )}
+        {mensaje && (
+          <div style={{ textAlign: "center", fontWeight: "bold", fontSize: "1.2rem", color: mensaje.includes("éxito") ? "#76b900" : "#ff5722" }}>
+            {mensaje}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }

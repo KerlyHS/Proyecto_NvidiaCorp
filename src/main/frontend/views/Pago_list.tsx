@@ -5,6 +5,7 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
 import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
 import { useEffect, useState } from 'react';
+import "themes/default/css/pago.css"; // <--- Importa tu CSS aquí
 
 export default function PagoView() {
   const [items, setItems] = useState<any[]>([]);
@@ -12,7 +13,7 @@ export default function PagoView() {
   useEffect(() => {
     PagoServices.listAll().then((data) => {
       if (Array.isArray(data)) {
-        setItems(data.filter(Boolean)); // filtra posibles undefined
+        setItems(data.filter(Boolean));
       } else {
         setItems([]);
       }
@@ -81,18 +82,34 @@ export default function PagoView() {
   };
 
   return (
+<<<<<<< HEAD
     <main className="w-full h-full flex flex-col box-border gap-s p-m">
       <ViewToolbar title="Lista de Pagos">
+=======
+    <main className="pago-main">
+      <ViewToolbar title={<span className="pago-title">Lista de Pagos</span>}>
+>>>>>>> origin/Josue_Asanza
         <Group>
           {/* Aquí puedes agregar filtros o botones si lo necesitas */}
         </Group>
       </ViewToolbar>
+<<<<<<< HEAD
       <Grid items={items}>
         <GridColumn path="id" header="ID" />
         <GridColumn renderer={indexIndex} header="Nro" />
         <GridSortColumn onDirectionChanged={(e) => order(e, "nroTransaccion")} path="nroTransaccion" header="nroTransaccion" />
         <GridSortColumn onDirectionChanged={(e) => order(e, "estadoP")} path="estadoP" header="Estado" />
       </Grid>
+=======
+      <div className="pago-grid">
+        <Grid items={items}>
+          <GridColumn path="id" header="ID" />
+          <GridColumn renderer={indexIndex} header="Nro" />
+          <GridSortColumn onDirectionChanged={(e) => order(e, "nroTransaccion")} path="nroTransaccion" header="nroTransaccion" />
+          <GridSortColumn onDirectionChanged={(e) => order(e, "estadoP")} path="estadoP" header="Estado" />
+        </Grid>
+      </div>
+>>>>>>> origin/Josue_Asanza
     </main>
   );
 }

@@ -1,0 +1,157 @@
+/* Fondo general */
+.pago-main {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 80%, #76b900 100%);
+  padding: 32px;
+}
+
+/* Título */
+.pago-title {
+  color: #76b900;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #00000010;
+  margin-bottom: 2rem;
+}
+
+/* Nueva clase para persona-title */
+.persona-title {
+  color: #76b900;
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #00000022;
+  margin-bottom: 2rem;
+}
+
+/* Barra de herramientas */
+.pago-toolbar {
+  background: rgba(34, 34, 34, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #76b90022;
+  padding: 1.2rem 2rem;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 900px;
+}
+
+.persona-toolbar {
+  margin-bottom: 2.5rem;
+}
+
+/* Botones */
+.pago-btn-primary {
+  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
+  color: #222 !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  border: none !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 2px 8px #76b90044;
+}
+
+.pago-btn-secondary {
+  background: #fff !important;
+  color: #76b900 !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  border: 2px solid #76b900 !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1.1rem !important;
+}
+
+/* Tabla de pagos */
+.pago-grid {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.18);
+  padding: 1.5rem;
+  margin: 0 auto;
+  max-width: 1100px;
+  color: #fff;
+  /* Para que el grid no sobresalga */
+  overflow-x: auto;
+}
+
+/* Fondo oscuro para el grid y celdas */
+vaadin-grid {
+  background: transparent !important;
+  --vaadin-grid-background: transparent;
+  --vaadin-grid-cell-background: transparent;
+  --vaadin-grid-row-background: transparent;
+  --vaadin-grid-header-background: #181818;
+  --vaadin-grid-footer-background: #181818;
+  color: #b3ff00;
+  border-radius: 12px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Celdas y cabeceras */
+vaadin-grid-cell-content {
+  background: transparent !important;
+  color: #b3ff00;
+  font-weight: 500;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
+}
+
+vaadin-grid-header-cell {
+  background: #181818 !important;
+  color: #76b900 !important;
+  font-weight: bold;
+  font-size: 1.13rem;
+  border-bottom: 2px solid #76b90044 !important;
+}
+
+/* Bordes verdes sutiles */
+vaadin-grid::part(row) {
+  border-bottom: 1px solid #76b90022;
+}
+
+vaadin-grid::part(row):hover {
+  background: #232323 !important;
+  transition: background 0.2s;
+}
+
+/* Ajustes para inputs y selects si los usas */
+.pago-input, .pago-select {
+  background: #fff !important;
+  border-radius: 8px !important;
+  border: 2px solid #76b900 !important;
+  color: #222 !important;
+  font-weight: bold;
+  min-width: 160px;
+  margin-right: 1rem;
+}
+
+/* Nueva clase para persona-grid */
+.persona-grid {
+  background: rgba(20, 20, 20, 0.98);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #00000044;
+  padding: 2rem 1.5rem 2.5rem 1.5rem;
+  margin: 0 auto 2rem auto;
+  max-width: 1200px;
+  color: #fff;
+  overflow-x: auto;
+}
+
+.persona-btn-editar {
+  color: #76b900 !important;
+  background: transparent !important;
+  border: 1.5px solid #76b900 !important;
+  border-radius: 6px !important;
+  padding: 0.2rem 1rem !important;
+  font-weight: bold !important;
+  transition: background 0.2s, color 0.2s;
+}
+
+.persona-btn-editar:hover {
+  background: #76b900 !important;
+  color: #181818 !important;
+}

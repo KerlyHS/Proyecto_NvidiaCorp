@@ -352,7 +352,7 @@ export default function UsuarioListView() {
                 <GridColumn header="Clave" path="clave" />
                 <GridColumn header="Estado" path="estado" />
                 <GridColumn header="Persona" path="persona" />
-                <GridColumn header="Identificacion" path="codIdent" />
+                <GridColumn header="Identificacion" path="nroIdentificacion" />
                 <GridColumn header="Rol" path="rol" />
                 <GridColumn header="Acciones" renderer={link} />
             </Grid>

@@ -27,7 +27,7 @@ export default function IndexList() {
                             borderRadius: '8px',
                             border: 'none',
                         }}
-                        onClick={() => navigate('/login')}
+                        onClick={() => navigate('/login-list')}
                     >
                         Iniciar Sesión
                     </Button>

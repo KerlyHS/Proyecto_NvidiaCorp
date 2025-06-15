@@ -8,7 +8,11 @@ public class Persona {
     private String direccion;
     private IdentificacionEnum identificacion;
     private Integer edad;
+<<<<<<< HEAD
     private String codIdent;
+=======
+    private String nroIdentificacion;
+>>>>>>> origin/Josue_Asanza
 
 
     public Integer getId() {
@@ -67,11 +71,20 @@ public class Persona {
         this.edad = edad;
     }
 
+<<<<<<< HEAD
     public String getCodIdent() {
         return this.codIdent;
     }
 
     public void setCodIdent(String codIdent) {
         this.codIdent = codIdent;
+=======
+    public String getNroIdentificacion() {
+        return this.nroIdentificacion;
+    }
+
+    public void setNroIdentificacion(String nroIdentificacion) {
+        this.nroIdentificacion = nroIdentificacion;
+>>>>>>> origin/Josue_Asanza
     }
 }
