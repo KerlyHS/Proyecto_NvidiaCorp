@@ -12,7 +12,7 @@ export const config: ViewConfig = {
     order: 1,
   },
 };
-/*
+
 export default function FacturaView() {
   const [items, setItems] = useState<Array<any>>([]);
 
@@ -61,4 +61,3 @@ export default function FacturaView() {
     </VerticalLayout>
   );
 }
-*/
