@@ -8,7 +8,6 @@ import { useState } from 'react';
 export default function CarritoList() {
   const { carrito, eliminar, setCarrito } = useCarrito();
   const navigate = useNavigate();
-  // Manejo de cantidades por producto
   const [cantidades, setCantidades] = useState<{ [id: number]: number }>(
     Object.fromEntries(carrito.map((item: any) => [item.id, item.cantidad || 1]))
   );
@@ -21,10 +20,8 @@ export default function CarritoList() {
   };
 
   const handleComprar = async () => {
-    // Aquí puedes enviar el carrito y las cantidades al backend
-    setCarrito([]);
-    localStorage.removeItem('carrito');
-    Notification.show('¡Compra realizada!', { position: 'top-center', duration: 3000, theme: 'success' });
+  // mandar datos al factuea
+    navigate('/Pago-Form');
   };
 
   return (

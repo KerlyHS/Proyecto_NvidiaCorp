@@ -10,14 +10,17 @@ public class DaoPersona extends AdapterDao<Persona> {
         super(Persona.class);
     }
 
-    public Boolean save(){
+    public Boolean save() {
         try {
-            this.obj.setId(listAll().getLength()+1);
+            obj.setId(listAll().getLength() + 1);
             this.persist(obj);
-            this.save();
             return true;
         } catch (Exception e) {
+            // Log de errores
+            e.printStackTrace();
+            System.out.println(e);
             return false;
+            // TODO: handle exception
         }
     }
 

@@ -242,7 +242,7 @@ public class LinkedList<E> {
         for (int j = begin; j < end; j++) {
             Object currentValue = getComparar(arr[j], attribute, util);
             int cmp = comparar(currentValue, pivotValue);
-            if ((type == Utiles.ASCEDENTE && cmp < 0) || (type != Utiles.ASCEDENTE && cmp > 0)) {
+            if ((type == Utiles.ASCENDENTE && cmp < 0) || (type != Utiles.ASCENDENTE && cmp > 0)) {
                 i++;
                 E temp = arr[i];
                 arr[i] = arr[j];
