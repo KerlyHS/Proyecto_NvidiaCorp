@@ -6,6 +6,7 @@ public interface InterfaceDao <T>{
     public void persist(T obj) throws Exception;
     public void update(T obj, Integer pos) throws Exception;
     public void update_by_id(T obj, Integer Id) throws Exception;
+    public void deleteById(Integer id) throws Exception;
     public T get(Integer id) throws Exception;
 
 }

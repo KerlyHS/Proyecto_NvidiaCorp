@@ -1,6 +1,10 @@
 package org.proyecto.nvidiacorp.base.controller.DataEstruct.List;
 
+import java.util.HashMap;
+
 import org.proyecto.nvidiacorp.base.controller.DataEstruct.stack.Stack;
+import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
+import org.proyecto.nvidiacorp.base.controller.utils.Utiles_login;
 
 public class LinkedList<E> {
     private Node<E> header;
@@ -146,6 +150,62 @@ public class LinkedList<E> {
         
     }
 
+
+/// QUICKSORT////////////////////////////////////////////////////////////////////////////////////
+    public LinkedList<E> quickSort(String atributo, Integer orden,  HashMap<String, AdapterDao> daos ) throws Exception {
+        if(isEmpty()) {
+            return this;
+        }
+
+        E[] array = this.toArray();
+        final Integer high = array.length - 1;
+        final Integer low = 0;
+
+        quickSort(atributo, array, low, high, orden,daos);
+
+        clear();
+        for(E e : array){
+            add(e);
+        }
+
+        return this;
+    }
+
+    private void quickSort(String atributo, E[] array, Integer low, Integer high, Integer orden, HashMap<String, AdapterDao> daos ) throws Exception {
+        if(low < high) {
+            int pivoteIndex = partir(atributo,array,low,high,orden,daos);
+            
+            quickSort(atributo, array, low, pivoteIndex - 1, orden,daos);
+            quickSort(atributo, array, pivoteIndex + 1, high, orden,daos);
+        }
+    }
+
+    private Integer partir(String atributo,E[] array, Integer low, Integer high, Integer orden, HashMap<String, AdapterDao> daos ) throws Exception {
+        Utiles_login util = new Utiles_login();
+        E pivote = array[high];
+
+        Integer j = low - 1;
+
+        for (int i = low; i <= high-1; i++) {
+            if(util.compararAtributos(atributo,array[i],pivote,orden,daos)) {
+                j++;
+                intercambio(array,j,i);
+            }
+        }
+
+        intercambio(array, j + 1, high);
+
+        return j + 1;
+    }
+
+    private void intercambio(E[] array, Integer i, Integer j) {
+        E temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+//////// FIN QUICKSORT //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     public void clear() {
         header = null;
         last = null;
@@ -231,6 +291,24 @@ public class LinkedList<E> {
             preview.setNext(next);
             length--;
             return element;
+        }
+    }
+    
+    public void deleteById(Integer id) throws Exception{
+        Utiles_login util = new Utiles_login();
+
+        for(int i = 0; i < length ; i++){
+            
+            if(util.getClazz(getNode(i).getData(), "id").equals(id)){
+                if (i == 0) {
+                    header = header.getNext(); // eliminar el primero
+                } else {
+                    Node<E> previo = getNode(i - 1);
+                    previo.setNext(getNode(i).getNext());
+                }
+                length--;
+                break;
+            }
         }
     }
 

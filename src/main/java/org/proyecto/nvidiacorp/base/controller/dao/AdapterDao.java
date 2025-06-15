@@ -65,6 +65,13 @@ public class AdapterDao <T> implements InterfaceDao<T> {
     }
 
     @Override
+    public void deleteById(Integer id) throws Exception {
+        LinkedList lista = listAll();
+        lista.deleteById(id);
+        saveFile(g.toJson(lista.toArray()));
+    }
+
+    @Override
     public void persist(T obj) throws Exception {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'persist'");

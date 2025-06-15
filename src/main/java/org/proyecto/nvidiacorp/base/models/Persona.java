@@ -1,7 +1,7 @@
 package org.proyecto.nvidiacorp.base.models;
 
 public class Persona {
-private Integer id;
+    private Integer id;
     private String nombre;
     private String apellido;
     private String direccion;
