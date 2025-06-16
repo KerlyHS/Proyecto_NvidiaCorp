@@ -19,10 +19,10 @@ export function CarritoProvider({ children }: { children: React.ReactNode }) {
 
   const agregar = (producto: any) => {
     if (carrito.some((p) => p.id === producto.id)) {
-      Notification.show('¡Este producto ya está en el carrito!', { position: 'top-center', duration: 3000, theme: 'error' });
+      Notification.show('¡Este producto ya esta en el carrito!', { position: 'top-center', duration: 3000, theme: 'error' });
       return;
     }
-    setCarrito((prev) => [...prev, producto]);
+    setCarrito((prev) => [...prev, { ...producto, cantidad: 1 }]);
   };
 
   const eliminar = (id: any) => setCarrito((prev) => prev.filter(p => p.id !== id));

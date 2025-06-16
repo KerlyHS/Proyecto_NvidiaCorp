@@ -4,7 +4,6 @@ import { Notification } from '@vaadin/react-components/Notification';
 import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
 import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
-import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { ProductoService } from 'Frontend/generated/endpoints';
 import Producto from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Producto';
 import Marca from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Marca';
@@ -12,7 +11,6 @@ import CategoriaEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/model
 import { MarcaService } from 'Frontend/generated/endpoints';
 import { useEffect, useState } from 'react';
 import { useCarrito } from './CarritoContext';
-import { createContext, useContext } from 'react';
 import "themes/default/css/producto-list.css";
 import { Upload } from '@vaadin/react-components';
 import { useNavigate } from 'react-router';
@@ -413,7 +411,6 @@ export default function ProductoListView() {
         { label: 'Categoria', value: 'categoria' },
     ];
 
-    // Cargar todos los productos al inicio
     const cargarProductos = async () => {
         const data = await ProductoService.listAll();
         setProductos(data);
@@ -424,7 +421,6 @@ export default function ProductoListView() {
         cargarProductos();
     }, []);
 
-    // Búsqueda usando el backend
     const search = async () => {
         try {
             if (!criterio.value || !text.value) {

@@ -17,10 +17,19 @@ export default function CarritoList() {
   const [showPagoModal, setShowPagoModal] = useState(false);
 
   const handleCantidad = (id: number, valor: number) => {
-    setCantidades((prev) => ({
-      ...prev,
-      [id]: Math.max(1, (prev[id] || 1) + valor),
-    }));
+    setCantidades((prev) => {
+      const nuevaCantidad = Math.max(1, (prev[id] || 1) + valor);
+      // Actualiza también el carrito global
+      setCarrito((carritoActual) =>
+        carritoActual.map((item) =>
+          item.id === id ? { ...item, cantidad: nuevaCantidad } : item
+        )
+      );
+      return {
+        ...prev,
+        [id]: nuevaCantidad,
+      };
+    });
   };
 
   const iniciarPago = async () => {
@@ -47,7 +56,6 @@ export default function CarritoList() {
   }, [checkoutId, showPagoModal]);
 
   const handleComprar = async () => {
-  // mandar datos al factuea
     navigate('/Pago-Form');
   };
 
