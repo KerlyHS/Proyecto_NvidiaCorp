@@ -24,6 +24,7 @@
     "@vaadin/vaadin-usage-statistics": "2.1.3",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
+    "jspdf": "^3.0.1",
     "lit": "3.3.0",
     "proj4": "2.15.0",
     "react": "18.3.1",
@@ -123,7 +124,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "d4ced7ae5f62e64d67a96485d0a050331cadcb26cedc3403006542eca0965da5"
+    "hash": "d722d5723223312fcf47d5a9be28169ff7a5e072432fd4135b824350a573d722"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -151,6 +152,7 @@
     "proj4": "$proj4",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
-    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles"
+    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
+    "jspdf": "$jspdf"
   }
 }
