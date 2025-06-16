@@ -91,7 +91,6 @@ export default function PagoView() {
       <div className="pago-grid">
         <Grid items={items}>
           <GridColumn path="id" header="ID" />
-          <GridColumn renderer={indexIndex} header="Nro" />
           <GridSortColumn onDirectionChanged={(e) => order(e, "nroTransaccion")} path="nroTransaccion" header="nroTransaccion" />
           <GridSortColumn onDirectionChanged={(e) => order(e, "estadoP")} path="estadoP" header="Estado" />
         </Grid>
