@@ -19,7 +19,6 @@ export default function PagoForm() {
       PagoServices.consultarEstadoPago(id).then(async resultado => {
         if (resultado && resultado.estado === "true") {
           Notification.show('Pago realizado con éxito', { duration: 2000, position: 'top-center', theme: 'success' });
-          // Aquí puedes guardar datos de factura en localStorage si lo necesitas
           navigate('/factura-list');
         } else {
           Notification.show('Pago rechazado', { duration: 2000, position: 'top-center', theme: 'error' });
