@@ -12,6 +12,7 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import { useEffect, useState } from 'react';
 import jsPDF from 'jspdf';
 import "themes/default/css/factura-list.css";
+import { useNavigate } from 'react-router';
 
 export const config: ViewConfig = {
   title: 'Factura',
@@ -24,6 +25,7 @@ export const config: ViewConfig = {
 
 export default function FacturaView() {
   const [items, setItems] = useState<Array<any>>([]);
+  const navigate = useNavigate();
 
   const nombre = useSignal('');
   const apellido = useSignal('');
@@ -117,6 +119,16 @@ export default function FacturaView() {
     doc.save('factura.pdf');
   };
 
+  const guardarFactura = () => {
+    localStorage.setItem('factura_items', JSON.stringify(items));
+    localStorage.setItem('factura_subtotal', subtotal.toString());
+    localStorage.setItem('factura_iva', iva.toString());
+    localStorage.setItem('factura_total', total.toString());
+    setTimeout(() => {
+      navigate('/factura-list');
+    }, 100); 
+  };
+
   return (
     <VerticalLayout className="factura-main">
       <div className="factura-panel factura-print-area">
@@ -159,7 +171,7 @@ export default function FacturaView() {
           <div><strong>Total:</strong> $ {calcularTotal().toFixed(2)}</div>
         </VerticalLayout>
         <HorizontalLayout style={{ justifyContent: 'end', marginTop: '1em', gap: '1em' }}>
-          <Button className="factura-btn-primary" theme="primary" onClick={() => alert('Guardar factura funcionalidad pendiente')}>
+          <Button className="factura-btn-primary" theme="primary" onClick={guardarFactura}>
             💾 Guardar factura
           </Button>
           <Button className="factura-btn-secondary" theme="secondary" onClick={() => window.print()}>

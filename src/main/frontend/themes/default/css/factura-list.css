@@ -8,7 +8,6 @@
   padding: 40px 0;
 }
 
-/* Panel principal */
 .factura-panel {
   background: #181818;
   border-radius: 18px;
@@ -23,7 +22,6 @@
   gap: 2rem;
 }
 
-/* Título */
 .factura-title {
   color: #76b900;
   font-size: 2.3rem;
@@ -34,7 +32,6 @@
   text-align: left;
 }
 
-/* Card de datos del cliente */
 .factura-card {
   background: #232323;
   border-radius: 12px;
