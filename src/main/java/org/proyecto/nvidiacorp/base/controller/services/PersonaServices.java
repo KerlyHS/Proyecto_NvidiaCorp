@@ -28,13 +28,13 @@ public class PersonaServices {
         String direccion, @NonNull Integer edad, @NotEmpty String codIdent) throws Exception {
     if (nombre.trim().length() > 0 && apellido.trim().length() > 0 && identificacion.trim().length() > 0
             && edad != null && codIdent.trim().length() > 0) {
-        dp.getPersona().setNombre(nombre);
-        dp.getPersona().setApellido(apellido);
-        dp.getPersona().setTelefono(telefono);
-        dp.getPersona().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
-        dp.getPersona().setDireccion(direccion);
-        dp.getPersona().setEdad(edad);
-        dp.getPersona().setCodIdent(codIdent); // <-- aquí
+        dp.getObj().setNombre(nombre);
+        dp.getObj().setApellido(apellido);
+        dp.getObj().setTelefono(telefono);
+        dp.getObj().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
+        dp.getObj().setDireccion(direccion);
+        dp.getObj().setEdad(edad);
+        dp.getObj().setCodIdent(codIdent); // <-- aquí
         if (identificacion.equals("CEDULA")) {
             if (!codIdent.matches("\\d{10}")) {
                 throw new Exception("La cédula debe tener 10 dígitos numéricos");
@@ -54,14 +54,14 @@ public class PersonaServices {
             String direccion, @NonNull Integer edad, @NotEmpty String codIdent) throws Exception {
         if (id != null && nombre.trim().length() > 0 && apellido.trim().length() > 0
                 && identificacion.trim().length() > 0 && edad != null) {
-            dp.setPersona(dp.listAll().get(id - 1));
-            dp.getPersona().setNombre(nombre);
-            dp.getPersona().setApellido(apellido);
-            dp.getPersona().setTelefono(telefono);
-            dp.getPersona().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
-            dp.getPersona().setDireccion(direccion);
-            dp.getPersona().setEdad(edad);
-            dp.getPersona().setCodIdent(codIdent); // Mantener el código de identificación
+            dp.setObj(dp.listAll().get(id - 1));
+            dp.getObj().setNombre(nombre);
+            dp.getObj().setApellido(apellido);
+            dp.getObj().setTelefono(telefono);
+            dp.getObj().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
+            dp.getObj().setDireccion(direccion);
+            dp.getObj().setEdad(edad);
+            dp.getObj().setCodIdent(codIdent); // Mantener el código de identificación
             if (!dp.update(id - 1)) {
                 throw new Exception("Error al actualizar");
             }

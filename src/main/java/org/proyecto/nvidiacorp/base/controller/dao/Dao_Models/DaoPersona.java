@@ -33,14 +33,14 @@ public class DaoPersona extends AdapterDao<Persona> {
         }
     }
 
-    public Persona getPersona(){
+    public Persona getObj(){
         if(this.obj == null){
             obj = new Persona();
         }
         return this.obj;
     }
 
-    public void setPersona(Persona Persona){
+    public void setObj(Persona Persona){
         this.obj = Persona;
     }
 }
