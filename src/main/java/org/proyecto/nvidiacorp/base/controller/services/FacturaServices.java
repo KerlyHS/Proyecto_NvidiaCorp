@@ -38,6 +38,7 @@ public class FacturaServices {
             da.getObj().setEntregado(Entregado);
             da.getObj().setMetodoPago(MetodoPagoEnum.valueOf(MetodoPago));
             da.getObj().setIva(Iva);
+
             if (da.save()) {
                 System.out.println("Guardado");
             } else {
@@ -71,7 +72,7 @@ public class FacturaServices {
     public List<Factura> listAllFactura(){
         return Arrays.asList(da.listAll().toArray());
     }
-   
+
 
      public List <HashMap> listFactura(){
          List<HashMap> lista = new ArrayList<>();
@@ -88,7 +89,10 @@ public class FacturaServices {
                 aux.put("entregado", arreglo[i].getEntregado().toString());
                 aux.put("metodoPago", arreglo[i].getMetodoPago().toString());
                 aux.put("iva", arreglo[i].getIva().toString());
-                Transaccion transaccion = arreglo[i].getTransaccion();
+                aux.put("idPersona", arreglo[i].getId_Persona().toString());
+                aux.put("idOrdenPedido", arreglo[i].getId_Orden_Pedido().toString());
+                
+                
                 
 
                 lista.add(aux);

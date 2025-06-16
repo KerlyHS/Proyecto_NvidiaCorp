@@ -67,16 +67,12 @@ function UserMenu() {
   );
 }
 
-
 export default function MainLayout() {
   return (
     <CarritoProvider>
-      <AppLayout primarySection="drawer">
-        <Header />
-        <Scroller slot="drawer">
-          <MainMenu />
-        </Scroller>
-        <UserMenu />
+      <AppLayout>
+        {/* <Header /> */}
+        {/* <UserMenu /> */}
         <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
           <Outlet />
         </Suspense>

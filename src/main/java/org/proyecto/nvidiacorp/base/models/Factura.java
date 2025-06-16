@@ -11,7 +11,8 @@ public class Factura {
     private Boolean Entregado;
     private MetodoPagoEnum MetodoPago;
     private Double Iva;
-    private Transaccion Transaccion;
+    private Integer Id_Persona;
+    private Integer Id_Orden_Pedido;
 
     public Integer getId() {
       return id;
@@ -62,12 +63,18 @@ public class Factura {
       this.Iva = Iva;
     }
 
-    public Transaccion getTransaccion() {
-        return Transaccion;
+    public Integer getId_Persona() {
+      return this.Id_Persona;
+    }
+    public void setId_Persona(Integer value) {
+      this.Id_Persona = value;
     }
 
-    public void setTransaccion(Transaccion Transaccion) {
-        this.Transaccion = Transaccion;
+    public Integer getId_Orden_Pedido() {
+      return this.Id_Orden_Pedido;
+    }
+    public void setId_Orden_Pedido(Integer value) {
+      this.Id_Orden_Pedido = value;
     }
 }
 

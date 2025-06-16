@@ -1,6 +1,6 @@
 import { Button } from '@vaadin/react-components';
 import { useNavigate } from 'react-router';
-import './index.css';
+import "themes/default/css/index.css";
 
 export default function IndexList() {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function IndexList() {
                             borderRadius: '8px',
                             border: 'none',
                         }}
-                        onClick={() => navigate('/login')}
+                        onClick={() => navigate('/login-list')}
                     >
                         Iniciar Sesión
                     </Button>

@@ -7,6 +7,7 @@ private Integer id;
     private String direccion;
     private IdentificacionEnum identificacion;
     private Integer edad;
+    private String nroIdentificacion;
 
 
     public Integer getId() {
@@ -55,5 +56,13 @@ private Integer id;
 
     public void setEdad(Integer edad) {
         this.edad = edad;
+    }
+
+    public String getNroIdentificacion() {
+        return this.nroIdentificacion;
+    }
+
+    public void setNroIdentificacion(String nroIdentificacion) {
+        this.nroIdentificacion = nroIdentificacion;
     }
 }

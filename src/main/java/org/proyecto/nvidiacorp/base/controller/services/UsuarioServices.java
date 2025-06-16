@@ -25,9 +25,11 @@ public class UsuarioServices {
     public UsuarioServices() {
         this.du = new DaoUsuario();
     }
-    
-    public void create(@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona, @NonNull String rol) throws Exception {
-        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0 && rol.trim().length() > 0) {
+
+    public void create(@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona,
+            @NonNull String rol) throws Exception {
+        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0
+                && rol.trim().length() > 0) {
             du.getUsuario().setCorreo(correo);
             du.getUsuario().setClave(clave);
             du.getUsuario().setEstado(estado);
@@ -39,8 +41,10 @@ public class UsuarioServices {
         }
     }
 
-    public void update(Integer id,@NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona, @NonNull String rol) throws Exception {
-        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0 && rol.trim().length() > 0) {
+    public void update(Integer id, @NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona,
+            @NonNull String rol) throws Exception {
+        if (correo.trim().length() > 0 && clave.trim().length() > 0 && estado != null && id_Persona > 0
+                && rol.trim().length() > 0) {
             du.setUsuario(du.listAll().get(id - 1));
             du.getUsuario().setCorreo(correo);
             du.getUsuario().setClave(clave);
@@ -57,9 +61,9 @@ public class UsuarioServices {
         return Arrays.asList(du.listAll().toArray());
     }
 
-    public List<String> listRol(){
+    public List<String> listRol() {
         List<String> lista = new ArrayList<>();
-        for(RolEnum rol : RolEnum.values()){
+        for (RolEnum rol : RolEnum.values()) {
             lista.add(rol.toString());
         }
         return lista;
@@ -73,16 +77,16 @@ public class UsuarioServices {
             for (int i = 0; i < arreglo.length; i++) {
                 HashMap<String, String> aux = new HashMap<>();
                 aux.put("value", arreglo[i].getId().toString());
-                aux.put("label", arreglo[i].getNombre());
+                aux.put("label", arreglo[i].getNombre() + " (" + arreglo[i].getNroIdentificacion() + ")");
                 lista.add(aux);
             }
         }
         return lista;
     }
 
-    public List<HashMap> listUsuario(){
+    public List<HashMap> listUsuario() {
         List<HashMap> lista = new ArrayList<>();
-        if (!du.listAll().isEmpty()){
+        if (!du.listAll().isEmpty()) {
             Usuario[] arreglo = du.listAll().toArray();
             for (int i = 0; i < arreglo.length; i++) {
                 HashMap<String, String> aux = new HashMap<>();
@@ -91,7 +95,10 @@ public class UsuarioServices {
                 aux.put("clave", arreglo[i].getClave().toString());
                 aux.put("estado", arreglo[i].getEstado().toString());
                 aux.put("persona", new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getNombre());
-                aux.put("id_persona", new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getId().toString());
+                aux.put("nroIdentificacion",
+                        new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getNroIdentificacion());
+                aux.put("id_persona",
+                        new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1).getId().toString());
                 aux.put("rol", arreglo[i].getRol().toString());
                 lista.add(aux);
             }

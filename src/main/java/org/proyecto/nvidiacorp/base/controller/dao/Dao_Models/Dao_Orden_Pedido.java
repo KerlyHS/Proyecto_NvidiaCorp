@@ -1,25 +1,24 @@
 
 package org.proyecto.nvidiacorp.base.controller.dao.Dao_Models;
-import org.proyecto.nvidiacorp.base.models.Factura;
+import org.proyecto.nvidiacorp.base.models.Orden_Pedido;
 import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
-import org.proyecto.nvidiacorp.base.models.MetodoPagoEnum;
 
 
-public class DaoFactura extends AdapterDao<Factura> {
-    private Factura obj;
+public class Dao_Orden_Pedido extends AdapterDao<Orden_Pedido> {
+    private Orden_Pedido obj;
 
-    public DaoFactura() {
-        super(Factura.class);
+    public Dao_Orden_Pedido() {
+        super(Orden_Pedido.class);
 
     }
 
-    public Factura getObj() {
+    public Orden_Pedido getObj() {
         if (obj == null) 
-            this.obj = new Factura();
+            this.obj = new Orden_Pedido();
         return obj;
     }
 
-    public void setObj(Factura obj) {
+    public void setObj(Orden_Pedido obj) {
         this.obj = obj;
     }
     public Boolean save (){
@@ -45,7 +44,7 @@ public class DaoFactura extends AdapterDao<Factura> {
     }
 /*
      public static void main(String[] args) {
-        DaoFactura da = new DaoFactura();
+        Dao_Orden_Pedido da = new Dao_Orden_Pedido();
         da.getObj().setId(da.listAll().getLength() + 1);
         da.getObj().setFecha(new java.util.Date());
         da.getObj().setSubTotal(100.0);
@@ -59,5 +58,5 @@ public class DaoFactura extends AdapterDao<Factura> {
             System.out.println("Error al guardar");
         }
     }*/
- }
-    
+
+}
