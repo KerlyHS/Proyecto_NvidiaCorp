@@ -19,7 +19,16 @@ export default function PagoForm() {
       PagoServices.consultarEstadoPago(id).then(async resultado => {
         if (resultado && resultado.estado === "true") {
           Notification.show('Pago realizado con éxito', { duration: 2000, position: 'top-center', theme: 'success' });
-          // Aquí puedes guardar datos de factura en localStorage si lo necesitas
+
+          const subtotal = carrito.reduce((acc, item) => acc + (item.precio * (item.cantidad || 1)), 0);
+          const iva = subtotal * 0.15;
+          const total = subtotal + iva;
+          localStorage.setItem('factura_items', JSON.stringify(carrito));
+          localStorage.setItem('factura_subtotal', subtotal.toString());
+          localStorage.setItem('factura_iva', iva.toString());
+          localStorage.setItem('factura_total', total.toString());
+
+          // 3. Ahora navega a la factura
           navigate('/factura-list');
         } else {
           Notification.show('Pago rechazado', { duration: 2000, position: 'top-center', theme: 'error' });
