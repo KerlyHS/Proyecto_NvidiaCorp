@@ -73,10 +73,7 @@ public class ProductoService {
 
     // Metodo de busqueda   
 public List<Producto> busqueda(String attribute, String text, Integer type) throws Exception {
-    System.out.println("=== ENTRA AL MÉTODO BUSQUEDA ===");
-    System.out.println("Buscando por atributo: " + attribute + ", texto: " + text + ", tipo: " + type);
     LinkedList<Producto> lista = db.busquedaLinealBinaria(attribute, text, type);
-    System.out.println("Lista de productos encontrados: " + lista.getLength());
     if (!lista.isEmpty()) {
         return Arrays.asList(lista.toArray());
     } else {

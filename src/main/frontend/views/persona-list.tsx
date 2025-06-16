@@ -9,6 +9,7 @@ import { PersonaServices } from 'Frontend/generated/endpoints';
 import Persona from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Persona';
 import { useEffect, useState } from 'react';
 import IdentificacionEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/IdentificacionEnum';
+import "themes/default/css/persona-list.css";
 
 
 export const config: ViewConfig = {
@@ -378,6 +379,10 @@ export default function PersonaListView() {
     const dataProvider = useDataProvider<Persona>({
         list: () => PersonaServices.listAllPersona(),
     });
+
+    function index({ model }: { model: GridItemModel<Persona> }) {
+        return <span>{model.index + 1}</span>;
+    }
 
     function link({ item }: { item: Persona }) {
         return (

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "id": 1,
@@ -90,3 +91,6 @@
         "codIdent": "P005874132"
     }
 ]
+=======
+[{"id":1,"nombre":"Rene","apellido":"Guaman","direccion":"10 de agosto","identificacion":"CEDULA","edad":45,"nroIdentificacion":"0912345678"},{"id":2,"nombre":"Elena","apellido":"Gutierrez","direccion":"Av. Eloy Alfaro","identificacion":"CEDULA","edad":27,"nroIdentificacion":"1723456789"},{"id":3,"nombre":"Carolina","apellido":"Balcazar","direccion":"Calle Manuel Monteros","identificacion":"PASAPORTE","edad":20,"nroIdentificacion":"A928374650"},{"id":4,"nombre":"John","apellido":"Morales","direccion":"Calle Praga e Indiapolis","identificacion":"CEDULA","edad":25,"nroIdentificacion":"0801122334"},{"id":5,"nombre":"Unicua","apellido":"Gonzàlez","direccion":"Clodoveo","identificacion":"PASAPORTE","edad":31,"nroIdentificacion":"A123456789"},{"id":6,"nombre":"Pablo","apellido":"Ontaneda","direccion":"Menfis","identificacion":"PASAPORTE","edad":29,"nroIdentificacion":"X987653432"},{"id":7,"nombre":"Tyron","apellido":"Silva","direccion":"Sonesta","identificacion":"PASAPORTE","edad":23,"nroIdentificacion":"0609988776"},{"id":8,"nombre":"Tasha","apellido":"Chilliguano","direccion":"Calle Faraday","identificacion":"CEDULA","edad":33,"nroIdentificacion":"1105566778"},{"id":9,"nombre":"Roberth","apellido":"Montaneda","direccion":"Calle VillaNueva","identificacion":"CEDULA","edad":41,"nroIdentificacion":"P005874132"}]
+>>>>>>> origin/main
