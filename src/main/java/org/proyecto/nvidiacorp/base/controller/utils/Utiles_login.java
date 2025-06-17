@@ -7,20 +7,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
-import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
+import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedListNew;
 
 public class Utiles_login {
     public static Integer ASCENDENTE = 1;
     public static Integer DESCENDENTE = 2;
     public static Integer BUSCAR = 3;
-
-    public <E> HashMap<String, Object> createHasMao (String [] atributos, E item, HashMap<String, AdapterDao> daos) throws Exception{
+    
+    public <E> HashMap<String, Object> createHasMao (String atribAnidado ,String [] atributos, E item, HashMap<String, AdapterDao> daos) throws Exception{
         HashMap<String, Object> aux = new HashMap<>();
         for(String atributo : atributos) {
             if(daos.containsKey(atributo)) {
                 // Atributo relacionado
                 Object relatedObj = getRelatedObject(item, atributo, daos.get(atributo));
-                aux.put(atributo, getClazz(relatedObj, "nombre"));
+                //System.out.print("PUASJDDASHDAWSHDBAS");
+                aux.put(atributo, getClazz(relatedObj, atribAnidado));
             } else {
                 // Atributo normal
                 aux.put(atributo, getClazz(item, atributo));
@@ -29,18 +30,20 @@ public class Utiles_login {
         return aux;
     }
 
-    public <E> LinkedList<HashMap<String, Object>> getHasMap(String [] atributos, 
+   /*  public <E> Object createObject(HashMap has, ){
+        has.
+    } */
+
+    public <E> LinkedListNew<HashMap<String, Object>> getHasMap(String atribANidado ,String [] atributos, 
                                                        E[] array,
                                                        HashMap<String, AdapterDao> daos) throws Exception {
-    LinkedList<HashMap<String, Object>> list = new LinkedList<>();
+    LinkedListNew<HashMap<String, Object>> list = new LinkedListNew<>();
     
     for(E item : array) {
-        list.add(createHasMao(atributos, item, daos));
+        list.add(createHasMao(atribANidado,atributos, item, daos));
     }
-    
-    
     return list;
-}
+    }
 
 private <E> Object getRelatedObject(E obj, String relationName, AdapterDao dao) throws Exception {
     Object id = getClazz(obj, "id_" + relationName);
@@ -50,22 +53,22 @@ private <E> Object getRelatedObject(E obj, String relationName, AdapterDao dao) 
 }
 
     
-    public List<HashMap<String, Object>> transformList(LinkedList<HashMap<String, Object>> lista)throws Exception{
+    public List<HashMap<String, Object>> transformList(LinkedListNew<HashMap<String, Object>> lista)throws Exception{
         List<HashMap<String, Object>> listaJavaUtil = new java.util.ArrayList<>();
-        for (int i = 0; i < lista.getLength(); i++) {
-            listaJavaUtil.add(lista.get(i));
+        for (int i = 0; i < lista.getSize(); i++) {
+            listaJavaUtil.add(lista.getData(i));
         }
         return listaJavaUtil;
     }
 
     public String [] getAtributos(Object obj){
         Field[] array = obj.getClass().getDeclaredFields();
-        LinkedList<String> atr = new LinkedList<>();
+        LinkedListNew<String> atr = new LinkedListNew<>();
         for(int i = 0 ; i < array.length ; i ++){
             if(array[i].getName().startsWith("id_")){
                // System.out.println(array[i].getName() + "tipo >>" + array[i].getType().toString());
-                atr.add(array[i].getName().substring(3).toLowerCase());
-            } else {
+                atr.add(array[i].getName().substring(3));
+            } else{
                 atr.add(array[i].getName());
             }
             //System.out.println(array[i].getName() + "tipo >>" + atr.get(i));
@@ -125,9 +128,16 @@ private <E> Object getRelatedObject(E obj, String relationName, AdapterDao dao) 
         return band;
     }
 
-    public LinkedList<HashMap<String, Object>> searchL(String atributo, String valor, HashMap<String, Object> [] objs)throws Exception{
-        LinkedList<HashMap <String , Object>> list = new LinkedList<>();
+    public LinkedListNew<HashMap<String, Object>> searchL(String atributo, String valor, HashMap<String, Object> [] objs)throws Exception{
+        LinkedListNew<HashMap <String , Object>> list = new LinkedListNew<>();
         if(objs.length == 0 || valor.isEmpty()) return list;
+
+       /*  int indice = binary(objs, atributo, valor);
+
+        for(int i = indice ; i < objs.length ; i++){
+            if (!objs[i].get(atributo).toString().toLowerCase().contains(valor.trim().toLowerCase().substring(0,1))) break;
+            if (objs[i].get(atributo).toString().toLowerCase().contains(valor.trim().toLowerCase())) {list.add(objs[i]);}
+        } */
 
         if (!(objs.length == 0)) {
             Integer n = binariLineal(objs, atributo, valor);
@@ -179,6 +189,25 @@ private <E> Object getRelatedObject(E obj, String relationName, AdapterDao dao) 
         return mitad;
     }
 
+    private Integer bynaryLineal(HashMap<String, String>[] arr, String attribute, String text) {
+        Integer half = 0;
+        if (!(arr.length == 0) && !text.isEmpty()) {
+            half = arr.length / 2;
+            int aux = 0;
+            System.out.println(text.trim().toLowerCase().charAt(0) + "* * **" + half + ""
+                    + arr[half].get(attribute).toString().trim().toLowerCase().charAt(0));
+            if (text.trim().toLowerCase().charAt(0) > arr[half].get(attribute).toString().trim().toLowerCase()
+                    .charAt(0))
+                aux = 1;
+            else if (text.trim().toLowerCase().charAt(0) < arr[half].get(attribute).toString().trim().toLowerCase()
+                    .charAt(0))
+                aux = -1;
+            ;
+            half = half * aux;
+        }
+        return half;
+    }
+
     public <E> Boolean compararAtributos(String atributo, E ob1, E ob2, Integer orden, HashMap<String, AdapterDao> daos) throws Exception {
         if(daos != null && daos.containsKey(atributo)){
             Object val1 = getAtributAnidado(ob1, atributo, daos.get(atributo));
@@ -199,17 +228,16 @@ private <E> Object getRelatedObject(E obj, String relationName, AdapterDao dao) 
 
     public Object getClazz(Object data, String atributo) throws Exception {
     String getter = "get" + atributo.substring(0,1).toUpperCase() + atributo.substring(1);
+    
     /* if (data == null ){
     System.out.println("NO HAY DATA");
 
     }   else{
-    System.out.println("DATA PERTENECIENTE A " + data.getClass().getSimpleName());
-
-
-    }   */
+    System.out.println("DATA PERTENECIENTE A " + data.getClass().getSimpleName()); 
+    } */  
         for (Method i : data.getClass().getMethods()) {
             if (i.getName().equals(getter)) {
-                System.out.println("SE ENCONTRO EL GETTER DE :" + i.invoke(data));
+                //System.out.println("SE ENCONTRO EL GETTER DE : "+ getter + i.invoke(data));
                 return i.invoke(data);
             }
         }
