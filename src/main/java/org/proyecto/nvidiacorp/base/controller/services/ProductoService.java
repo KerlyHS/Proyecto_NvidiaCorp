@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import org.proyecto.nvidiacorp.base.models.Producto;
+import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoProducto;
+import org.proyecto.nvidiacorp.base.controller.Utiles;
 import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
 import org.proyecto.nvidiacorp.base.models.CategoriaEnum;
 
@@ -14,6 +16,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 import com.vaadin.hilla.mappedtypes.Pageable;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 @BrowserCallable
@@ -65,19 +68,59 @@ public class ProductoService {
     public List<Producto> listAll() {
         return (List<Producto>) Arrays.asList(db.listAll().toArray());
     }
-
-
-    public List<Producto> order(String atributo, Integer type) {
-        return Arrays.asList(db.orderQuickSort(atributo, type).toArray());
+        public List<HashMap<String, Object>> busqueda(@NotEmpty @NotBlank String atributo, 
+                                            @NotBlank @NotEmpty String valor) throws Exception {
+    try {
+        // Verificar que tenemos productos
+        LinkedList<Producto> productosLista = db.listAll();
+        if (productosLista.isEmpty()) {
+            return new ArrayList<>();
+        }
+        
+        // Usar una implementación más simple y directa
+        List<HashMap<String, Object>> resultados = new ArrayList<>();
+        
+        for (Producto producto : productosLista.toArray()) {
+            HashMap<String, Object> productoMap = new HashMap<>();
+            
+            // Agregar todos los campos del producto
+            productoMap.put("id", producto.getId());
+            productoMap.put("nombre", producto.getNombre());
+            productoMap.put("descripcion", producto.getDescripcion());
+            productoMap.put("precio", producto.getPrecio());
+            productoMap.put("categoria", producto.getCategoria());
+            productoMap.put("imagen", producto.getImagen());
+            productoMap.put("id_marca", producto.getId_marca());
+            
+            // Filtrar por el atributo y valor especificados
+            String valorProducto = getValorAtributo(producto, atributo);
+            if (valorProducto != null && valorProducto.toLowerCase().contains(valor.toLowerCase())) {
+                resultados.add(productoMap);
+            }
+        }
+        
+        return resultados;
+        
+    } catch (Exception e) {
+        System.err.println("Error en búsqueda de productos: " + e.getMessage());
+        e.printStackTrace();
+        throw new Exception("Error al realizar la búsqueda: " + e.getMessage());
     }
+}
 
-    // Metodo de busqueda   
-public List<Producto> busqueda(String attribute, String text, Integer type) throws Exception {
-    LinkedList<Producto> lista = db.busquedaLinealBinaria(attribute, text, type);
-    if (!lista.isEmpty()) {
-        return Arrays.asList(lista.toArray());
-    } else {
-        return new ArrayList<>();
+// Método auxiliar para obtener el valor de un atributo específico
+private String getValorAtributo(Producto producto, String atributo) {
+    switch (atributo.toLowerCase()) {
+        case "nombre":
+            return producto.getNombre();
+        case "descripcion":
+            return producto.getDescripcion();
+        case "precio":
+            return producto.getPrecio() != null ? producto.getPrecio().toString() : null;
+        case "categoria":
+            return producto.getCategoria() != null ? producto.getCategoria().toString() : null;
+        default:
+            return null;
     }
 }
 }

@@ -427,7 +427,7 @@ export default function ProductoListView() {
                 Notification.show('Ingrese criterio y texto de búsqueda', { duration: 3000, position: 'top-center', theme: 'error' });
                 return;
             }
-            ProductoService.busqueda(criterio.value, text.value, 0).then(function (data) {
+            ProductoService.busqueda(criterio.value, text.value).then(function (data) {
                 setProductos(data);
                 console.log("Resultados de búsqueda:", data);
             });

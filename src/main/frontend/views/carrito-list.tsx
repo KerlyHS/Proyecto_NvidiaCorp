@@ -19,7 +19,6 @@ export default function CarritoList() {
   const handleCantidad = (id: number, valor: number) => {
     setCantidades((prev) => {
       const nuevaCantidad = Math.max(1, (prev[id] || 1) + valor);
-      // Actualiza también el carrito global
       setCarrito((carritoActual) =>
         carritoActual.map((item) =>
           item.id === id ? { ...item, cantidad: nuevaCantidad } : item
