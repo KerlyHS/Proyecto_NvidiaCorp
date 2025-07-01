@@ -27,6 +27,10 @@ public class LinkedList<E> {
         return head == null || length == 0;
     }
 
+    public E getId(Integer id) throws Exception{
+        return getNodeById(id).getData();
+    }
+
     private Node<E> getNode(Integer pos) {
         if (isEmpty()) {
             throw new ArrayIndexOutOfBoundsException("List empty");

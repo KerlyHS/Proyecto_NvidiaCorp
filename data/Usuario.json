@@ -4,7 +4,7 @@
         "correo": "Sas44@unl.com",
         "clave": "2345",
         "estado": true,
-        "rol": "CLIENTE",
+        "id_Rol": 2,
         "id_Persona": 1
     },
     {
@@ -12,7 +12,7 @@
         "correo": "Pizza11@gmail.com",
         "clave": "1245",
         "estado": true,
-        "rol": "CLIENTE",
+        "id_Rol": 2,
         "id_Persona": 4
     },
     {
@@ -20,7 +20,7 @@
         "correo": "Cos22@gmail.com",
         "clave": "3366",
         "estado": true,
-        "rol": "ADMINISTRADOR",
+        "id_Rol": 1,
         "id_Persona": 6
     },
     {
@@ -28,7 +28,7 @@
         "correo": "Dis33@unl.com",
         "clave": "comida",
         "estado": true,
-        "rol": "ADMINISTRADOR",
+        "id_Rol": 1,
         "id_Persona": 5
     },
     {
@@ -36,7 +36,7 @@
         "correo": "Ras77@unl.com",
         "clave": "cigarro",
         "estado": true,
-        "rol": "CLIENTE",
+        "id_Rol": 2,
         "id_Persona": 7
     },
     {
@@ -44,7 +44,7 @@
         "correo": "Arroz78@gmail.com",
         "clave": "Caramelo",
         "estado": true,
-        "rol": "ADMINISTRADOR",
+        "id_Rol": 1,
         "id_Persona": 2
     },
     {
@@ -52,7 +52,15 @@
         "correo": "Sas34@unl.com",
         "clave": "Salsas",
         "estado": true,
-        "rol": "CLIENTE",
+        "id_Rol": 2,
         "id_Persona": 3
+    },
+    {
+        "id": 8,
+        "correo": "akfsa@hotmail.com",
+        "clave": "golosaGOgera",
+        "estado": true,
+        "id_Rol": 2,
+        "id_Persona": 10
     }
 ]

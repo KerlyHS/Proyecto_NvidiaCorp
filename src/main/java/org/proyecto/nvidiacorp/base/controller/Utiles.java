@@ -392,15 +392,15 @@ public LinkedList<HashMap<String, String>> search(String attribute, String text,
     public Object getClazz(Object data, String atributo) throws Exception {
     String getter = "get" + atributo.substring(0,1).toUpperCase() + atributo.substring(1);
     
-   /*   if (data == null ){
+      if (data == null ){
     System.out.println("NO HAY DATA");
 
     }   else{
     System.out.println("DATA PERTENECIENTE A " + data.getClass().getSimpleName()); 
-    } */   
+    }   
         for (Method i : data.getClass().getMethods()) {
             if (i.getName().equals(getter)) {
-                //System.out.println("SE ENCONTRO EL GETTER DE : "+ getter + i.invoke(data));
+                System.out.println("SE ENCONTRO EL GETTER DE : "+ getter + i.invoke(data));
                 return i.invoke(data);
             }
         }
