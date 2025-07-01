@@ -15,6 +15,65 @@ import "themes/default/css/producto-list.css";
 import { Upload } from '@vaadin/react-components';
 import { useNavigate } from 'react-router';
 
+function CarritoNotification({ producto, isVisible, onClose }: { 
+    producto: any | null, 
+    isVisible: boolean, 
+    onClose: () => void 
+}) {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isVisible && producto) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 4000); 
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, producto, onClose]);
+
+    const handleVerCarrito = () => {
+        onClose(); 
+        navigate('/carrito-list');
+    };
+
+    if (!isVisible || !producto) return null;
+
+    return (
+        <div className={`carrito-notification ${isVisible ? 'show' : 'hide'}`}>
+            <div className="carrito-notification-icon">🛒</div>
+            
+            {producto.imagen && (
+                <img 
+                    src={producto.imagen} 
+                    alt={producto.nombre}
+                    className="carrito-notification-imagen"
+                />
+            )}
+            
+            <div className="carrito-notification-content">
+                <p className="carrito-notification-titulo">¡Agregado al carrito!</p>
+                <p className="carrito-notification-producto">{producto.nombre}</p>
+            </div>
+            
+            <div className="carrito-notification-actions">
+                <button 
+                    className="carrito-notification-ver-btn"
+                    onClick={handleVerCarrito}
+                >
+                    🛒 Ver
+                </button>
+                
+                <button 
+                    className="carrito-notification-close"
+                    onClick={onClose}
+                    aria-label="Cerrar notificación"
+                >
+                    ✕
+                </button>
+            </div>
+        </div>
+    );
+}
 
 
 export const config: ViewConfig = {
@@ -43,7 +102,7 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
 
     const handleUploadSuccess = (event: any) => {
         const response = event.detail.xhr.response;
-        setImagenUrl(response); // Guarda la URL devuelta por el backend
+        setImagenUrl(response); 
     };
 
     const open = () => {
@@ -204,7 +263,7 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
 
     const handleUploadSuccess = (event: any) => {
         const response = event.detail.xhr.response;
-        setImagenUrl(response); // Guarda la URL devuelta por el backend
+        setImagenUrl(response); 
     };
 
     const open = () => {
@@ -362,42 +421,79 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
 
 export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: any, onProductoUpdated?: () => void, onEliminar?: () => void }) {
     const { agregar, carrito } = useCarrito();
+    const navigate = useNavigate();
     const yaEnCarrito = carrito.some((p: any) => p.id === item.id);
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationProduct, setNotificationProduct] = useState<any>(null);
+
+    const handleCarritoAction = () => {
+        if (yaEnCarrito) {
+            navigate('/carrito-list');
+        } else {
+            agregar(item);
+            setNotificationProduct(item);
+            setShowNotification(true);
+        }
+    };
+
+    const closeNotification = () => {
+        setShowNotification(false);
+        setTimeout(() => {
+            setNotificationProduct(null);
+        }, 500); 
+    };
 
     return (
-        <div className="producto-card">
-            {item.imagen && (
-                <img className="producto-imagen" src={item.imagen} alt={item.nombre} />
-            )}
-            <div className="producto-info">
-                <h3>{item.nombre}</h3>
-                <p className="producto-descripcion">{item.descripcion}</p>
-                <div className="producto-meta">
-                    <span className="producto-marca">{item.marca}</span>
-                    <span className="producto-categoria">{item.categoria}</span>
+        <>
+            <div className="producto-card">
+                {item.imagen && (
+                    <img className="producto-imagen" src={item.imagen} alt={item.nombre} />
+                )}
+                <div className="producto-info">
+                    <h3>{item.nombre}</h3>
+                    <div className="producto-meta">
+                        <span className="producto-marca">{item.marca}</span>
+                        <span className="producto-categoria">{item.categoria}</span>
+                    </div>
+                    <div className="producto-precio">${item.precio}</div>
+                
+                    {onEliminar ? (
+                        <Button 
+                            theme="error" 
+                            onClick={onEliminar}
+                            className="producto-btn-eliminar"
+                        >
+                            🗑️ Eliminar del Carrito
+                        </Button>
+                    ) : (
+                        <Button
+                            theme="primary"
+                            onClick={handleCarritoAction}
+                            className={`producto-btn-carrito ${yaEnCarrito ? 'en-carrito' : 'agregar'}`}
+                        >
+                            {yaEnCarrito ? "🛒 Ver en Carrito" : "➕ Agregar al Carrito"}
+                        </Button>
+                    )}
+                    
+                    {onProductoUpdated && (
+                        <div className="producto-editar-container">
+                            <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
+                        </div>
+                    )}
                 </div>
-                <div className="producto-precio">${item.precio}</div>
-                {onEliminar ? (
-                    <Button theme="error" onClick={onEliminar}>
-                        Eliminar
-                    </Button>
-                ) : (
-                    <Button
-                        theme="primary"
-                        onClick={() => agregar(item)}
-                        disabled={yaEnCarrito}
-                    >
-                        {yaEnCarrito ? "En el carrito" : "Agregar al Carrito"}
-                    </Button>
-                )}
-                {onProductoUpdated && (
-                    <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
-                )}
+                
+                <div className="producto-descripcion-overlay">
+                    <p>{item.descripcion || "No hay descripción disponible"}</p>
+                </div>
             </div>
-        </div>
+            <CarritoNotification 
+                producto={notificationProduct}
+                isVisible={showNotification}
+                onClose={closeNotification}
+            />
+        </>
     );
 }
-
 
 export default function ProductoListView() {
     const [productos, setProductos] = useState<Producto[]>([]);
@@ -405,10 +501,9 @@ export default function ProductoListView() {
     const text = useSignal('');
     const navigate = useNavigate();
     const itemSelect = [
-        { label: 'Nombre', value: 'nombre' },
-        { label: 'Descripcion', value: 'descripcion' },
-        { label: 'Precio', value: 'precio' },
-        { label: 'Categoria', value: 'categoria' },
+        { label: '🏷️ Nombre', value: 'nombre' },
+        { label: '💰 Precio', value: 'precio' },
+        { label: '📂 Categoría', value: 'categoria' },
     ];
 
     const cargarProductos = async () => {
@@ -424,31 +519,39 @@ export default function ProductoListView() {
     const search = async () => {
         try {
             if (!criterio.value || !text.value) {
-                Notification.show('Ingrese criterio y texto de búsqueda', { duration: 3000, position: 'top-center', theme: 'error' });
+                Notification.show('Por favor, selecciona un criterio e ingresa texto para buscar', { 
+                    duration: 4000, 
+                    position: 'top-center', 
+                    theme: 'error' 
+                });
                 return;
             }
             ProductoService.busqueda(criterio.value, text.value).then(function (data) {
                 setProductos(data);
                 console.log("Resultados de búsqueda:", data);
+                Notification.show(`Se encontraron ${data.length} resultado(s)`, { 
+                    duration: 3000, 
+                    position: 'bottom-end', 
+                    theme: 'success' 
+                });
             });
-            Notification.show('Busqueda realizada', { duration: 3000, position: 'bottom-end', theme: 'success' });
         } catch (error) {
             console.log(error);
             handleError(error);
         }
     };
 
+    const handleKeyPress = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            search();
+        }
+    };
+
     return (
-        <main
-            className="w-full h-full flex flex-col box-border gap-s p-m"
-            style={{
-                minHeight: '100vh',
-                background: 'transparent', 
-            }}
-        >
+        <main className="producto-main-container">
             <ViewToolbar
                 title={
-                    <span style={{ color: '#76b900', fontWeight: 900, fontSize: '2rem', letterSpacing: 2 }}>
+                    <span className="producto-toolbar-titulo">
                         Productos
                     </span>
                 }
@@ -456,63 +559,71 @@ export default function ProductoListView() {
                 <Group>
                     <Button
                         theme="primary"
-                        style={{
-                            background: '#76b900',
-                            color: '#0f0f0f',
-                            fontWeight: 'bold',
-                            borderRadius: '8px',
-                            fontSize: '1.1rem',
-                            marginRight: '1rem',
-                            border: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                        }}
+                        className="producto-toolbar-btn"
                         onClick={() => navigate('/carrito-list')}
                     >
-                        <Icon icon="vaadin:cart" style={{ marginRight: 8 }} />
+                        <Icon icon="vaadin:cart" style={{ fontSize: '1.2rem' }} />
                         Ver Carrito
                     </Button>
                     <ProductoEntryForm onProductoCreated={cargarProductos} />
                 </Group>
             </ViewToolbar>
-            <HorizontalLayout className="producto-barra-busqueda" theme="spacing">
-              <Select
-                className="producto-select"
-                items={itemSelect}
-                value={criterio.value}
-                onValueChanged={(e) => (criterio.value = e.detail.value)}
-                label="Criterio"
-                style={{ minWidth: 160 }}
-              />
-              <TextField
-                className="producto-busqueda-input"
-                placeholder="Buscar producto..."
-                style={{ width: '50%' }}
-                value={text.value}
-                onValueChanged={(evt) => (text.value = evt.detail.value)}
-              >
-                <Icon slot="prefix" icon="vaadin:search" />
-              </TextField>
-              <Button
-                onClick={search}
-                theme="primary"
-                className="producto-buscar-btn"
-              >
-                BUSCAR
-              </Button>
-              <Button
-                onClick={cargarProductos}
-                theme="secondary"
-                className="producto-ver-todo-btn"
-              >
-                Ver toda la lista
-              </Button>
-            </HorizontalLayout>
+            
+            <div className="producto-barra-busqueda">
+                <Select
+                    className="producto-select"
+                    items={itemSelect}
+                    value={criterio.value}
+                    onValueChanged={(e) => (criterio.value = e.detail.value)}
+                    label="🔍 Buscar por"
+                    placeholder="Selecciona criterio..."
+                />
+                
+                <TextField
+                    className="producto-busqueda-input"
+                    placeholder="¿Qué producto estas buscando? 🎯"
+                    value={text.value}
+                    onValueChanged={(evt) => (text.value = evt.detail.value)}
+                    onKeyDown={handleKeyPress}
+                    clearButtonVisible
+                >
+                    <Icon slot="prefix" icon="vaadin:search" style={{ color: '#76b900', fontSize: '1.2rem' }} />
+                </TextField>
+                
+                <Button
+                    onClick={search}
+                    theme="primary"
+                    className="producto-buscar-btn"
+                    disabled={!criterio.value || !text.value}
+                >
+                    <Icon icon="vaadin:search" style={{ marginRight: '8px', fontSize: '1.1rem' }} />
+                    Buscar
+                </Button>
+                
+                <Button
+                    onClick={cargarProductos}
+                    theme="secondary"
+                    className="producto-ver-todo-btn"
+                >
+                    <Icon icon="vaadin:refresh" style={{ marginRight: '8px', fontSize: '1.1rem' }} />
+                    Ver Todo
+                </Button>
+            </div>
+            
             <div className="producto-grid">
-                {productos.map((item: any, idx: number) => (
-                    <ProductoCard key={item.id ?? idx} item={item} onProductoUpdated={cargarProductos} />
-                ))}
+                {productos.length === 0 ? (
+                    <div className="producto-sin-resultados">
+                        🔍 No se encontraron productos
+                        <br />
+                        <span className="producto-sin-resultados-subtitle">
+                            Intenta con otros criterios de búsqueda
+                        </span>
+                    </div>
+                ) : (
+                    productos.map((item: any, idx: number) => (
+                        <ProductoCard key={item.id ?? idx} item={item} onProductoUpdated={cargarProductos} />
+                    ))
+                )}
             </div>
         </main>
     );
