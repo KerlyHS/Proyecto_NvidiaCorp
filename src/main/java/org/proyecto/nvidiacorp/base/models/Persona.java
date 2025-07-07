@@ -10,7 +10,6 @@ public class Persona {
     private Integer edad;
     private String codIdent;
 
-
     public Integer getId() {
         return this.id;
     }

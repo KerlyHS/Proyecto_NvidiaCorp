@@ -53,7 +53,8 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
 
     const createPersona = async () => {
         try {
-            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && telefono.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && codIdent.value.trim().length > 0) {
+            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && telefono.value.trim().length > 0 && direccion.value.trim().length > 0 && 
+            identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && codIdent.value.trim().length > 0) {
 
                 if (identificacion.value === 'CEDULA') {
                     if (!/^\d{10}$/.test(codIdent.value)) {
@@ -164,7 +165,7 @@ function PersonaEntryForm(props: PersonaEntryFormProps) {
                             label="Identificacion"
                             placeholder="Ingrese la identificacion de la Persona"
                             aria-label="Ingrese la identificacion de la Persona"
-                            items={listaidentificacion.value} // <-- agrega esto
+                            items={listaidentificacion.value}
                             value={identificacion.value}
                             onValueChanged={(evt) => (identificacion.value = evt.detail.value)}
                         />
@@ -224,7 +225,8 @@ function PersonaEntryFormUpdate(props: PersonaEntryFormUpdateProps) {
 
     const updatePersona = async () => {
         try {
-            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && telefono.value.trim().length > 0 && direccion.value.trim().length > 0 && identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && codIdent.value.trim().length > 0) {
+            if (nombre.value.trim().length > 0 && apellido.value.trim().length > 0 && telefono.value.trim().length > 0 && direccion.value.trim().length > 0 && 
+            identificacion.value.trim().length > 0 && edad.value.trim().length > 0 && codIdent.value.trim().length > 0) {
                 if (identificacion.value === 'CEDULA') {
                     if (!/^\d{10}$/.test(codIdent.value)) {
                         Notification.show('La cédula debe tener 10 dígitos numéricos', { theme: 'error' });

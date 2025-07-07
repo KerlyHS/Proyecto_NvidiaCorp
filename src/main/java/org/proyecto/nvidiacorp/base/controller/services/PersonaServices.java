@@ -34,7 +34,7 @@ public class PersonaServices {
         dp.getObj().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
         dp.getObj().setDireccion(direccion);
         dp.getObj().setEdad(edad);
-        dp.getObj().setCodIdent(codIdent); // <-- aquí
+        dp.getObj().setCodIdent(codIdent);
         if (identificacion.equals("CEDULA")) {
             if (!codIdent.matches("\\d{10}")) {
                 throw new Exception("La cédula debe tener 10 dígitos numéricos");

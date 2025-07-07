@@ -8,6 +8,7 @@ import java.util.List;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoPersona;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoUsuario;
 import org.proyecto.nvidiacorp.base.models.Persona;
+import org.proyecto.nvidiacorp.base.models.Rol;
 import org.proyecto.nvidiacorp.base.models.RolEnum;
 import org.proyecto.nvidiacorp.base.models.Usuario;
 
@@ -84,13 +85,38 @@ public class UsuarioServices {
         return lista;
     }
 
+    public List<HashMap> listRolCombo() {
+        List<HashMap> lista = new ArrayList<>();
+        for (RolEnum rol : RolEnum.values()) {
+            HashMap<String, String> aux = new HashMap<>();
+            aux.put("value", rol.toString());
+            aux.put("label", rol.toString());
+            lista.add(aux);
+        }
+        return lista;
+    }
+
+    public List<HashMap> listRolCombo(Integer id) {
+        List<HashMap> lista = new ArrayList<>();
+        for (int i = 0; i < arreglo.length; i++) {
+            if (arreglo[i].getId() == id) {
+                HashMap<String, String> aux = new HashMap<>();
+                aux.put("value", arreglo[i].toString());
+                aux.put("label", arreglo[i].toString());
+                lista.add(aux);
+            }
+        }
+        return lista;
+    }
+
     public List<HashMap> listUsuario() {
         List<HashMap> lista = new ArrayList<>();
         if (!du.listAll().isEmpty()) {
             Usuario[] arreglo = du.listAll().toArray();
             for (int i = 0; i < arreglo.length; i++) {
                 HashMap<String, String> aux = new HashMap<>();
-                Persona persona = new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1);
+                Persona persona = new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1);\
+                Rol rol = new DaoRol();
                 aux.put("id", arreglo[i].getId().toString(i));
                 aux.put("correo", arreglo[i].getCorreo().toString());
                 aux.put("clave", arreglo[i].getClave().toString());
