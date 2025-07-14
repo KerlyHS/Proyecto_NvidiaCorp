@@ -1,0 +1,124 @@
+import { useEffect } from "react";
+import "themes/default/css/nosotros.css";
+
+export default function NosotrosView() {
+  useEffect(() => {
+    const sections = document.querySelectorAll(".nosotros-section-anim");
+    sections.forEach((sec, i) => {
+      setTimeout(() => sec.classList.add("visible"), 200 + i * 200);
+    });
+  }, []);
+
+  return (
+    <main className="nosotros-main">
+      <div className="nosotros-bg-anim"></div>
+
+      {/* Presentación */}
+      <section className="nosotros-section-anim nosotros-presentacion">
+        <h1>NvidiaCorp</h1>
+        <p className="empresa-desc">
+          <b>Somos NvidiaCorp</b>, un equipo ecuatoriano enfocado en la comercialización y gestión tecnológica de productos Nvidia. Nuestro objetivo es optimizar las ventas, mejorar la atención al cliente y automatizar procesos para consumidores en Loja y todo el Ecuador.
+        </p>
+        <div className="presentacion-destacados">
+          <div><span role="img" aria-label="Innovación">🚀</span><span>Innovación tecnológica</span></div>
+          <div><span role="img" aria-label="Atención">👥</span><span>Atención personalizada</span></div>
+          <div><span role="img" aria-label="Compromiso">🤝</span><span>Compromiso y confianza</span></div>
+        </div>
+      </section>
+
+      {/* Historia */}
+      <section className="nosotros-section-anim nosotros-historia">
+        <h2>Nuestra Historia</h2>
+        <p>
+          NvidiaCorp nació en 2024 como un proyecto académico impulsado por estudiantes de la Universidad Nacional de Loja. Identificamos la falta de una plataforma especializada en la venta de productos Nvidia y decidimos desarrollar una solución moderna, escalable y centrada en la experiencia del usuario.
+        </p>
+        <div className="historia-imagenes">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Equipo NvidiaCorp en desarrollo" />
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80" alt="Entorno de trabajo" />
+        </div>
+      </section>
+
+      {/* Misión, Visión y Valores */}
+      <section className="nosotros-section-anim nosotros-mvv">
+        <div className="mvv-grid">
+          <div className="mvv-card">
+            <span role="img" aria-label="Misión">💡</span>
+            <h3>Misión</h3>
+            <p>
+              Brindar soluciones tecnológicas innovadoras y confiables para la comercialización de productos Nvidia, mejorando la experiencia del usuario y la eficiencia operativa.
+            </p>
+          </div>
+          <div className="mvv-card">
+            <span role="img" aria-label="Visión">🚀</span>
+            <h3>Visión</h3>
+            <p>
+              Ser la empresa líder en Ecuador en la distribución y gestión de productos Nvidia, reconocida por su excelencia, innovación y compromiso.
+            </p>
+          </div>
+          <div className="mvv-card">
+            <span role="img" aria-label="Valores">🌟</span>
+            <h3>Valores</h3>
+            <ul>
+              <li>Innovación</li>
+              <li>Honestidad</li>
+              <li>Compromiso</li>
+              <li>Calidad</li>
+              <li>Trabajo en equipo</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Diferenciadores */}
+      <section className="nosotros-section-anim nosotros-diferenciadores">
+        <h2>¿Por qué elegir NvidiaCorp?</h2>
+        <div className="diferenciadores-list">
+          <div><span role="img" aria-label="Vanguardia">⚙️</span><span>Tecnología de vanguardia</span></div>
+          <div><span role="img" aria-label="Soporte">💬</span><span>Soporte personalizado</span></div>
+          <div><span role="img" aria-label="Automatización">🔐</span><span>Automatización segura</span></div>
+        </div>
+      </section>
+
+      {/* Equipo humano */}
+      <section className="nosotros-section-anim nosotros-integrantes">
+        <h2>Nuestro Equipo</h2>
+        <div className="integrantes-list">
+          <article className="integrante-card card-anim">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cristian Tomalá - Backend Developer" />
+            <h4>Cristian Tomalá</h4>
+            <p>Backend Developer. Especialista en arquitectura y lógica de servicios.</p>
+          </article>
+          <article className="integrante-card card-anim">
+            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Josue Asanza - UI/UX y Frontend" />
+            <h4>Josue Asanza</h4>
+            <p>Frontend Developer. Responsable del diseño, animaciones e interacción con el usuario.</p>
+          </article>
+          <article className="integrante-card card-anim">
+            <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Kevin Nole - Fullstack Developer" />
+            <h4>Kevin Nole</h4>
+            <p>Fullstack Developer. Conectando frontend y backend para una experiencia fluida.</p>
+          </article>
+          <article className="integrante-card card-anim">
+            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Luis Blacio - Integración y Seguridad" />
+            <h4>Luis Blacio</h4>
+            <p>Encargado de integraciones y configuración de seguridad.</p>
+          </article>
+          <article className="integrante-card card-anim">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Kerly Huachaca - Documentación y QA" />
+            <h4>Kerly Huachaca</h4>
+            <p>Gestora de documentación y pruebas de calidad.</p>
+          </article>
+        </div>
+      </section>
+
+      {/* Llamada a la acción */}
+      <section className="nosotros-section-anim nosotros-contacto">
+        <h2>¿Quieres saber más?</h2>
+        <p>Contáctanos y descubre cómo NvidiaCorp puede ayudarte a potenciar tu proyecto con tecnología de alto nivel.</p>
+        <a href="mailto:contacto@nvidiacorp.ec" className="btn-contacto">
+          <span role="img" aria-label="Correo">📧</span> Escríbenos
+        </a>
+      </section>
+    </main>
+  );
+}

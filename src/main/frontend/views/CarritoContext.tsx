@@ -13,13 +13,11 @@ export function CarritoProvider({ children }: { children: React.ReactNode }) {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Guarda el carrito en localStorage cada vez que cambie
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
   const agregar = (producto: any) => {
-    // 1) Si no hay stock, error y no añadir
     if ((producto.stock ?? 0) <= 0) {
       Notification.show('❌ Producto agotado', {
         position: 'top-center',
@@ -28,7 +26,6 @@ export function CarritoProvider({ children }: { children: React.ReactNode }) {
       });
       return;
     }
-    // 2) Si ya está en el carrito, no duplicar
     if (carrito.some(p => p.id === producto.id)) {
       Notification.show('⚠️ Ya tienes este producto en el carrito', {
         position: 'top-center',
@@ -39,9 +36,7 @@ export function CarritoProvider({ children }: { children: React.ReactNode }) {
     }
     setCarrito(prev => [...prev, { ...producto, cantidad: 1 }]);
   };
-
   const eliminar = (id: any) => setCarrito(prev => prev.filter(p => p.id !== id));
-
   return (
     <CarritoContext.Provider value={{ carrito, agregar, eliminar, setCarrito }}>
       {children}
