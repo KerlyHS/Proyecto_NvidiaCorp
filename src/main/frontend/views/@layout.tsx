@@ -71,8 +71,8 @@ function UserMenu() {
 export default function MainLayout() {
   return (
     <CarritoProvider>
-      {/* <Navbar />
-      <div style={{ paddingTop: 56 }}> */}
+      <Navbar />
+      <div style={{ paddingTop: 56 }}>
         <AppLayout>
           {/* <Header /> */}
           {/* <UserMenu /> */}
@@ -80,7 +80,7 @@ export default function MainLayout() {
             <Outlet />
           </Suspense>
         </AppLayout>
-      {/* </div> */}
+      </div>
     </CarritoProvider>
   );
 }
