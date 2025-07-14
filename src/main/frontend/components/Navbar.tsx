@@ -12,6 +12,7 @@ export default function Navbar() {
           <span className="navbar-title">NVIDIA</span>
         </div>
         <span className="navbar-link" onClick={() => navigate('/producto-list')}>Productos</span>
+        <span className="navbar-link" onClick={() => navigate('/nosotros')}>Nosotros</span>
       </div>
       <div className="navbar-right">
         <span className="navbar-link" onClick={() => navigate('/carrito-list')}>
