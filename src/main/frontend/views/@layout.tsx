@@ -14,6 +14,7 @@ import {
 } from '@vaadin/react-components';
 import { Suspense } from 'react';
 import { createMenuItems } from '@vaadin/hilla-file-router/runtime.js';
+import Navbar from 'Frontend/components/Navbar';
 
 function Header() {
   // TODO Replace with real application logo and name
@@ -70,13 +71,27 @@ function UserMenu() {
 export default function MainLayout() {
   return (
     <CarritoProvider>
-      <AppLayout>
-        {/* <Header /> */}
-        {/* <UserMenu /> */}
-        <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
-          <Outlet />
-        </Suspense>
-      </AppLayout>
+      {/* <Navbar />
+      <div style={{ paddingTop: 56 }}> */}
+        <AppLayout>
+          {/* <Header /> */}
+          {/* <UserMenu /> */}
+          <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
+            <Outlet />
+          </Suspense>
+        </AppLayout>
+      {/* </div> */}
     </CarritoProvider>
+  );
+}
+
+import { ReactNode } from 'react';
+
+export function Layout({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <Navbar />
+      <div style={{ paddingTop: 56 }}>{children}</div>
+    </>
   );
 }

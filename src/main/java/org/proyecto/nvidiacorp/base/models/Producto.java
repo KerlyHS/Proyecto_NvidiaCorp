@@ -10,6 +10,7 @@ public class Producto {
     private Double precio;
     private CategoriaEnum categoria;
     private String imagen;
+    private Integer stock;          // ← nuevo
 
     public Integer getId() {
         return this.id;
@@ -67,6 +68,14 @@ public class Producto {
         this.imagen = imagen;
     }
 
+    public Integer getStock() {
+        return this.stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     public Producto copy(Producto obj){
         Producto aux = new Producto();
         aux.setId(obj.getId());
@@ -76,6 +85,7 @@ public class Producto {
         aux.setPrecio(obj.getPrecio());
         aux.setCategoria(obj.getCategoria());
         aux.setImagen(obj.getImagen());
+        aux.setStock(obj.getStock());
         return aux;
     }
 
@@ -88,6 +98,7 @@ public class Producto {
         diccionario.put("precio", this.precio.toString());
         diccionario.put("categoria", this.categoria.toString());
         diccionario.put("imagen", this.imagen);
+        diccionario.put("stock", this.stock != null ? this.stock.toString() : "0");
         return diccionario;
 
     }
@@ -102,6 +113,7 @@ public class Producto {
                 ", precio=" + precio +
                 ", categoria=" + categoria +
                 ", imagen='" + imagen + '\'' +
+                ", stock=" + stock +
                 '}';
     }
 

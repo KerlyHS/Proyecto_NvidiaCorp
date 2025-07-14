@@ -18,6 +18,35 @@
     font-size: 1.2rem;
 }
 
+/* Layout principal */
+.carrito-layout {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+/* Productos a la izquierda */
+.carrito-productos {
+  flex: 2;
+  min-width: 0;
+}
+
+/* Resumen flotante a la derecha */
+.carrito-resumen-flotante {
+  flex: 1.2;
+  min-width: 480px;
+  max-width: 650px;
+  position: sticky;
+  top: 32px; /* igual que el padding del main */
+  z-index: 10;
+  height: fit-content;
+  align-self: flex-start;
+  margin-right: -40px; /* mueve más a la derecha */
+}
+
 /* Estilos para el header del carrito */
 .carrito-header {
     display: flex;
@@ -66,7 +95,8 @@
 }
 
 .carrito-cantidad-num {
-  width: 40px;
+  width: auto;      /* ancho según contenido */
+  min-width: 3ch;   /* espacio para 3 dígitos */
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
@@ -459,4 +489,58 @@
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
+}
+
+/* Mini factura dentro del resumen */
+.carrito-mini-factura {
+  margin-bottom: 1.5rem;
+  background: #232323;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 8px #76b90022;
+}
+
+.carrito-mini-factura-titulo {
+  color: #b3ff00;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+}
+
+.carrito-mini-factura-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carrito-mini-factura-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #76b90022;
+  font-size: 1.15rem;
+  color: #e0e7ff;
+  gap: 1.2rem;
+}
+
+.carrito-mini-factura-item:last-child {
+  border-bottom: none;
+}
+
+.carrito-mini-factura-nombre {
+  font-weight: 600;
+  color: #76b900;
+}
+
+.carrito-mini-factura-cantidad {
+  font-weight: bold;
+  color: #b3ff00;
+}
+
+.carrito-mini-factura-precio {
+  font-weight: bold;
+  color: #16a34a;
+  min-width: 80px;
+  text-align: right;
 }

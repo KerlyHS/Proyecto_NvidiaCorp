@@ -3,8 +3,10 @@ package org.proyecto.nvidiacorp.base.controller;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
 import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
@@ -18,7 +20,8 @@ public class Utiles {
     public static Integer CONSTIANS; // lo que dios quiera
 
     public String tranformStringFloatTwoDecimal(float dato) {
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
         return df.format(dato);
     }
 

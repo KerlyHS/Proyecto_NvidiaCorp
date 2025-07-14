@@ -35,7 +35,18 @@ export default function CarritoList() {
 
   const handleCantidad = (id: number, valor: number) => {
     setCantidades((prev) => {
-      const nuevaCantidad = Math.max(1, (prev[id] || 1) + valor);
+      const item = carrito.find(p => p.id === id);
+      const stock = item?.stock ?? 1;
+      let nuevaCantidad = Math.max(1, (prev[id] || 1) + valor);
+      console.log("Stock:", stock, "Cantidad actual:", prev[id], "Nueva cantidad:", nuevaCantidad);
+      if (nuevaCantidad > stock) {
+        Notification.show('⚠️ No puedes superar el stock disponible', {
+          position: 'top-center',
+          duration: 3000,
+          theme: 'error'
+        });
+        nuevaCantidad = stock;
+      }
       setCarrito((carritoActual) =>
         carritoActual.map((item) =>
           item.id === id ? { ...item, cantidad: nuevaCantidad } : item
@@ -132,96 +143,117 @@ export default function CarritoList() {
         </div>
       ) : (
         <>
-          <div className="producto-grid">
-            {carrito.map((item) => (
-              <div key={item.id} className="producto-card">
-                <ProductoCard
-                  item={item}
-                  onEliminar={() => eliminar(item.id)}
-                />
-                <div className="carrito-cantidad-selector">
+          <div className="carrito-layout">
+            <div className="carrito-productos">
+              <div className="producto-grid">
+                {carrito.map((item) => (
+                  <div key={item.id} className="producto-card">
+                    <ProductoCard
+                      item={item}
+                      onEliminar={() => eliminar(item.id)}
+                    />
+                    <div className="carrito-cantidad-selector">
+                      <Button
+                        theme="tertiary"
+                        className="carrito-cantidad-btn"
+                        onClick={() => handleCantidad(item.id, -1)}
+                      >-</Button>
+                      <span className="carrito-cantidad-num">{cantidades[item.id] || 1}</span>
+                      <Button
+                        theme="tertiary"
+                        className="carrito-cantidad-btn"
+                        onClick={() => handleCantidad(item.id, 1)}
+                      >+</Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="carrito-resumen-flotante">
+              {/* Aquí va tu resumen de compra actual */}
+              <div className="carrito-resumen">
+                <h2 className="carrito-resumen-titulo">📋 Resumen de Compra</h2>
+
+                <div className="carrito-mini-factura">
+                  <h3 className="carrito-mini-factura-titulo">Productos</h3>
+                  <ul className="carrito-mini-factura-lista">
+                    {carrito.map(item => (
+                      <li key={item.id} className="carrito-mini-factura-item">
+                        <span className="carrito-mini-factura-nombre">{item.nombre}</span>
+                        <span className="carrito-mini-factura-cantidad">{cantidades[item.id] || 1}</span>
+                        <span className="carrito-mini-factura-precio">
+                          ${((item.precio || 0) * (cantidades[item.id] || 1)).toFixed(2)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="carrito-resumen-linea">
+                  <span>Subtotal ({carrito.length} producto{carrito.length !== 1 ? 's' : ''})</span>
+                  <span>${calcularSubtotal().toFixed(2)}</span>
+                </div>
+                
+                <div className="carrito-resumen-linea">
+                  <span>IVA (15%)</span>
+                  <span>${calcularIva().toFixed(2)}</span>
+                </div>
+                
+                <div className="carrito-resumen-linea">
+                  <span className="carrito-resumen-total">TOTAL</span>
+                  <span className="carrito-resumen-total">${calcularTotal().toFixed(2)}</span>
+                </div>
+
+                <div className="carrito-metodos-pago">
+                  <div className="carrito-metodos-titulo">💳 Métodos de Pago Aceptados</div>
+                  <div className="carrito-logos-pago">
+                    <div className="carrito-logo-pago carrito-logo-visa">VISA</div>
+                    <div className="carrito-logo-pago carrito-logo-master">MASTERCARD</div>
+                    <div className="carrito-logo-pago carrito-logo-amex">AMEX</div>
+                  </div>
+                </div>
+
+                <div className="carrito-terminos">
+                  <input
+                    type="checkbox"
+                    id="terminos"
+                    className="carrito-checkbox"
+                    checked={aceptaTerminos}
+                    onChange={(e) => setAceptaTerminos(e.target.checked)}
+                  />
+                  <label htmlFor="terminos" className="carrito-terminos-texto">
+                    Acepto los{' '}
+                    <span className="carrito-terminos-link" onClick={() => alert('Términos y Condiciones:\n\n1. Todos los precios incluyen IVA\n2. Garantía de 2 años en productos NVIDIA\n3. Política de devolución de 30 días\n4. Soporte técnico 24/7')}>
+                      términos y condiciones
+                    </span>
+                    {' '}y la{' '}
+                    <span className="carrito-terminos-link" onClick={() => alert('Política de Privacidad:\n\n- Protegemos tu información personal\n- No compartimos datos con terceros\n- Transacciones 100% seguras\n- Certificación SSL')}>
+                      política de privacidad
+                    </span>
+                    . Confirmo que la información proporcionada es correcta y autorizo el procesamiento del pago.
+                  </label>
+                </div>
+
+                <div className="carrito-botones-accion">
                   <Button
-                    theme="tertiary"
-                    className="carrito-cantidad-btn"
-                    onClick={() => handleCantidad(item.id, -1)}
-                  >-</Button>
-                  <span className="carrito-cantidad-num">{cantidades[item.id] || 1}</span>
+                    onClick={() => navigate('/producto-list')}
+                    className="carrito-btn-continuar"
+                  >
+                    🛍️ Continuar Comprando
+                  </Button>
+
                   <Button
-                    theme="tertiary"
-                    className="carrito-cantidad-btn"
-                    onClick={() => handleCantidad(item.id, 1)}
-                  >+</Button>
+                    onClick={iniciarPago}
+                    className="carrito-btn-pagar"
+                  >
+                    PAGAR
+                  </Button>
+                </div>
+
+                <div className="carrito-seguridad">
+                  🛡️ Pago 100% Seguro • SSL Certificado • Protección de Datos
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div className="carrito-resumen">
-            <h2 className="carrito-resumen-titulo">📋 Resumen de Compra</h2>
-            
-            <div className="carrito-resumen-linea">
-              <span>Subtotal ({carrito.length} producto{carrito.length !== 1 ? 's' : ''})</span>
-              <span>${calcularSubtotal().toFixed(2)}</span>
-            </div>
-            
-            <div className="carrito-resumen-linea">
-              <span>IVA (15%)</span>
-              <span>${calcularIva().toFixed(2)}</span>
-            </div>
-            
-            <div className="carrito-resumen-linea">
-              <span className="carrito-resumen-total">TOTAL</span>
-              <span className="carrito-resumen-total">${calcularTotal().toFixed(2)}</span>
-            </div>
-
-            <div className="carrito-metodos-pago">
-              <div className="carrito-metodos-titulo">💳 Métodos de Pago Aceptados</div>
-              <div className="carrito-logos-pago">
-                <div className="carrito-logo-pago carrito-logo-visa">VISA</div>
-                <div className="carrito-logo-pago carrito-logo-master">MASTERCARD</div>
-                <div className="carrito-logo-pago carrito-logo-amex">AMEX</div>
-              </div>
-            </div>
-
-            <div className="carrito-terminos">
-              <input
-                type="checkbox"
-                id="terminos"
-                className="carrito-checkbox"
-                checked={aceptaTerminos}
-                onChange={(e) => setAceptaTerminos(e.target.checked)}
-              />
-              <label htmlFor="terminos" className="carrito-terminos-texto">
-                Acepto los{' '}
-                <span className="carrito-terminos-link" onClick={() => alert('Términos y Condiciones:\n\n1. Todos los precios incluyen IVA\n2. Garantía de 2 años en productos NVIDIA\n3. Política de devolución de 30 días\n4. Soporte técnico 24/7')}>
-                  términos y condiciones
-                </span>
-                {' '}y la{' '}
-                <span className="carrito-terminos-link" onClick={() => alert('Política de Privacidad:\n\n- Protegemos tu información personal\n- No compartimos datos con terceros\n- Transacciones 100% seguras\n- Certificación SSL')}>
-                  política de privacidad
-                </span>
-                . Confirmo que la información proporcionada es correcta y autorizo el procesamiento del pago.
-              </label>
-            </div>
-
-            <div className="carrito-botones-accion">
-              <Button
-                onClick={() => navigate('/producto-list')}
-                className="carrito-btn-continuar"
-              >
-                🛍️ Continuar Comprando
-              </Button>
-
-              <Button
-                onClick={iniciarPago}
-                className="carrito-btn-pagar"
-              >
-                🔒 Proceder al Pago Seguro
-              </Button>
-            </div>
-
-            <div className="carrito-seguridad">
-              🛡️ Pago 100% Seguro • SSL Certificado • Protección de Datos
             </div>
           </div>
         </>
