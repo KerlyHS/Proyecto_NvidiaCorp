@@ -126,7 +126,7 @@ export default function FacturaView() {
     localStorage.setItem('factura_total', total.toString());
     setTimeout(() => {
       navigate('/factura-list');
-    }, 100); 
+    }, 100);
   };
 
   return (
