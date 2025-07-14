@@ -5,7 +5,16 @@ public class Usuario {
     private String correo;
     private String clave;
     private Boolean estado;
-    private RolEnum rol;
+    //private RolEnum rol;
+    private Integer id_Rol;
+
+    public Integer getId_Rol() {
+        return this.id_Rol;
+    }
+
+    public void setId_Rol(Integer id_Rol) {
+        this.id_Rol = id_Rol;
+    }
     private Integer id_Persona;
 
 
@@ -45,14 +54,14 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public RolEnum getRol() {
+/*     public RolEnum getRol() {
         return this.rol;
     }
 
     public void setRol(RolEnum rol) {
         this.rol = rol;
     }
-
+ */
     public Integer getId_Persona() {
         return this.id_Persona;
     }
