@@ -3,90 +3,100 @@
         "id": 1,
         "nombre": "Rene",
         "apellido": "Guaman",
+        "telefono": "0983289482",
         "direccion": "10 de agosto",
         "identificacion": "CEDULA",
         "edad": 45,
-        "nroIdentificacion": "0912345678"
+        "codIdent": "0912345678"
     },
     {
         "id": 2,
         "nombre": "Elena",
         "apellido": "Gutierrez",
+        "telefono": "0987654321",
         "direccion": "Av. Eloy Alfaro",
         "identificacion": "CEDULA",
         "edad": 27,
-        "nroIdentificacion": "1723456789"
+        "codIdent": "1723456789"
     },
     {
         "id": 3,
         "nombre": "Carolina",
         "apellido": "Balcazar",
+        "telefono": "0981234567",
         "direccion": "Calle Manuel Monteros",
         "identificacion": "PASAPORTE",
         "edad": 20,
-        "nroIdentificacion": "A928374650"
+        "codIdent": "A928374650"
     },
     {
         "id": 4,
         "nombre": "John",
         "apellido": "Morales",
+        "telefono": "0999475028",
         "direccion": "Calle Praga e Indiapolis",
         "identificacion": "CEDULA",
         "edad": 25,
-        "nroIdentificacion": "0801122334"
+        "codIdent": "0801122334"
     },
     {
         "id": 5,
         "nombre": "Unicua",
         "apellido": "Gonzàlez",
+        "telefono": "0998765432",
         "direccion": "Clodoveo",
         "identificacion": "PASAPORTE",
         "edad": 31,
-        "nroIdentificacion": "A123456789"
+        "codIdent": "A123456789"
     },
     {
         "id": 6,
         "nombre": "Pablo",
         "apellido": "Ontaneda",
+        "telefono": "0999988776",
         "direccion": "Menfis",
         "identificacion": "PASAPORTE",
         "edad": 29,
-        "nroIdentificacion": "X987653432"
+        "codIdent": "X987653432"
     },
     {
         "id": 7,
         "nombre": "Tyron",
         "apellido": "Silva",
+        "telefono": "0998877665",
         "direccion": "Sonesta",
         "identificacion": "PASAPORTE",
         "edad": 23,
-        "nroIdentificacion": "0609988776"
+        "codIdent": "0609988776"
     },
     {
         "id": 8,
         "nombre": "Tasha",
         "apellido": "Chilliguano",
+        "telefono": "0997766554",
         "direccion": "Calle Faraday",
         "identificacion": "CEDULA",
         "edad": 33,
-        "nroIdentificacion": "1105566778"
+        "codIdent": "1105566778"
     },
     {
         "id": 9,
         "nombre": "Roberth",
-        "apellido": "Montaneda",
+        "apellido": "Ontaneda",
+        "telefono": "0918293644",
         "direccion": "Calle VillaNueva",
         "identificacion": "CEDULA",
         "edad": 41,
-        "nroIdentificacion": "P005874132"
+        "codIdent": "P005874132"
     },
     {
         "id": 10,
         "nombre": "Calamardo",
         "apellido": "Tentaculos",
+        "telefono": "0929374055",
         "direccion": "Fondo de Bikini",
         "identificacion": "PASAPORTE",
         "edad": 29,
-        "nroIdentificacion": "OT932750542"
+        "codIdent": "OT932750542"
     }
 ]

@@ -202,14 +202,6 @@ public class UsuarioServices {
         return Arrays.asList(du.listAll().toArray());
     }
 
-    /* public List<String> listRol() {
-        List<String> lista = new ArrayList<>();
-        for (RolEnum rol : RolEnum.values()) {
-            lista.add(rol.toString());
-        }
-        return lista;
-    } */
-
     public List<HashMap<String, Integer>> listRol() {
         DaoRol dr = new DaoRol();
         List<HashMap<String, Integer>> lista = new ArrayList<>();
@@ -246,19 +238,6 @@ public class UsuarioServices {
         return lista;
     }
 
-    public List<HashMap> listRolCombo(Integer id) {
-        List<HashMap> lista = new ArrayList<>();
-        for (int i = 0; i < arreglo.length; i++) {
-            if (arreglo[i].getId() == id) {
-                HashMap<String, String> aux = new HashMap<>();
-                aux.put("value", arreglo[i].toString());
-                aux.put("label", arreglo[i].toString());
-                lista.add(aux);
-            }
-        }
-        return lista;
-    }
-
     public List<HashMap> listUsuario()  throws Exception{
         List<HashMap> lista = new ArrayList<>();
         DaoRol dao = new DaoRol();
@@ -266,8 +245,7 @@ public class UsuarioServices {
             Usuario[] arreglo = du.listAll().toArray();
             for (int i = 0; i < arreglo.length; i++) {
                 HashMap<String, String> aux = new HashMap<>();
-                Persona persona = new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1);\
-                Rol rol = new DaoRol();
+                Persona persona = new DaoPersona().listAll().get(arreglo[i].getId_Persona() - 1);
                 aux.put("id", arreglo[i].getId().toString(i));
                 aux.put("correo", arreglo[i].getCorreo().toString());
                 aux.put("clave", arreglo[i].getClave().toString());
