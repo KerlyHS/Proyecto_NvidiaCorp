@@ -65,7 +65,7 @@ public class FacturaServices {
             
         }
             if(!da.update(da.getObj().getId()))
-                throw new  Exception("No se pudo actualizar los datos de la Cancion");
+                throw new  Exception("No se pudo actualizar los datos de la factura");
         }
     }
     
@@ -90,7 +90,6 @@ public class FacturaServices {
                 aux.put("metodoPago", arreglo[i].getMetodoPago().toString());
                 aux.put("iva", arreglo[i].getIva().toString());
                 aux.put("idPersona", arreglo[i].getId_Persona().toString());
-                aux.put("idOrdenPedido", arreglo[i].getId_Orden_Pedido().toString());
                 
                 
                 

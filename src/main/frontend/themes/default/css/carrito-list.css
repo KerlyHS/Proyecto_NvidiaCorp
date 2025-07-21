@@ -18,6 +18,61 @@
     font-size: 1.2rem;
 }
 
+/* Layout principal */
+.carrito-layout {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+/* Productos a la izquierda */
+.carrito-productos {
+  flex: 2;
+  min-width: 0;
+}
+
+/* Resumen flotante a la derecha */
+.carrito-resumen-flotante {
+  flex: 1.2;
+  min-width: 480px;
+  max-width: 650px;
+  position: sticky;
+  top: 32px; /* igual que el padding del main */
+  z-index: 10;
+  height: fit-content;
+  align-self: flex-start;
+  margin-right: -40px; /* mueve más a la derecha */
+}
+
+/* Estilos para el header del carrito */
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.carrito-volver-btn {
+    background: linear-gradient(135deg, #76b900 0%, #8bd400 100%) !important;
+    color: #1a1a1a !important;
+    font-weight: bold !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.8rem 1.5rem !important;
+    box-shadow: 0 4px 15px rgba(118, 185, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    margin-bottom: 1rem !important;
+}
+
 .carrito-cantidad-selector {
   display: flex;
   align-items: center;
@@ -40,7 +95,8 @@
 }
 
 .carrito-cantidad-num {
-  width: 40px;
+  width: auto;      /* ancho según contenido */
+  min-width: 3ch;   /* espacio para 3 dígitos */
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
@@ -85,4 +141,406 @@
 }
 .modal-pago-close:hover {
   color: #b3ff00;
+}
+
+/* Resumen de compra */
+.carrito-resumen {
+    background: rgba(34, 34, 34, 0.98);
+    border: 2px solid #76b900;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    margin-top: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 8px 32px rgba(118, 185, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.carrito-resumen-titulo {
+    color: #76b900;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.carrito-resumen-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(118, 185, 0, 0.2);
+    color: #e0e7ff;
+    font-size: 1.1rem;
+}
+
+.carrito-resumen-linea:last-child {
+    border-bottom: none;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid #76b900;
+}
+
+.carrito-resumen-total {
+    color: #76b900 !important;
+    font-size: 1.5rem !important;
+    font-weight: 900 !important;
+    text-shadow: 0 2px 8px rgba(118, 185, 0, 0.3);
+}
+
+.carrito-metodos-pago {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.carrito-metodos-titulo {
+    color: #b3ff00;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.carrito-logos-pago {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.carrito-logo-pago {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.carrito-logo-pago:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.carrito-logo-visa { background: linear-gradient(45deg, #1a1f71, #0066cc); color: white; }
+.carrito-logo-master { background: linear-gradient(45deg, #cc0000, #ff9900); color: white; }
+.carrito-logo-amex { background: linear-gradient(45deg, #006fcf, #0099cc); color: white; }
+
+.carrito-terminos {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(15, 15, 15, 0.8);
+    border-radius: 12px;
+    border: 1px solid rgba(118, 185, 0, 0.3);
+}
+
+.carrito-checkbox {
+    margin-top: 0.2rem;
+    width: 18px;
+    height: 18px;
+    accent-color: #76b900;
+    cursor: pointer;
+}
+
+.carrito-terminos-texto {
+    color: #e0e7ff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.carrito-terminos-link {
+    color: #76b900;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.carrito-terminos-link:hover {
+    color: #b3ff00;
+}
+
+.carrito-btn-pagar {
+    width: 100%;
+    background: linear-gradient(135deg, #76b900 0%, #8bd400 50%, #b3ff00 100%) !important;
+    color: #1a1a1a !important;
+    font-weight: 900 !important;
+    font-size: 1.3rem !important;
+    padding: 1rem 2rem !important;
+    border-radius: 16px !important;
+    border: none !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    box-shadow: 0 6px 20px rgba(118, 185, 0, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.carrito-btn-pagar:hover:not(:disabled) {
+    background: linear-gradient(135deg, #8bd400 0%, #b3ff00 50%, #d4ff00 100%) !important;
+    box-shadow: 0 8px 25px rgba(118, 185, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.carrito-btn-pagar:disabled {
+    background: linear-gradient(135deg, #666 0%, #888 100%) !important;
+    color: #ccc !important;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.carrito-seguridad {
+    text-align: center;
+    margin-top: 1rem;
+    color: #b3ff00;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.carrito-terminos-error {
+    animation: shake 0.5s ease-in-out, glow-red 3s ease-in-out;
+    border-color: #ff4444 !important;
+    background: rgba(255, 68, 68, 0.1) !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes glow-red {
+    0% { box-shadow: 0 0 5px rgba(255, 68, 68, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 68, 68, 0.3); }
+}
+
+/* Mejorar el estilo del checkbox cuando está enfocado */
+.carrito-checkbox:focus {
+    outline: 3px solid #76b900;
+    outline-offset: 2px;
+    box-shadow: 0 0 10px rgba(118, 185, 0, 0.5);
+}
+
+/* Estilos para carrito vacío */
+.carrito-vacio-container {
+    text-align: center;
+    padding: 3rem;
+}
+
+.carrito-vacio-icono {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.carrito-vacio-titulo {
+    color: #76b900;
+    margin-bottom: 1rem;
+}
+
+.carrito-vacio-descripcion {
+    margin-bottom: 2rem;
+    color: #e0e7ff;
+}
+
+.carrito-vacio-btn {
+    background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
+    color: #222 !important;
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+    padding: 0.8rem 2rem !important;
+    border-radius: 12px !important;
+    border: none !important;
+}
+
+/* Estilos para botones de continuar comprando */
+.carrito-btn-continuar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #76b900 !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    border: 2px solid #76b900 !important;
+    padding: 0.85rem 2rem !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 16px rgba(118, 185, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    backdrop-filter: blur(10px) !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+}
+
+/* Estilos para el modal de pago */
+.pago-modal-total {
+    margin-bottom: 16px;
+    color: #e0e7ff;
+    text-align: center;
+}
+
+.pago-modal-titulo {
+    color: #76b900;
+    margin-bottom: 16px;
+}
+
+.pago-modal-mensaje {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.pago-modal-mensaje.exito {
+    color: #76b900;
+}
+
+.pago-modal-mensaje.error {
+    color: #ff5722;
+}
+
+.terminos-error-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.terminos-error-content {
+    background: rgba(34, 34, 34, 0.98);
+    border: 3px solid #ff4444;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(255, 68, 68, 0.4);
+    animation: slideInScale 0.4s ease-out;
+    position: relative;
+}
+
+.terminos-error-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: pulse 1.5s infinite;
+}
+
+.terminos-error-text h3 {
+    color: #ff4444;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.terminos-error-text p {
+    color: #e0e7ff;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.terminos-error-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.terminos-error-close:hover {
+    color: #ff6666;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInScale {
+    from { 
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Mini factura dentro del resumen */
+.carrito-mini-factura {
+  margin-bottom: 1.5rem;
+  background: #232323;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 8px #76b90022;
+}
+
+.carrito-mini-factura-titulo {
+  color: #b3ff00;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+}
+
+.carrito-mini-factura-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carrito-mini-factura-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #76b90022;
+  font-size: 1.15rem;
+  color: #e0e7ff;
+  gap: 1.2rem;
+}
+
+.carrito-mini-factura-item:last-child {
+  border-bottom: none;
+}
+
+.carrito-mini-factura-nombre {
+  font-weight: 600;
+  color: #76b900;
+}
+
+.carrito-mini-factura-cantidad {
+  font-weight: bold;
+  color: #b3ff00;
+}
+
+.carrito-mini-factura-precio {
+  font-weight: bold;
+  color: #16a34a;
+  min-width: 80px;
+  text-align: right;
 }

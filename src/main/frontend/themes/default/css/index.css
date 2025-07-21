@@ -58,3 +58,46 @@
   font-size: 1.2rem;
   margin-bottom: 2.5rem;
 }
+
+.sobre-nosotros-section {
+  margin: 60px auto 0 auto;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 2rem 2.5rem;
+}
+
+.integrantes-section {
+  margin: 40px auto 0 auto;
+  max-width: 900px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 2rem 2.5rem;
+}
+
+.integrantes-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.integrante-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px #0002;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  width: 220px;
+}
+
+.integrante-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.7rem;
+}

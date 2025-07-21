@@ -18,15 +18,25 @@ export function CarritoProvider({ children }: { children: React.ReactNode }) {
   }, [carrito]);
 
   const agregar = (producto: any) => {
-    if (carrito.some((p) => p.id === producto.id)) {
-      Notification.show('¡Este producto ya está en el carrito!', { position: 'top-center', duration: 3000, theme: 'error' });
+    if ((producto.stock ?? 0) <= 0) {
+      Notification.show('❌ Producto agotado', {
+        position: 'top-center',
+        duration: 3000,
+        theme: 'error'
+      });
       return;
     }
-    setCarrito((prev) => [...prev, producto]);
+    if (carrito.some(p => p.id === producto.id)) {
+      Notification.show('⚠️ Ya tienes este producto en el carrito', {
+        position: 'top-center',
+        duration: 3000,
+        theme: 'error'
+      });
+      return;
+    }
+    setCarrito(prev => [...prev, { ...producto, cantidad: 1 }]);
   };
-
-  const eliminar = (id: any) => setCarrito((prev) => prev.filter(p => p.id !== id));
-
+  const eliminar = (id: any) => setCarrito(prev => prev.filter(p => p.id !== id));
   return (
     <CarritoContext.Provider value={{ carrito, agregar, eliminar, setCarrito }}>
       {children}

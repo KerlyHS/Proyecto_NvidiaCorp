@@ -5,7 +5,7 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
 import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
 import { useEffect, useState } from 'react';
-import "themes/default/css/pago.css"; // <--- Importa tu CSS aquí
+import "themes/default/css/pago.css"; 
 
 export default function PagoView() {
   const [items, setItems] = useState<any[]>([]);

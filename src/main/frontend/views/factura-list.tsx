@@ -11,6 +11,8 @@ import {
 import { useSignal } from '@vaadin/hilla-react-signals';
 import { useEffect, useState } from 'react';
 import jsPDF from 'jspdf';
+import "themes/default/css/factura-list.css";
+import { useNavigate } from 'react-router';
 
 export const config: ViewConfig = {
   title: 'Factura',
@@ -23,6 +25,7 @@ export const config: ViewConfig = {
 
 export default function FacturaView() {
   const [items, setItems] = useState<Array<any>>([]);
+  const navigate = useNavigate();
 
   const nombre = useSignal('');
   const apellido = useSignal('');
@@ -30,13 +33,23 @@ export default function FacturaView() {
   const direccion = useSignal('');
   const telefono = useSignal('');
 
+  const [subtotal, setSubtotal] = useState(0);
+  const [iva, setIva] = useState(0);
+  const [total, setTotal] = useState(0);
+
   const IVA_RATE = 0.15;
 
   useEffect(() => {
-    setItems([
-      { cantidad: 1, descripcion: 'GPU RTX 4090', unidad: 'pieza', precioUnitario: 1600 },
-      { cantidad: 2, descripcion: 'Cable HDMI', unidad: 'unidad', precioUnitario: 20 },
-    ]);
+    const items = JSON.parse(localStorage.getItem('factura_items') || '[]').map((item: any) => ({
+      ...item,
+      precioUnitario: item.precioUnitario ?? item.precio ?? 0,
+      cantidad: item.cantidad ?? 1,
+      descripcion: item.descripcion ?? item.nombre ?? '',
+    }));
+    setItems(items);
+    setSubtotal(Number(localStorage.getItem('factura_subtotal') || 0));
+    setIva(Number(localStorage.getItem('factura_iva') || 0));
+    setTotal(Number(localStorage.getItem('factura_total') || 0));
   }, []);
 
   const calcularSubtotal = () =>
@@ -106,74 +119,66 @@ export default function FacturaView() {
     doc.save('factura.pdf');
   };
 
+  const guardarFactura = () => {
+    localStorage.setItem('factura_items', JSON.stringify(items));
+    localStorage.setItem('factura_subtotal', subtotal.toString());
+    localStorage.setItem('factura_iva', iva.toString());
+    localStorage.setItem('factura_total', total.toString());
+    setTimeout(() => {
+      navigate('/factura-list');
+    }, 100);
+  };
+
   return (
-    <VerticalLayout style={{ padding: '2em', background: '#f4f6fa', gap: '1.5em' }}>
-      <div style={{ position: 'relative', width: '100%', paddingTop: '1em' }}>
-        <h1 style={{ fontWeight: 'bold', fontSize: '28px', margin: 0 }}>🧾 Factura Electrónica</h1>
-        <img
-          src="https://logos-world.net/wp-content/uploads/2020/11/Nvidia-Symbol.jpg"
-          alt="NVIDIA Logo"
-          style={{
-            position: 'absolute',
-            width: '500px',
-            top: '0',
-            right: '0',
-            height: '200px',
-            borderRadius: '8px',
-          }}
-        />
-      </div>
-
-
-      <Card style={{ padding: '1em', width: '100%', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }}>
-        <h3 style={{ marginTop: 0 }}>Datos del Cliente</h3>
-        <HorizontalLayout theme="spacing" style={{ flexWrap: 'wrap', rowGap: '1em' }}>
-          <TextField label="Nombre" value={nombre.value} onValueChanged={e => nombre.value = e.detail.value} />
-          <TextField label="Apellido" value={apellido.value} onValueChanged={e => apellido.value = e.detail.value} />
-          <TextField label="Cédula" value={cedula.value} onValueChanged={e => cedula.value = e.detail.value} />
-          <TextField label="Dirección" value={direccion.value} onValueChanged={e => direccion.value = e.detail.value} />
-          <TextField label="Teléfono" value={telefono.value} onValueChanged={e => telefono.value = e.detail.value} />
+    <VerticalLayout className="factura-main">
+      <div className="factura-panel factura-print-area">
+        <h1 className="factura-title">🧾 Factura Electrónica</h1>
+        <Card className="factura-card">
+          <h3>Datos del Cliente</h3>
+          <HorizontalLayout theme="spacing" style={{ flexWrap: 'wrap', rowGap: '1em' }}>
+            <TextField className="factura-input" label="Nombre" value={nombre.value} onValueChanged={e => nombre.value = e.detail.value} />
+            <TextField className="factura-input" label="Apellido" value={apellido.value} onValueChanged={e => apellido.value = e.detail.value} />
+            <TextField className="factura-input" label="Cédula" value={cedula.value} onValueChanged={e => cedula.value = e.detail.value} />
+            <TextField className="factura-input" label="Dirección" value={direccion.value} onValueChanged={e => direccion.value = e.detail.value} />
+            <TextField className="factura-input" label="Teléfono" value={telefono.value} onValueChanged={e => telefono.value = e.detail.value} />
+          </HorizontalLayout>
+        </Card>
+        <Grid className="factura-grid" items={items}>
+          <GridColumn path="cantidad" header="Cantidad" />
+          <GridColumn
+            header="Producto"
+            renderer={({ item }) => <span>{item.nombre ?? item.descripcion ?? ''}</span>}
+          />
+          <GridColumn
+            header="Precio Unitario"
+            renderer={({ item }) => {
+              const precio = item.precioUnitario ?? item.precio ?? 0;
+              return <span>$ {Number(precio).toFixed(2)}</span>;
+            }}
+          />
+          <GridColumn
+            header="Precio Total"
+            renderer={({ item }) => {
+              const precio = item.precioUnitario ?? item.precio ?? 0;
+              const cantidad = item.cantidad ?? 1;
+              return <span>$ {(Number(precio) * Number(cantidad)).toFixed(2)}</span>;
+            }}
+          />
+        </Grid>
+        <VerticalLayout className="factura-totales" style={{ marginTop: '1.5rem', alignSelf: 'flex-end', minWidth: 250 }}>
+          <div><strong>Subtotal:</strong> $ {calcularSubtotal().toFixed(2)}</div>
+          <div><strong>IVA (15%):</strong> $ {calcularIva().toFixed(2)}</div>
+          <div><strong>Total:</strong> $ {calcularTotal().toFixed(2)}</div>
+        </VerticalLayout>
+        <HorizontalLayout style={{ justifyContent: 'end', marginTop: '1em', gap: '1em' }}>
+          <Button className="factura-btn-primary" theme="primary" onClick={guardarFactura}>
+            💾 Guardar factura
+          </Button>
+          <Button className="factura-btn-secondary" theme="secondary" onClick={() => window.print()}>
+            ⬇️ Descargar PDF
+          </Button>
         </HorizontalLayout>
-      </Card>
-
-      <Grid items={items} style={{ backgroundColor: '#fff', borderRadius: '8px' }}>
-        <GridColumn path="cantidad" header="Cantidad" />
-        <GridColumn path="descripcion" header="Descripción" />
-        <GridColumn
-          header="Precio Unitario"
-          renderer={({ item }) => <span>$ {item.precioUnitario.toFixed(2)}</span>}
-        />
-        <GridColumn
-          header="Precio Total"
-          renderer={({ item }) => <span>$ {(item.precioUnitario * item.cantidad).toFixed(2)}</span>}
-        />
-      </Grid>
-
-      <VerticalLayout
-        theme="spacing"
-        style={{
-          alignSelf: 'flex-end',
-          marginTop: '1em',
-          padding: '1em',
-          border: '1px solid #ccc',
-          borderRadius: '8px',
-          backgroundColor: '#fff',
-          minWidth: '250px'
-        }}
-      >
-        <div><strong>Subtotal:</strong> $ {calcularSubtotal().toFixed(2)}</div>
-        <div><strong>IVA (15%):</strong> $ {calcularIva().toFixed(2)}</div>
-        <div><strong>Total:</strong> $ {calcularTotal().toFixed(2)}</div>
-      </VerticalLayout>
-
-      <HorizontalLayout style={{ justifyContent: 'end', marginTop: '1em', gap: '1em' }}>
-        <Button theme="primary" onClick={() => alert('Guardar factura funcionalidad pendiente')}>
-          💾 Guardar factura
-        </Button>
-        <Button theme="secondary" onClick={generarPDF}>
-          ⬇️ Descargar PDF
-        </Button>
-      </HorizontalLayout>
+      </div>
     </VerticalLayout>
   );
 }
