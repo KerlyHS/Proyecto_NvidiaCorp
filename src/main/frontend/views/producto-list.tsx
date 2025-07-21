@@ -267,13 +267,13 @@ function ProductoEntryForm(props: ProductoEntryFormProps) {
 
 function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     const Producto = props.arguments;
-  const dialogOpened = useSignal(false);
+    const dialogOpened = useSignal(false);
     const [Marca, setMarcas] = useState<Marca[]>([]);
     const [imagenUrl, setImagenUrl] = useState(Producto.imagen || '');
 
     const handleUploadSuccess = (event: any) => {
         const response = event.detail.xhr.response;
-        setImagenUrl(response); 
+        setImagenUrl(response);
     };
 
     const open = () => {
@@ -286,54 +286,54 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     };
     const ident = props.arguments.id;
     const nombre = useSignal('');
-  const descripcion = useSignal('');
+    const descripcion = useSignal('');
     const marca = useSignal(0);
     const precio = useSignal(0);
     const categoria = useSignal("");
     const stock = useSignal(0);
 
-  useEffect(() => {
+    useEffect(() => {
         const fetchMarcas = async () => {
             const result = await MarcaService.listAllMarca();
             setMarcas(result || []);
         };
         fetchMarcas();
-  }, []);
+    }, []);
 
-  const updateProducto = async () => {
-    try {
-        if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl.trim().length > 0) {
-            const CategoriaEnum = categoria.value as CategoriaEnum;
+    const updateProducto = async () => {
+        try {
+            if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl.trim().length > 0) {
+                const CategoriaEnum = categoria.value as CategoriaEnum;
                 await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value, imagenUrl, stock.value);
-            if (props.onProductoUpdated) {
-                props.onProductoUpdated();
-            }
-            nombre.value = '';
-            descripcion.value = '';
-            marca.value = 0;
-            precio.value = 0;
-            categoria.value = '';
-            setImagenUrl('');
+                if (props.onProductoUpdated) {
+                    props.onProductoUpdated();
+                }
+                nombre.value = '';
+                descripcion.value = '';
+                marca.value = 0;
+                precio.value = 0;
+                categoria.value = '';
+                setImagenUrl('');
 
-            dialogOpened.value = false;
+                dialogOpened.value = false;
                 Notification.show('Producto creada exitosamente', { duration: 5000, position: 'bottom-end', theme: 'success' });
-        } else {
+            } else {
                 Notification.show('No se pudo crear, faltan datos', { duration: 5000, position: 'top-center', theme: 'error' });
+            }
+
+        } catch (error) {
+            console.log(error);
+            handleError(error);
         }
+    };
 
-    } catch (error) {
-        console.log(error);
-        handleError(error);
-    }
-  };
-
-  return (
-    <>
-      <Dialog
-        aria-label="Editar Producto"
+    return (
+        <>
+            <Dialog
+                aria-label="Editar Producto"
                 draggable
                 modeless
-        opened={dialogOpened.value}
+                opened={dialogOpened.value}
                 onOpenedChanged={(event) => {
                     dialogOpened.value = event.detail.value;
                 }}
@@ -360,77 +360,77 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                         </Button>
                     </>
                 )}
-      >
+            >
                 <VerticalLayout
                     theme="spacing"
                     style={{ width: '300px', maxWidth: '100%', alignItems: 'stretch' }}
                 >
                     <VerticalLayout style={{ alignItems: 'stretch' }}>
-          <Upload
-            accept="image/png,image/jpeg"
-            maxFiles={1}
-            target="/api/upload"
-            onUploadSuccess={handleUploadSuccess}
-          />
-          {imagenUrl && (
-            <>
+                        <Upload
+                            accept="image/png,image/jpeg"
+                            maxFiles={1}
+                            target="/api/upload"
+                            onUploadSuccess={handleUploadSuccess}
+                        />
+                        {imagenUrl && (
+                            <>
                                 <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
-              <Button theme="error" onClick={() => setImagenUrl('')}>Eliminar imagen</Button>
-            </>
-          )}
+                                <Button theme="error" onClick={() => setImagenUrl('')}>Eliminar imagen</Button>
+                            </>
+                        )}
                         <TextField label="Nombre"
                             placeholder='Ingrese el nombre de la Producto'
                             aria-label='Ingrese el nombre de la Producto'
-            value={nombre.value}
+                            value={nombre.value}
                             onValueChanged={(evt) => (nombre.value = evt.detail.value)}
-          />
+                        />
                         <TextArea label="Descripcion"
                             placeholder='Ingrese la descripcion de la Producto'
                             aria-label='Ingrese la descripcion de la Producto'
-            value={descripcion.value}
+                            value={descripcion.value}
                             onValueChanged={(evt) => (descripcion.value = evt.detail.value)}
-          />
-          <ComboBox
-            label="Marca"
+                        />
+                        <ComboBox
+                            label="Marca"
                             placeholder="Seleccione la Marca"
                             items={Marca}
-            itemLabelPath="nombre"
-            itemValuePath="id"
-            value={marca.value}
+                            itemLabelPath="nombre"
+                            itemValuePath="id"
+                            value={marca.value}
                             onValueChanged={(evt) => (marca.value = evt.detail.value)}
-          />
+                        />
                         <TextField label="Precio"
                             placeholder='Ingrese el precio de la Producto'
                             aria-label='Ingrese el precio de la Producto'
-            value={precio.value}
+                            value={precio.value}
                             onValueChanged={(evt) => (precio.value = evt.detail.value)}
-            suffix="$"
-          />
-          <ComboBox
+                            suffix="$"
+                        />
+                        <ComboBox
                             label="Categoria"
                             placeholder="Seleccione la Categoria"
                             items={Object.values(CategoriaEnum)}
-            itemLabelPath="nombre"
-            itemValuePath="id"
-            value={categoria.value}
+                            itemLabelPath="nombre"
+                            itemValuePath="id"
+                            value={categoria.value}
                             onValueChanged={(evt) => (categoria.value = evt.detail.value)}
-          />
-          <TextField
-            label="Stock"
-            type="number"
-            min={0}
-            value={stock.value}
-            onValueChanged={e => stock.value = parseInt(e.detail.value)}
+                        />
+                        <TextField
+                            label="Stock"
+                            type="number"
+                            min={0}
+                            value={stock.value}
+                            onValueChanged={e => stock.value = parseInt(e.detail.value)}
                             suffix="unidades"
-          />
-        </VerticalLayout>
+                        />
+                    </VerticalLayout>
                 </VerticalLayout>
-      </Dialog>
+            </Dialog>
             <Button theme="editar" onClick={open}>
-        Editar
-      </Button>
-    </>
-  );
+                Editar
+            </Button>
+        </>
+    );
 }
 
 //DELETE PRODUCTO
@@ -439,37 +439,37 @@ function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
 
 
 export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: any, onProductoUpdated?: () => void, onEliminar?: () => void }) {
-  const { agregar, carrito } = useCarrito();
-  const navigate = useNavigate();
-  const yaEnCarrito = carrito.some((p: any) => p.id === item.id);
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationProduct, setNotificationProduct] = useState<any>(null);
+    const { agregar, carrito } = useCarrito();
+    const navigate = useNavigate();
+    const yaEnCarrito = carrito.some((p: any) => p.id === item.id);
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationProduct, setNotificationProduct] = useState<any>(null);
 
-  const handleCarritoAction = () => {
-      if (yaEnCarrito) {
-          navigate('/carrito-list');
-      } else {
-          agregar(item);
-          setNotificationProduct(item);
-          setShowNotification(true);
-      }
-  };
+    const handleCarritoAction = () => {
+        if (yaEnCarrito) {
+            navigate('/carrito-list');
+        } else {
+            agregar(item);
+            setNotificationProduct(item);
+            setShowNotification(true);
+        }
+    };
 
-  const closeNotification = () => {
-      setShowNotification(false);
-      setTimeout(() => {
-          setNotificationProduct(null);
-      }, 500);
-  };
+    const closeNotification = () => {
+        setShowNotification(false);
+        setTimeout(() => {
+            setNotificationProduct(null);
+        }, 500);
+    };
 
-  return (
-    <>
-      <div className="producto-card">
+    return (
+        <>
+            <div className="producto-card">
                 {item.imagen && (
                     <img className="producto-imagen" src={item.imagen} alt={item.nombre} />
                 )}
-        <div className="producto-info">
-          <h3>{item.nombre}</h3>
+                <div className="producto-info">
+                    <h3>{item.nombre}</h3>
                     <div className="producto-meta">
                         <span className="producto-marca">{item.marca}</span>
                         <span className="producto-categoria">{item.categoria}</span>
@@ -477,45 +477,45 @@ export function ProductoCard({ item, onProductoUpdated, onEliminar }: { item: an
                     <div className="producto-precio">${item.precio}</div>
                     <div>Stock: {item.stock ?? 0}</div>
 
-          {onEliminar ? (
-            <Button
-              theme="error"
+                    {onEliminar ? (
+                        <Button
+                            theme="error"
                             onClick={onEliminar}
-              className="producto-btn-eliminar"
-            >
-              🗑️ Eliminar del Carrito
-            </Button>
-          ) : (
-            <Button
-              theme="primary"
-              disabled={item.stock <= 0}
+                            className="producto-btn-eliminar"
+                        >
+                            🗑️ Eliminar del Carrito
+                        </Button>
+                    ) : (
+                        <Button
+                            theme="primary"
+                            disabled={item.stock <= 0}
                             onClick={handleCarritoAction}
-              className={`producto-btn-carrito ${yaEnCarrito ? 'en-carrito' : 'agregar'}`}
-            >
-              {item.stock > 0
-                ? yaEnCarrito ? "🛒 Ver en Carrito" : "➕ Agregar al Carrito"
-                : "Agotado"}
-            </Button>
-          )}
+                            className={`producto-btn-carrito ${yaEnCarrito ? 'en-carrito' : 'agregar'}`}
+                        >
+                            {item.stock > 0
+                                ? yaEnCarrito ? "🛒 Ver en Carrito" : "➕ Agregar al Carrito"
+                                : "Agotado"}
+                        </Button>
+                    )}
 
-          {onProductoUpdated && (
-            <div className="producto-editar-container">
-              <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
-            </div>
-          )}
-        </div>
-                
+                    {onProductoUpdated && (
+                        <div className="producto-editar-container">
+                            <ProductoEntryFormUpdate arguments={item} onProductoUpdated={onProductoUpdated} />
+                        </div>
+                    )}
+                </div>
+
                 <div className="producto-descripcion-overlay">
                     <p>{item.descripcion || "No hay descripción disponible"}</p>
-      </div>
+                </div>
             </div>
-            <CarritoNotification 
+            <CarritoNotification
                 producto={notificationProduct}
                 isVisible={showNotification}
                 onClose={closeNotification}
             />
-    </>
-  );
+        </>
+    );
 }
 
 export default function ProductoListView() {

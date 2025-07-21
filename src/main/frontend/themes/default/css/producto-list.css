@@ -342,7 +342,7 @@ html, body, #root {
 }
 
 .carrito-notificacion
-/* Estilos para la barra de herramientas */
+
 .producto-toolbar-btn {
     background: linear-gradient(135deg, #76b900 0%, #8bd400 100%) !important;
     color: #1a1a1a !important;
@@ -529,9 +529,10 @@ html, body, #root {
     padding: 1.5rem;
     height: fit-content;
     position: sticky;
-    top: 1rem;
+    top: 1rem; /* Puedes ajustar este valor para alinearlo mejor */
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(118, 185, 0, 0.2);
+    z-index: 20; /* Asegura que quede encima del contenido */
 }
 
 .filtros-titulo {

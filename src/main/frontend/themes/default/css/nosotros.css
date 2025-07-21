@@ -5,15 +5,32 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+.nosotros-bg-anim {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('https://www.svgbackgrounds.com/wp-content/uploads/2021/05/circuit-board.svg') center/cover, 
+              radial-gradient(ellipse at 60% 10%, #76b90033 0%, transparent 70%),
+              radial-gradient(ellipse at 20% 80%, #b3ff0033 0%, transparent 80%);
+  opacity: 0.25;
+  animation: bgMove 12s linear infinite alternate;
+}
+@keyframes bgMove {
+  0% { background-position: 60% 10%, 20% 80%; }
+  100% { background-position: 65% 15%, 25% 85%; }
+}
+
 .nosotros-section-anim {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(.4,2,.6,1), transform 0.9s cubic-bezier(.4,2,.6,1);
-  will-change: opacity, transform;
+  transform: translateY(40px) scale(0.98);
+  filter: blur(8px);
+  transition: opacity 0.9s cubic-bezier(.4,2,.6,1), transform 0.9s cubic-bezier(.4,2,.6,1), filter 0.9s;
 }
 .nosotros-section-anim.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 .nosotros-resumen {
@@ -81,11 +98,16 @@
 .nosotros-intro h2,
 .nosotros-desarrollo h2,
 .nosotros-objetivos h2,
-.nosotros-integrantes h2 {
+.nosotros-integrantes h2,
+.nosotros-presentacion h1,
+.nosotros-historia h2,
+.nosotros-contacto h2 {
   color: #76b900;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  text-shadow: 0 2px 8px #000;
+  font-size: 2.2rem;
+  font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  text-shadow: 0 2px 16px #76b90055, 0 2px 8px #000;
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
 }
 
 .nosotros-desarrollo-grid {
@@ -198,18 +220,13 @@
 }
 
 .integrante-card img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 0.7rem;
-  border: 2px solid #76b900;
-  box-shadow: 0 2px 8px #76b90033;
+  border: 2.5px solid #76b900;
+  box-shadow: 0 0 24px #76b90055, 0 2px 8px #000;
   transition: box-shadow 0.3s, transform 0.3s;
 }
 .integrante-card img:hover {
-  box-shadow: 0 4px 16px #b3ff0033;
-  transform: scale(1.08);
+  box-shadow: 0 0 40px #b3ff00cc, 0 4px 16px #b3ff0033;
+  transform: scale(1.12) rotate(-2deg);
 }
 
 .integrante-card h4 {
@@ -221,21 +238,6 @@
 @keyframes integranteGlow {
   from { text-shadow: 0 0 8px #b3ff0033, 0 2px 8px #000; }
   to   { text-shadow: 0 0 18px #b3ff00cc, 0 2px 12px #000; }
-}
-
-/* Fondo animado sutil */
-.nosotros-bg-anim {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 60% 10%, #76b90033 0%, transparent 70%),
-              radial-gradient(ellipse at 20% 80%, #b3ff0033 0%, transparent 80%);
-  animation: bgMove 12s linear infinite alternate;
-}
-@keyframes bgMove {
-  0% { background-position: 60% 10%, 20% 80%; }
-  100% { background-position: 65% 15%, 25% 85%; }
 }
 
 /* Indicador de scroll animado */
@@ -486,6 +488,56 @@
   font-size: 1.3rem;
 }
 
+.integrante-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.integrante-link:hover .integrante-card {
+  box-shadow: 0 8px 32px #76b90099, 0 0 16px #76b90055;
+  transform: scale(1.05) translateY(-4px);
+  border: 2px solid #76b900;
+}
+
+.nosotros-resumen,
+.nosotros-intro,
+.nosotros-desarrollo,
+.nosotros-objetivos,
+.nosotros-integrantes,
+.nosotros-presentacion,
+.nosotros-historia,
+.nosotros-mvv,
+.nosotros-diferenciadores,
+.nosotros-contacto {
+  background: rgba(34, 34, 34, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #76b90044, 0 0 24px #76b90022;
+  border: 2px solid #76b90055;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+.nosotros-resumen::before,
+.nosotros-intro::before,
+.nosotros-desarrollo::before,
+.nosotros-objetivos::before,
+.nosotros-integrantes::before,
+.nosotros-presentacion::before,
+.nosotros-historia::before,
+.nosotros-mvv::before,
+.nosotros-diferenciadores::before,
+.nosotros-contacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  box-shadow: 0 0 40px #76b90044, 0 0 80px #b3ff0033;
+  opacity: 0.15;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
   .presentacion-destacados,
   .diferenciadores-list,

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "themes/default/css/nosotros.css";
 
 export default function NosotrosView() {
@@ -78,45 +78,61 @@ export default function NosotrosView() {
           <div><span role="img" aria-label="Automatización">🔐</span><span>Automatización segura</span></div>
         </div>
       </section>
+      
 
       {/* Equipo humano */}
       <section className="nosotros-section-anim nosotros-integrantes">
         <h2>Nuestro Equipo</h2>
         <div className="integrantes-list">
-          <article className="integrante-card card-anim">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cristian Tomalá - Backend Developer" />
-            <h4>Cristian Tomalá</h4>
-            <p>Backend Developer. Especialista en arquitectura y lógica de servicios.</p>
-          </article>
-          <article className="integrante-card card-anim">
-            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Josue Asanza - UI/UX y Frontend" />
-            <h4>Josue Asanza</h4>
-            <p>Frontend Developer. Responsable del diseño, animaciones e interacción con el usuario.</p>
-          </article>
-          <article className="integrante-card card-anim">
-            <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Kevin Nole - Fullstack Developer" />
-            <h4>Kevin Nole</h4>
-            <p>Fullstack Developer. Conectando frontend y backend para una experiencia fluida.</p>
-          </article>
-          <article className="integrante-card card-anim">
-            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Luis Blacio - Integración y Seguridad" />
-            <h4>Luis Blacio</h4>
-            <p>Encargado de integraciones y configuración de seguridad.</p>
-          </article>
-          <article className="integrante-card card-anim">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Kerly Huachaca - Documentación y QA" />
-            <h4>Kerly Huachaca</h4>
-            <p>Gestora de documentación y pruebas de calidad.</p>
-          </article>
+          <a href="https://github.com/Crussader04" target="_blank" rel="noopener noreferrer" className="integrante-link">
+            <article className="integrante-card card-anim">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cristian Tomalá - Backend Developer" />
+              <h4>Cristian Tomalá</h4>
+              <p>Backend Developer. Especialista en arquitectura y lógica de servicios.</p>
+            </article>
+          </a>
+          <a href="https://github.com/Josue082004" target="_blank" rel="noopener noreferrer" className="integrante-link">
+            <article className="integrante-card card-anim">
+              <img src="https://avatars.githubusercontent.com/u/148294876?s=64&v=4" alt="Josue Asanza - UI/UX y Frontend" />
+              <h4>Josue Asanza</h4>
+              <p>Frontend Developer. Responsable del diseño, animaciones e interacción con el usuario.</p>
+            </article>
+          </a>
+          <a href="https://github.com/Geky36" target="_blank" rel="noopener noreferrer" className="integrante-link">
+            <article className="integrante-card card-anim">
+              <img src="https://avatars.githubusercontent.com/u/166522885?v=4" alt="Kevin Nole - Fullstack Developer" />
+              <h4>Kevin Nole</h4>
+              <p>Fullstack Developer. Conectando frontend y backend para una experiencia fluida.</p>
+            </article>
+          </a>
+          <a href="https://github.com/luis-blacio" target="_blank" rel="noopener noreferrer" className="integrante-link">
+            <article className="integrante-card card-anim">
+              <img src="https://avatars.githubusercontent.com/u/170284848?v=4" alt="Luis Blacio - Integración y Seguridad" />
+              <h4>Luis Blacio</h4>
+              <p>Encargado de integraciones y configuración de seguridad.</p>
+            </article>
+          </a>
+          <a href="https://github.com/KerlyHS" target="_blank" rel="noopener noreferrer" className="integrante-link">
+            <article className="integrante-card card-anim">
+              <img src="https://avatars.githubusercontent.com/u/133796983?s=64&v=4" alt="Kerly Huachaca - Documentación y QA" />
+              <h4>Kerly Huachaca</h4>
+              <p>Gestora de documentación y pruebas de calidad.</p>
+            </article>
+          </a>
         </div>
       </section>
 
-      {/* Llamada a la acción */}
+      {/* Contacto */}
       <section className="nosotros-section-anim nosotros-contacto">
         <h2>¿Quieres saber más?</h2>
         <p>Contáctanos y descubre cómo NvidiaCorp puede ayudarte a potenciar tu proyecto con tecnología de alto nivel.</p>
-        <a href="mailto:contacto@nvidiacorp.ec" className="btn-contacto">
-          <span role="img" aria-label="Correo">📧</span> Escríbenos
+        <a
+          href="https://wa.me/593999716365"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-contacto whatsapp-btn"
+        >
+          <span className="icono-btn" role="img" aria-label="WhatsApp">💬</span> Contáctanos 
         </a>
       </section>
     </main>
