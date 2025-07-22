@@ -1,5 +1,6 @@
 package org.proyecto.nvidiacorp.base.controller.dao.Dao_Models;
 
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
 import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
 import org.proyecto.nvidiacorp.base.models.CategoriaEnum;
 import org.proyecto.nvidiacorp.base.models.Producto;
+
+import com.google.gson.Gson;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -50,14 +53,35 @@ public class DaoProducto extends AdapterDao<Producto> {
         }
     }
 
-    public Boolean update(Integer pos) {
+    public Boolean update(Integer id) {
         try {
-            this.update(obj, obj.getId());
+            LinkedList<Producto> lista = listAll();
+            boolean actualizado = false;
+
+            // Busca el producto por id y actualiza sus datos
+            for (int i = 0; i < lista.getLength(); i++) {
+                Producto p = lista.get(i);
+                if (p.getId().equals(id)) {
+                    lista.set(i, obj); // obj es el producto actualizado
+                    actualizado = true;
+                    break;
+                }
+            }
+
+            if (!actualizado)
+                return false;
+
+            // Guarda la lista actualizada en el archivo JSON
+            Gson gson = new Gson();
+            try (FileWriter writer = new FileWriter("data/Producto.json")) {
+                Producto[] arreglo = lista.toArray();
+                gson.toJson(arreglo, writer);
+            }
+
             return true;
         } catch (Exception e) {
-            // Log de errores
+            e.printStackTrace();
             return false;
-            // TODO: handle exception
         }
     }
 
@@ -82,33 +106,11 @@ public class DaoProducto extends AdapterDao<Producto> {
         return lista;
     }
 
-    public Producto getProducto(){
-        if(producto == null){
+    public Producto getProducto() {
+        if (producto == null) {
             producto = new Producto();
         }
         return this.producto;
     }
-
-    // public LinkedList<Producto> orderQuickSort (String attribute, Integer type) {
-    //     LinkedList<Producto> lista = listAll();
-    //     lista.(attribute, type);
-    //     return lista;
-    // }
-
-    //     public LinkedList<Producto> busquedaLineal(String attribute, String text, Integer type) throws Exception {
-    //     LinkedList<Producto> lista = listAll();
-    //     return lista.busquedaLineal(attribute, text, type);
-    // }
-
-    // public LinkedList<Producto> busquedaBinaria(String attribute, String text, Integer type) throws Exception {
-    //     LinkedList<Producto> lista = listAll();
-    //     return lista.busquedaBinaria(attribute, text, type);
-    // }
-
-    // public LinkedList<Producto> busquedaLinealBinaria (String attribute, String text, Integer type) throws Exception {
-    //     LinkedList<Producto> lista = listAll();
-    //     return lista.busquedaLinealBinaria(attribute, text, type);
-    // }
-
-
 }
+
