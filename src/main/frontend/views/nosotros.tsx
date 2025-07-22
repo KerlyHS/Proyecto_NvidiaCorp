@@ -86,7 +86,7 @@ export default function NosotrosView() {
         <div className="integrantes-list">
           <a href="https://github.com/Crussader04" target="_blank" rel="noopener noreferrer" className="integrante-link">
             <article className="integrante-card card-anim">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cristian Tomalá - Backend Developer" />
+              <img src="https://avatars.githubusercontent.com/u/166523346?v=4" alt="Cristian Tomalá - Backend Developer" />
               <h4>Cristian Tomalá</h4>
               <p>Backend Developer. Especialista en arquitectura y lógica de servicios.</p>
             </article>

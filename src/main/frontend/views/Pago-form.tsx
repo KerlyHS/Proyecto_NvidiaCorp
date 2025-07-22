@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PagoServices } from 'Frontend/generated/endpoints';
+import { PagoServices, ProductoService } from 'Frontend/generated/endpoints';
 import { Notification } from '@vaadin/react-components';
 import { useNavigate } from 'react-router';
 import { useCarrito } from './CarritoContext';
@@ -8,7 +8,7 @@ import "themes/default/css/pago-list.css";
 export default function PagoForm() {
   const [checkoutId, setCheckoutId] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { carrito } = useCarrito();
+  const { carrito, setCarrito } = useCarrito();
 
   // Detecta si hay un parámetro id en la URL (cuando OPPWA redirige)
   const params = new URLSearchParams(window.location.search);
@@ -19,6 +19,15 @@ export default function PagoForm() {
       PagoServices.consultarEstadoPago(id).then(async resultado => {
         if (resultado && resultado.estado === "true") {
           Notification.show('Pago realizado con éxito', { duration: 2000, position: 'top-center', theme: 'success' });
+
+          // 1. Reducir stock
+          for (const item of carrito) {
+            await ProductoService.reduceStock(item.id, item.cantidad || 1);
+          }
+
+          // 2. Limpiar carrito
+          setCarrito([]);
+          localStorage.removeItem('carrito');
 
           const subtotal = carrito.reduce((acc, item) => acc + (item.precio * (item.cantidad || 1)), 0);
           const iva = subtotal * 0.15;
