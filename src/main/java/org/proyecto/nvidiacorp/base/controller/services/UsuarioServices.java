@@ -22,6 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -35,6 +36,15 @@ public class UsuarioServices {
     public UsuarioServices(){
         du = new DaoUsuario();
         context = SecurityContextHolder.getContext();
+    }
+
+    @PermitAll // Solo usuarios autenticados
+    public String getCurrentUserRole() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getAuthorities().stream()
+            .findFirst()
+            .map(GrantedAuthority::getAuthority)
+            .orElse("ROLE_GUEST");
     }
 
     public HashMap<String, String> createRoles(){
@@ -73,46 +83,6 @@ public class UsuarioServices {
         return Arrays.asList(du.listAll().toArray());
     }
 
-    /*  public void createUser(@NotEmpty @NotBlank String correo, 
-                              @NotEmpty @NotBlank String clave,
-                              Boolean estado,
-                              @NotEmpty @NotBlank String rol,
-                              @NotNull Integer id_persona) throws Exception{
-        if (correo.trim().length() > 0 && clave != null && estado ==true 
-        && rol.trim().length()>0 && id_persona!= null && id_persona >0 ) {
-            du.getUsuario().setCorreo(correo);
-            du.getUsuario().setClave(clave);;
-            du.getUsuario().setEstado(estado);;
-            du.getUsuario().setRol(RolEnum.valueOf(rol));
-            du.getUsuario().setId_Persona(id_persona);
-            if(du.save()){
-             System.out.println("aaaaaaa guardado");
-            } else {
-                System.out.println("no se guardo");
-            }
-        }
-    } */
-
-     public void createUser(@NotEmpty @NotBlank String correo, 
-                              @NotEmpty @NotBlank String clave,
-                              Boolean estado,
-                              @NotNull Integer id_rol,
-                              @NotNull Integer id_persona) throws Exception{
-        if (correo.trim().length() > 0 && clave != null && estado ==true 
-        && id_rol != null && id_persona!= null && id_persona >0 ) {
-            du.getUsuario().setCorreo(correo);
-            du.getUsuario().setClave(clave);;
-            du.getUsuario().setEstado(estado);;
-            du.getUsuario().setId_Rol(id_rol);
-            du.getUsuario().setId_Persona(id_persona);
-            if(du.save()){
-             System.out.println("aaaaaaa guardado");
-            } else {
-                System.out.println("no se guardo");
-            }
-        }
-    }
-
     public HashMap<String , Object> login (@NotEmpty @NotBlank String correo, @NotEmpty @NotBlank String clave) throws Exception{
         HashMap<String ,Object> obj = new HashMap<>();
         try {
@@ -122,20 +92,30 @@ public class UsuarioServices {
                     new UsernamePasswordAuthenticationToken(aux.get("correo").toString(), 
                         aux.get("id").toString(),getAuthorities(aux))
                         );
-                obj.put("user", context.getAuthentication());
-                obj.put("mensaje", "OK");
-                obj.put("estado","true");
-
+                obj.put("success", true);
+                obj.put("message", "OK");
+                obj.put("user",aux);
             }
         } catch (Exception e) {
-            obj.put("user", new HashMap<>());
-            obj.put("mensaje","Usuario inexistente o credenciales incorrectas");
-            obj.put("estado", "false");
+            obj.put("success", false);
+            obj.put("message", "Usuario inexistente o credenciales incorrectas");
+            obj.put("user", null);
             context.setAuthentication(null);
             System.out.println(e);
 
         }
+        System.out.println(obj);
         return obj;
+    }
+
+    public HashMap<String,String> viewRol(){
+        HashMap<String,String> map = new HashMap<>();
+        if(context.getAuthentication()!= null){
+            Object[] obj =context.getAuthentication().getAuthorities().toArray();
+            map.put("rol",obj[0].toString());
+
+        }
+        return map;
     }
 
     public HashMap<String, Object>logout(){
@@ -178,8 +158,25 @@ public class UsuarioServices {
         }
     } 
 
-    //MOdulo Login 
-    
+    public void createUser(@NotEmpty @NotBlank String correo, 
+                              @NotEmpty @NotBlank String clave,
+                              Boolean estado,
+                              @NotNull Integer id_rol,
+                              @NotNull Integer id_persona) throws Exception{
+        if (correo.trim().length() > 0 && clave != null && estado ==true 
+        && id_rol != null && id_persona!= null && id_persona >0 ) {
+            du.getUsuario().setCorreo(correo);
+            du.getUsuario().setClave(clave);;
+            du.getUsuario().setEstado(estado);;
+            du.getUsuario().setId_Rol(id_rol);
+            du.getUsuario().setId_Persona(id_persona);
+            if(du.save()){
+             System.out.println("aaaaaaa guardado");
+            } else {
+                System.out.println("no se guardo");
+            }
+        }
+    }
 
     public void update(Integer id, @NotEmpty String correo, @NotEmpty String clave, Boolean estado, Integer id_Persona,
              Integer id_rol) throws Exception {
