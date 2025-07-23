@@ -1,7 +1,7 @@
 /* Fondo general */
 .factura-main {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0f0f 80%, #76b900 100%);
+  background: linear-gradient(135deg, #0b0b0b 80%, #76b900 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,14 +9,14 @@
 }
 
 .factura-panel {
-  background: #181818;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px #00000055;
+  background: #060606;
+  border-radius: 70px;
+  box-shadow: 0 8px 32px #cdbfbf55;
   padding: 2.5rem 2.5rem 2rem 2.5rem;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
-  margin: 0 auto;
-  color: #fff;
+  margin: 10 auto;
+  color: #0b0b0b;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -33,13 +33,13 @@
 }
 
 .factura-card {
-  background: #232323;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #76b90022;
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 0;
+  background: #060606;
+  border-radius: 20px;
+  box-shadow: 2px 8px #060606;
+  padding: 2rem 1rem;
+  margin-bottom: 1.5rem;
   width: 100%;
-  color: #fff;
+  color: #0b0b0b; /* ✅ Cambiado a color legible */
 }
 
 .factura-card h3 {
@@ -50,13 +50,25 @@
   font-weight: bold;
 }
 
+/* ✅ ESTILOS CORREGIDOS PARA CAMPOS DE ENTRADA */
+vaadin-text-field,
+vaadin-combo-box {
+  --vaadin-input-field-background-color: #2a2a2a;
+  --vaadin-input-field-value-color: #ffffff;
+  --vaadin-input-field-label-color: #b3ff00;
+  --vaadin-input-field-border-color: #76b900;
+  --vaadin-input-field-hover-border-color: #b3ff00;
+  --vaadin-input-field-focus-border-color: #b3ff00;
+  --vaadin-input-field-placeholder-color: #cccccc;
+}
+
 /* Grid de productos */
 .factura-grid {
-  background: #232323;
+  background: #454343;
   border-radius: 12px;
-  box-shadow: 0 2px 8px #76b90033;
+  box-shadow: 0 2px 8px #f2f8e833;
   padding: 1rem 0.5rem;
-  color: #fff;
+  color: #151515;
   margin-bottom: 0;
   width: 100%;        
   max-width: 100%;     
@@ -89,11 +101,11 @@ vaadin-grid-header-cell {
   color: #76b900 !important;
   font-weight: bold;
   font-size: 1.13rem;
-  border-bottom: 2px solid #76b90044 !important;
+  border-bottom: 2px solid #353c2844 !important;
 }
 
 vaadin-grid::part(row) {
-  border-bottom: 1px solid #76b90022;
+  border-bottom: 1px solid #868a7e22;
 }
 
 vaadin-grid::part(row):hover {
@@ -106,33 +118,33 @@ vaadin-grid::part(row):hover {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   padding: 1.2em 2em;
-  border: 2px solid #76b90044;
+  border: 2px solid #080808;
   border-radius: 12px;
   background: #232323;
   min-width: 250px;
-  color: #fff;
+  color: #f1eaea;
   font-size: 1.15rem;
-  box-shadow: 0 2px 8px #76b90022;
+  box-shadow: 0 2px 8px #04040400;
 }
 
 .factura-totales strong {
-  color: #b3ff00;
+  color: #9fdf09;
 }
 
 /* Botones */
 .factura-btn-primary {
   background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
-  color: #222 !important;
+  color: #f7e8e8 !important;
   font-weight: bold !important;
   border-radius: 8px !important;
   border: none !important;
   padding: 0.5rem 1.5rem !important;
   font-size: 1.1rem !important;
-  box-shadow: 0 2px 8px #76b90044;
+  box-shadow: 0 2px 8px #10110e44;
 }
 
 .factura-btn-secondary {
-  background: #fff !important;
+  background: #404f47 !important;
   color: #76b900 !important;
   font-weight: bold !important;
   border-radius: 8px !important;
@@ -143,10 +155,10 @@ vaadin-grid::part(row):hover {
 
 /* Inputs */
 .factura-input {
-  background: #fff !important;
+  background: #e9e4e4 !important;
   border-radius: 8px !important;
   border: 2px solid #76b900 !important;
-  color: #222 !important;
+  color: #d4caca !important;
   font-weight: bold;
   min-width: 160px;
   margin-right: 1rem;
@@ -182,14 +194,14 @@ vaadin-grid::part(row):hover {
 }
 
 .factura-grid th {
-  background: #181818;
+  background: #dcd2d2;
   color: #76b900;
   font-weight: bold;
   font-size: 1.1rem;
 }
 
 .factura-grid td {
-  background: #232323;
+  background: #ebdede;
   color: #b3ff00;
   font-size: 1rem;
 }
@@ -207,7 +219,7 @@ vaadin-grid::part(row):hover {
     left: 0;
     top: 0;
     width: 100vw !important;
-    background: #fff !important;
+    background: #100f0f !important;
     color: #000 !important;
     box-shadow: none !important;
     padding: 2rem !important;
@@ -222,7 +234,7 @@ vaadin-grid::part(row):hover {
   }
   .factura-card,
   .factura-totales {
-    background: #fff !important;
+    background: #0d0c0c !important;
     color: #000 !important;
     box-shadow: none !important;
     border-color: #76b900 !important;
@@ -232,11 +244,11 @@ vaadin-grid::part(row):hover {
     text-shadow: none !important;
   }
   .factura-grid th {
-    background: #e8ffe0 !important;
+    background: #0b0b0b !important;
     color: #76b900 !important;
   }
   .factura-grid td {
-    background: #fff !important;
+    background: #0a0404 !important;
     color: #222 !important;
   }
 }
