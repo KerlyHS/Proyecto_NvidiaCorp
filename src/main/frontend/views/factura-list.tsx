@@ -209,7 +209,7 @@ export default function FacturaView() {
 
         <Card className="factura-card">
           <HorizontalLayout theme="spacing" style={{ flexWrap: 'wrap', gap: '1em' }}>
-            <TextField label="Fecha" style={{ flex: 1, minWidth: '200px' }} value={new Date().toLocaleDateString()} readOnly />
+            <TextField label="Fecha" style={{ flex: 1, minWidth: '200px' }} value={new Date().toLocaleDateString()} readonly />
             <TextField label="Nombre" style={{ flex: 1, minWidth: '200px' }} value={nombre.value} onValueChanged={e => nombre.value = e.detail.value} />
             <TextField label="Apellido" style={{ flex: 1, minWidth: '200px' }} value={apellido.value} onValueChanged={e => apellido.value = e.detail.value} />
             <TextField label="Cédula/RUC" style={{ flex: 1, minWidth: '200px' }} value={cedula.value} onValueChanged={e => cedula.value = e.detail.value} />
