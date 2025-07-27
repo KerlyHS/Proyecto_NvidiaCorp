@@ -1,3 +1,22 @@
+html, body {
+  width: 100%;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+
 .nvidia-navbar {
   width: 100%;
   display: flex;

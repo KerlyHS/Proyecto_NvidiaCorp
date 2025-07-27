@@ -68,3 +68,44 @@
 .fas.fa-shopping-cart {
   font-size: 1.3rem;
 }
+
+.navbar-user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar-user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 2.2rem;
+  background: #232323;
+  color: #e6e6e6;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px #76b90033;
+  padding: 1rem 1.5rem;
+  min-width: 200px;
+  z-index: 100;
+  text-align: left;
+  animation: fadeIn 0.2s;
+}
+
+.navbar-user-dropdown div {
+  margin-bottom: 0.5rem;
+}
+
+.navbar-logout-btn {
+  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%);
+  color: #232323;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+.navbar-logout-btn:hover {
+  background: linear-gradient(90deg, #b3ff00 60%, #76b900 100%);
+  color: #181818;
+}

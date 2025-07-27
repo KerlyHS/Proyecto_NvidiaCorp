@@ -1,3 +1,4 @@
+import "themes/default/css/login.css";
 import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
 import { Button, ComboBox, DatePicker, Dialog, Grid, GridColumn, GridItemModel, GridSortColumn, HorizontalLayout, NumberField, Select, SelectItem, TextField, PasswordField, VerticalLayout, LoginForm, LoginOverlay } from '@vaadin/react-components';
 import { Notification } from '@vaadin/react-components/Notification';
@@ -7,9 +8,9 @@ import handleError from 'Frontend/views/_ErrorHandler';
 import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
 import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { useEffect, useState } from 'react';
-import { data, replace, useNavigate, useSearchParams } from 'react-router';
+import { data, replace, useNavigate, useSearchParams, useLocation } from 'react-router';
 import { isLogin } from 'Frontend/generated/UsuarioServices';
-import { useAuth, user } from 'Frontend/security/auth';
+import { useAuth } from 'Frontend/security/auth';
 
 export const config: ViewConfig = {
   skipLayouts: true,
@@ -68,7 +69,10 @@ export function LoginView() {
 export default function LoginVista(){
   console.log('hABER SI esta wea funciona');
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
+
+
   useEffect(() => {
     isLogin().then(data =>{
       if(data == true){
@@ -83,14 +87,15 @@ export default function LoginVista(){
   const dataUser = ('');
 
   const {state, login} = useAuth();
+  const { user } = useAuth(); // <--- agrega esto
   const[searchParams] = useSearchParams();
   const hasError = useSignal(false);
   const errores = searchParams.has('error');
   const i18n = {
     header: {
-      title: 'Login',
-      description: 'ENVDIA mejorando tu vista',
-      subtitle: 'Porfavor ingrese sus credenciales.'
+      title: 'Bienvenido a NvidiaCorp',
+      description: 'Innovación y potencia para tus proyectos tecnológicos.',
+      subtitle: 'Por favor, ingresa tus credenciales para continuar.'
     },
     form: {
       title: 'Iniciar Sesión',
@@ -98,15 +103,15 @@ export default function LoginVista(){
       password: 'Contraseña',
       submit : 'Iniciar Sesión',
       forgotPassword: '¿Olvidaste tu contraseña?',
-  },
+    },
     errorMessage: {
       title: 'Error',
-      message: 'Cree que somos adivinos o que.',
-      username: 'El nombre de usuario es requerido',
+      message: 'Credenciales incorrectas.',
+      username: 'El correo es requerido',
       password: 'La contraseña es requerida'
     },
-    additionalInformation: '¿No tienes una cuenta? pos que pendejo jasjdasjdas',
-};
+    additionalInformation: '¿No tienes una cuenta? Contacta a soporte para registrarte.',
+  };
 useEffect(()=> {
   UsuarioServices.createRoles().then(data =>
     hasError.value = false
@@ -116,39 +121,41 @@ useEffect(()=> {
 const email = useSignal('');
 const password = useSignal('');
 
+const onLoginSuccess = () => {
+  const from = location.state?.from || '/carrito-list';
+  navigate(from, { replace: true });
+  // window.location.reload(); // Solo si el estado no se refresca solo
+};
+
+useEffect(() => {
+  if (location.state?.notify) {
+    Notification.show(location.state.notify, { duration: 3000, position: 'top-center', theme: 'error' });
+  }
+}, [location.state]);
+
 return (
   <main className="flex justify-center items-center h-full w-full">
     <LoginOverlay opened i18n={i18n} error={errores} noForgotPassword
     onErrorChanged={(event)=>{
       console.log('Error en el login', event.detail.value);
-      hasError.value = event.detail.value;
-    }}
+          hasError.value = event.detail.value;
+        }}
     
     onLogin={
       async ({detail : {username, password}}) => {
-        console.log('Intentando iniciar sesión con:', username, password);
         UsuarioServices.login(username, password).then(async function (data) {
-          console.log('Login exitoso:', data);
-          if(data?.estado == 'false'){
-            //Notification.show('Credenciales incorrectas, porfavor intente nuevamente.'+data?.mensaje, { duration: 3000, theme: 'error' });
-            console.log('Credenciales incorrectas');
-            hasError.value = Boolean("true");
-            navigate('/login?error');
-
-          }else{
-            const {error} = await login(username, password);
-            hasError.value = Boolean(error);
-            const dato = await UsuarioServices.isLogin();
-            console.log(dato);
+          if(data?.success){
+            Notification.show('Bienvenido', { duration: 5000, theme: 'success' });
+            // Forzar recarga para que useAuth detecte el usuario
             window.location.reload();
-            Notification.show('Bienvenido ' + user.name, { duration: 5000000, theme: 'success' });
-            navigate('/home', { replace: true });
-
+            // O navega a la página principal:
+            // navigate('/');
+          } else {
+            Notification.show('Credenciales incorrectas', { duration: 3000, theme: 'error' });
+            hasError.value = true;
           }
-        })
-    }
-    
-  }
+        });
+}}
     ></LoginOverlay>
   </main>
 );

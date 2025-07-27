@@ -1,3 +1,4 @@
+import { AuthProvider } from 'Frontend/security/auth';
 import { CarritoProvider } from './CarritoContext';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import {
@@ -70,18 +71,18 @@ function UserMenu() {
 
 export default function MainLayout() {
   return (
-    <CarritoProvider>
-      <Navbar />
-      <div style={{ paddingTop: 56 }}>
-        <AppLayout>
-          {/* <Header /> */}
-          {/* <UserMenu /> */}
-          <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
-            <Outlet />
-          </Suspense>
-        </AppLayout>
-      </div>
-    </CarritoProvider>
+      <CarritoProvider>
+        <Navbar />
+        <div style={{ paddingTop: 56 }}>
+          <AppLayout>
+            {/* <Header /> */}
+            {/* <UserMenu /> */}
+            <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
+              <Outlet />
+            </Suspense>
+          </AppLayout>
+        </div>
+      </CarritoProvider>
   );
 }
 

@@ -1,14 +1,16 @@
 import { Button, Notification } from '@vaadin/react-components';
 import { useCarrito } from './CarritoContext';
 import { ProductoCard } from './producto-list';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import "themes/default/css/carrito-list.css";
 import { useState, useEffect } from 'react';
 import { PagoServices } from 'Frontend/generated/endpoints';
+import { isLogin } from 'Frontend/generated/UsuarioServices';
 
 export default function CarritoList() {
   const { carrito, eliminar, setCarrito } = useCarrito();
   const navigate = useNavigate();
+  const location = useLocation();
   const [cantidades, setCantidades] = useState<{ [id: number]: number }>(
     Object.fromEntries(carrito.map((item: any) => [item.id, item.cantidad || 1]))
   );
@@ -60,6 +62,13 @@ export default function CarritoList() {
   };
 
   const iniciarPago = async () => {
+    const logueado = await isLogin();
+    if (!logueado) {
+      // NO muestres la notificación aquí
+      navigate('/login', { state: { from: location.pathname, notify: 'Inicie sesión para continuar con el pago' } });
+      return;
+    }
+
     if (!aceptaTerminos) {
       Notification.show('⚠️ Debes aceptar los términos y condiciones para proceder con el pago', { 
         position: 'top-center', 
@@ -110,6 +119,18 @@ export default function CarritoList() {
       };
     }
   }, [checkoutId, showPagoModal]);
+
+  const onLoginSuccess = () => {
+    const from = location.state?.from || '/home';
+    navigate(from, { replace: true });
+  };
+
+  useEffect(() => {
+    // Si viene un mensaje de notificación desde el carrito, muéstralo
+    if (location.state?.notify) {
+      Notification.show(location.state.notify, { duration: 3000, position: 'top-center', theme: 'error' });
+    }
+  }, [location.state]);
 
   return (
     <main className="carrito-main">
