@@ -570,15 +570,6 @@ export default function ProductoListView() {
                     }
                 >
                     <Group>
-                        <Button
-                            theme="primary"
-                            className="producto-toolbar-btn"
-                            onClick={() => navigate('/carrito-list')}
-                        >
-                            <Icon icon="vaadin:cart" style={{ fontSize: '1.2rem' }} />
-                            Ver Carrito
-                        </Button>
-                        <ProductoEntryForm onProductoCreated={cargarProductos} />
                     </Group>
                 </ViewToolbar>
 
@@ -626,6 +617,13 @@ export default function ProductoListView() {
                         <Icon icon="vaadin:refresh" style={{ marginRight: '8px', fontSize: '1.1rem' }} />
                         Ver Todo
                     </Button>
+                </div>
+
+                <div style={{ margin: '0rem 11rem 0rem', display: 'flex', justifyContent: 'flex-start' }}>
+                    <ProductoEntryForm
+                        onProductoCreated={cargarProductos}
+                        className="producto-btn-registrar"
+                    />
                 </div>
 
                 <div className="producto-grid">

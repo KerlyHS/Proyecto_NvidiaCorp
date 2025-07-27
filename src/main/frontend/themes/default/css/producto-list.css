@@ -20,7 +20,8 @@ html, body, #root {
 }
 
 .producto-card {
-    max-width: 380px;             
+    max-width: 480px;             
+    min-width: 340px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -112,10 +113,13 @@ html, body, #root {
 
 .producto-info h3 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.35rem;
+    font-size: 1.1rem;
     color: #76b900;
     font-weight: 700;
     letter-spacing: 0.01em;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
 }
 
 .producto-descripcion {
@@ -410,6 +414,29 @@ html, body, #root {
 .producto-btn-carrito:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.producto-editar-container {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.producto-editar-container button,
+.producto-editar-container .vaadin-button {
+  background: linear-gradient(90deg, #00bcd4 60%, #76ffea 100%) !important;
+  color: #222 !important;
+  font-weight: bold !important;
+  border-radius: 10px !important;
+  border: none !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1rem !important;
+  box-shadow: 0 2px 8px #00bcd444;
+  transition: all 0.2s;
+}
+.producto-editar-container button:hover,
+.producto-editar-container .vaadin-button:hover {
+  background: linear-gradient(90deg, #76ffea 0%, #00bcd4 100%) !important;
 }
 
 .producto-editar-container {
@@ -758,4 +785,209 @@ html, body, #root {
     border-color: #4a7c00 !important;
     box-shadow: 0 8px 20px rgba(118, 185, 0, 0.3);
     transform: translateY(-2px);
+}
+
+.producto-btn-registrar button,
+.producto-btn-registrar {
+  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
+  color: #222 !important;
+  font-weight: bold !important;
+  border-radius: 12px !important;
+  border: none !important;
+  padding: 0.8rem 2rem !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 4px 16px #76b90044;
+  transition: all 0.2s;
+}
+.producto-btn-registrar button:hover,
+.producto-btn-registrar:hover {
+  background: linear-gradient(90deg, #b3ff00 0%, #76b900 100%) !important;
+}
+
+/* Hace el fondo del overlay del Dialog translúcido y oscuro */
+vaadin-dialog-overlay::part(overlay) {
+  background: rgba(34, 34, 34, 0.92) !important; /* Fondo modal */
+  box-shadow: 0 8px 40px #76b90044 !important;
+  border-radius: 18px !important;
+}
+
+vaadin-dialog-overlay::part(backdrop) {
+  background: rgba(0,0,0,0.45) !important; /* Fondo detrás del modal */
+}
+
+vaadin-dialog-overlay::part(content),
+vaadin-dialog-overlay::part(overlay),
+vaadin-dialog-overlay::part(backdrop),
+vaadin-dialog-overlay,
+.vaadin-dialog-overlay__content {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Corrige fondo blanco en el header del Dialog si aparece */
+vaadin-dialog-overlay::part(header) {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.dialog-form-container {
+  background: rgba(20, 20, 20, 0.92);
+  border-radius: 22px;
+  box-shadow: 0 8px 40px #76b90055, 0 0 24px #23232322;
+  border: 2.5px solid #76b900;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  margin: 0 auto;
+  color: #e0e7ff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-width: 340px;
+  max-width: 480px;
+  position: relative;
+  backdrop-filter: blur(8px);
+  animation: fadeInScale 0.7s;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
+}
+
+.dialog-form-container h2 {
+  color: #b3ff00;
+  font-weight: 900;
+  font-size: 2em;
+  margin-bottom: 0;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 16px #76b90055, 0 2px 8px #000;
+}
+
+.dialog-form-container span {
+  color: #b3ff00;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.dialog-form-container label,
+.dialog-form-container .vaadin-text-field-label,
+.dialog-form-container .vaadin-text-area-label,
+.dialog-form-container .vaadin-combo-box-label {
+  color: #b3ff00 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+}
+
+.dialog-form-container input,
+.dialog-form-container textarea,
+.dialog-form-container .vaadin-text-field-input,
+.dialog-form-container .vaadin-text-area-input,
+.dialog-form-container .vaadin-combo-box-input {
+  color: #e0e7ff !important;
+  background: rgba(34,34,34,0.85) !important;
+  border-radius: 12px !important;
+  border: 2px solid #76b900 !important;
+  font-weight: 600;
+  font-size: 1.08rem !important;
+  box-shadow: 0 2px 8px #76b90022;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.dialog-form-container input:focus,
+.dialog-form-container textarea:focus {
+  border: 2.5px solid #b3ff00 !important;
+  box-shadow: 0 0 12px #b3ff0033;
+  outline: none;
+}
+
+.dialog-form-container input::placeholder,
+.dialog-form-container textarea::placeholder {
+  color: #76b900 !important;
+  opacity: 1 !important;
+  font-style: italic;
+}
+
+.dialog-form-container .vaadin-button,
+.dialog-form-container button {
+  font-weight: bold !important;
+  font-size: 1.13rem !important;
+  border-radius: 12px !important;
+  padding: 0.7rem 2.2rem !important;
+  margin-top: 1.2rem;
+  margin-bottom: 0.2rem;
+  border: none !important;
+  box-shadow: 0 2px 12px #76b90044;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dialog-form-container .vaadin-button[theme~="registrar"],
+.dialog-form-container button[theme~="registrar"] {
+  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
+  color: #181818 !important;
+  border: 2px solid #b3ff00 !important;
+  box-shadow: 0 0 16px #b3ff0033;
+}
+
+.dialog-form-container .vaadin-button[theme~="registrar"]:hover,
+.dialog-form-container button[theme~="registrar"]:hover {
+  background: linear-gradient(90deg, #b3ff00 0%, #76b900 100%) !important;
+  color: #232323 !important;
+  transform: scale(1.04);
+  box-shadow: 0 0 24px #b3ff0033;
+}
+
+.dialog-form-container .vaadin-button:not([theme~="registrar"]),
+.dialog-form-container button:not([theme~="registrar"]) {
+  background: #232323 !important;
+  color: #fff !important;
+  border: 2px solid #76b900 !important;
+}
+
+.dialog-form-container .vaadin-button:not([theme~="registrar"]):hover,
+.dialog-form-container button:not([theme~="registrar"]:hover) {
+  background: #181818 !important;
+  color: #b3ff00 !important;
+  border: 2px solid #b3ff00 !important;
+  transform: scale(1.04);
+}
+
+.dialog-form-container .vaadin-button[theme~="error"],
+.dialog-form-container button[theme~="error"] {
+  background: linear-gradient(90deg, #dc2626 60%, #ef4444 100%) !important;
+  color: #fff !important;
+  border: 2px solid #ef4444 !important;
+}
+
+.dialog-form-container .vaadin-button[theme~="error"]:hover,
+.dialog-form-container button[theme~="error"]:hover {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%) !important;
+  color: #fff !important;
+  border: 2px solid #f87171 !important;
+}
+
+.dialog-form-container .vaadin-upload {
+  background: transparent !important;
+  border: none !important;
+  margin-bottom: 1rem;
+}
+
+.dialog-form-container img {
+  border: 2px solid #76b900;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #76b90033;
+  margin-bottom: 8px;
+  max-width: 240px;
+  max-height: 180px;
+}
+
+.dialog-form-container .vaadin-combo-box-overlay {
+  background: #232323 !important;
+  color: #b3ff00 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 24px #76b90044;
 }

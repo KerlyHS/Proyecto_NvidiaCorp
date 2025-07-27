@@ -20,7 +20,7 @@ type ProductoEntryFormPropsUpdate = {
 // Registrar Producto
 export function ProductoEntryForm(props: ProductoEntryFormProps) {
     const dialogOpened = useSignal(false);
-    const [Marca, setMarcas] = useState<Marca[]>([]);
+    const [Marca, setMarcas] = useState<Marca[]>([{ id: 0, nombre: 'Seleccione una marca' }]);
     const [imagenUrl, setImagenUrl] = useState('');
 
     const handleUploadSuccess = (event: any) => {
@@ -77,21 +77,74 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
                 opened={dialogOpened.value}
                 onOpenedChanged={(event) => { dialogOpened.value = event.detail.value; }}
                 header={
-                    <h2 className="draggable" style={{
-                        flex: 1, cursor: 'move', margin: 0, fontSize: '1.5em', fontWeight: 'bold', padding: 'var(--lumo-space-m) 0',
-                    }}>
-                        Registrar Producto
-                    </h2>
+                    <header
+                        style={{
+                            width: '100%',
+                            background: 'linear-gradient(90deg, #232323 60%, #76b900 100%)',
+                            borderRadius: '16px 16px 0 0',
+                            padding: '1.1rem 0 0.6rem 0',
+                            marginBottom: '0',
+                            boxShadow: '0 4px 24px #76b90033',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <span style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '0.7rem',
+                            width: '100%'
+                        }}>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="12" fill="#232323"/>
+                                <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7.16 16l.94-2h7.8a2 2 0 0 0 1.92-1.44l2.12-7.06A1 1 0 0 0 19 4H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 5 17h14v-2H7.42a.5.5 0 0 1-.26-.08z" fill="#b3ff00"/>
+                            </svg>
+                            <h2
+                                style={{
+                                    color: '#b3ff00',
+                                    fontWeight: 900,
+                                    fontSize: '2em',
+                                    margin: 0,
+                                    textAlign: 'center',
+                                    letterSpacing: '1px',
+                                    textShadow: '0 2px 16px #76b90055, 0 2px 8px #000',
+                                    flex: 1
+                                }}
+                            >
+                                Registrar Producto
+                            </h2>
+                        </span>
+                        <span
+                            style={{
+                                color: '#b3ff00',
+                                fontSize: '1rem',
+                                marginTop: '0.2rem',
+                                textAlign: 'center',
+                                letterSpacing: '0.5px',
+                                width: '100%'
+                            }}
+                        >
+                            Ingresa los datos del nuevo producto
+                        </span>
+                    </header>
                 }
-                footerRenderer={() => (
-                    <>
-                        <Button onClick={close}>Cancelar</Button>
-                        <Button theme="primary" onClick={createProducto}>Registrar</Button>
-                    </>
-                )}
             >
-                <VerticalLayout theme="spacing" style={{ width: '300px', maxWidth: '100%', alignItems: 'stretch' }}>
-                    <VerticalLayout style={{ alignItems: 'stretch' }}>
+                <VerticalLayout
+                    className="dialog-form-container"
+                    theme="spacing"
+                    style={{
+                        width: '420px',
+                        maxWidth: '98vw',
+                        maxHeight: '80vh',
+                        overflowY: 'auto',
+                        alignItems: 'stretch',
+                        gap: '1.2rem'
+                    }}
+                >
+                    <VerticalLayout style={{ alignItems: 'stretch', gap: '1rem' }}>
                         <Upload
                             accept="image/png,image/jpeg"
                             maxFiles={1}
@@ -99,18 +152,33 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
                             onUploadSuccess={handleUploadSuccess}
                         />
                         {imagenUrl && (
-                            <>
-                                <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1rem' }}>
+                                <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 240, maxHeight: 180, borderRadius: 12, border: '2px solid #76b900', marginBottom: 8 }} />
                                 <Button theme="error" onClick={() => setImagenUrl('')}>Eliminar imagen</Button>
-                            </>
+                            </div>
                         )}
-                        <TextField label="Nombre" placeholder='Ingrese el nombre de la Producto' aria-label='Ingrese el nombre de la Producto' value={nombre.value} onValueChanged={(evt) => (nombre.value = evt.detail.value)} />
-                        <TextArea label="Descripcion" placeholder='Ingrese la descripcion de la Producto' aria-label='Ingrese la descripcion de la Producto' value={descripcion.value} onValueChanged={(evt) => (descripcion.value = evt.detail.value)} />
-                        <ComboBox label="Marca" placeholder="Seleccione la Marca" items={Marca} itemLabelPath="nombre" itemValuePath="id" value={marca.value} onValueChanged={(evt) => (marca.value = evt.detail.value)} />
-                        <TextField label="Precio" placeholder='Ingrese el precio de la Producto' aria-label='Ingrese el precio de la Producto' value={precio.value} onValueChanged={(evt) => (precio.value = evt.detail.value)} suffix="$" />
-                        <ComboBox label="Categoria" placeholder="Seleccione la Categoria" items={Object.values(CategoriaEnum)} itemLabelPath="nombre" itemValuePath="id" value={categoria.value} onValueChanged={(evt) => (categoria.value = evt.detail.value)} />
-                        <TextField label="Stock" type="number" min={0} value={stock.value} onValueChanged={e => stock.value = parseInt(e.detail.value)} suffix="unidades" />
+                        <TextField label="Nombre" placeholder='Ingrese el nombre del producto' aria-label='Ingrese el nombre del producto' value={nombre.value} onValueChanged={(evt) => (nombre.value = evt.detail.value)} style={{ width: '100%' }} />
+                        <TextArea label="Descripción" placeholder='Ingrese la descripción del producto' aria-label='Ingrese la descripción del producto' value={descripcion.value} onValueChanged={(evt) => (descripcion.value = evt.detail.value)} style={{ width: '100%' }} />
+                        <ComboBox
+                            label="Marca"
+                            placeholder="Seleccione la Marca"
+                            items={Marca}
+                            itemLabelPath="nombre"
+                            itemValuePath="id"
+                            value={marca.value}
+                            onValueChanged={(evt) => (marca.value = evt.detail.value)}
+                            style={{ width: '100%' }}
+                        />
+                        <TextField label="Precio" placeholder='Ingrese el precio del producto' aria-label='Ingrese el precio del producto' value={precio.value} onValueChanged={(evt) => (precio.value = evt.detail.value)} suffix="$" style={{ width: '100%' }} />
+                        <ComboBox label="Categoría" placeholder="Seleccione la Categoría" items={Object.values(CategoriaEnum)} itemLabelPath="nombre" itemValuePath="id" value={categoria.value} onValueChanged={(evt) => (categoria.value = evt.detail.value)} style={{ width: '100%' }} />
+                        <TextField label="Stock" type="number" min={0} value={stock.value} onValueChanged={e => stock.value = parseInt(e.detail.value)} suffix="unidades" style={{ width: '100%' }} />
                     </VerticalLayout>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '2rem' }}>
+                        <Button onClick={close}>Cancelar</Button>
+                        <Button theme="registrar" onClick={createProducto}>
+                            Registrar
+                        </Button>
+                    </div>
                 </VerticalLayout>
             </Dialog>
             <Button theme="registrar" onClick={open}>Registrar</Button>
@@ -122,7 +190,7 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
 export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
     const Producto = props.arguments;
     const dialogOpened = useSignal(false);
-    const [Marca, setMarcas] = useState<Marca[]>([]);
+    const [Marca, setMarcas] = useState<Marca[]>([{ id: 0, nombre: 'Seleccione una marca' }]);
     const [imagenUrl, setImagenUrl] = useState(Producto.imagen || '');
 
     // Inicializa los signals con los datos del producto
@@ -183,21 +251,65 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                 opened={dialogOpened.value}
                 onOpenedChanged={(event) => { dialogOpened.value = event.detail.value; }}
                 header={
-                    <h2 className="draggable" style={{
-                        flex: 1, cursor: 'move', margin: 0, fontSize: '1.5em', fontWeight: 'bold', padding: 'var(--lumo-space-m) 0',
-                    }}>
-                        Editar Producto
-                    </h2>
+                    <header
+                        style={{
+                            background: 'linear-gradient(90deg, #232323 60%, #181818 100%)',
+                            borderRadius: '18px 18px 0 0',
+                            padding: '1.2rem 0 0.7rem 0',
+                            marginBottom: '1.2rem',
+                            boxShadow: '0 4px 24px #23232399',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.7rem' }}>
+                            {/* Icono SVG de producto */}
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="12" fill="#232323"/>
+                                <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7.16 16l.94-2h7.8a2 2 0 0 0 1.92-1.44l2.12-7.06A1 1 0 0 0 19 4H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 5 17h14v-2H7.42a.5.5 0 0 1-.26-.08z" fill="#fff"/>
+                            </svg>
+                            <h2
+                                style={{
+                                    color: '#fff',
+                                    textShadow: '0 2px 16px #000, 0 2px 8px #232323',
+                                    fontWeight: 900,
+                                    fontSize: '2em',
+                                    margin: 0,
+                                    textAlign: 'center',
+                                    letterSpacing: '1px'
+                                }}
+                            >
+                                Editar Producto
+                            </h2>
+                        </span>
+                        <span
+                            style={{
+                                color: '#b3ff00',
+                                fontSize: '1rem',
+                                marginTop: '0.2rem',
+                                textAlign: 'center',
+                                letterSpacing: '0.5px'
+                            }}
+                        >
+                            Modifica los datos del producto
+                        </span>
+                    </header>
                 }
-                footerRenderer={() => (
-                    <>
-                        <Button onClick={close}>Cancelar</Button>
-                        <Button theme="primary" onClick={updateProducto}>Actualizar</Button>
-                    </>
-                )}
             >
-                <VerticalLayout theme="spacing" style={{ width: '300px', maxWidth: '100%', alignItems: 'stretch' }}>
-                    <VerticalLayout style={{ alignItems: 'stretch' }}>
+                <VerticalLayout
+                    className="dialog-form-container"
+                    theme="spacing"
+                    style={{
+                        width: '420px',
+                        maxWidth: '98vw',
+                        maxHeight: '80vh',
+                        overflowY: 'auto',
+                        alignItems: 'stretch',
+                        gap: '1.2rem'
+                    }}
+                >
+                    <VerticalLayout style={{ alignItems: 'stretch', gap: '1rem' }}>
                         <Upload
                             accept="image/png,image/jpeg"
                             maxFiles={1}
@@ -205,18 +317,33 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                             onUploadSuccess={handleUploadSuccess}
                         />
                         {imagenUrl && (
-                            <>
-                                <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 200, marginTop: 8 }} />
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1rem' }}>
+                                <img src={imagenUrl} alt="Vista previa" style={{ maxWidth: 240, maxHeight: 180, borderRadius: 12, border: '2px solid #76b900', marginBottom: 8 }} />
                                 <Button theme="error" onClick={() => setImagenUrl('')}>Eliminar imagen</Button>
-                            </>
+                            </div>
                         )}
-                        <TextField label="Nombre" placeholder='Ingrese el nombre de la Producto' aria-label='Ingrese el nombre de la Producto' value={nombre.value} onValueChanged={(evt) => (nombre.value = evt.detail.value)} />
-                        <TextArea label="Descripcion" placeholder='Ingrese la descripcion de la Producto' aria-label='Ingrese la descripcion de la Producto' value={descripcion.value} onValueChanged={(evt) => (descripcion.value = evt.detail.value)} />
-                        <ComboBox label="Marca" placeholder="Seleccione la Marca" items={Marca} itemLabelPath="nombre" itemValuePath="id" value={marca.value} onValueChanged={(evt) => (marca.value = evt.detail.value)} />
-                        <TextField label="Precio" placeholder='Ingrese el precio de la Producto' aria-label='Ingrese el precio de la Producto' value={precio.value} onValueChanged={(evt) => (precio.value = evt.detail.value)} suffix="$" />
-                        <ComboBox label="Categoria" placeholder="Seleccione la Categoria" items={Object.values(CategoriaEnum)} itemLabelPath="nombre" itemValuePath="id" value={categoria.value} onValueChanged={(evt) => (categoria.value = evt.detail.value)} />
-                        <TextField label="Stock" type="number" min={0} value={stock.value} onValueChanged={e => stock.value = parseInt(e.detail.value)} suffix="unidades" />
+                        <TextField label="Nombre" placeholder='Ingrese el nombre del producto' aria-label='Ingrese el nombre del producto' value={nombre.value} onValueChanged={(evt) => (nombre.value = evt.detail.value)} style={{ width: '100%' }} />
+                        <TextArea label="Descripción" placeholder='Ingrese la descripción del producto' aria-label='Ingrese la descripción del producto' value={descripcion.value} onValueChanged={(evt) => (descripcion.value = evt.detail.value)} style={{ width: '100%' }} />
+                        <ComboBox
+                            label="Marca"
+                            placeholder="Seleccione la Marca"
+                            items={Marca}
+                            itemLabelPath="nombre"
+                            itemValuePath="id"
+                            value={marca.value}
+                            onValueChanged={(evt) => (marca.value = evt.detail.value)}
+                            style={{ width: '100%' }}
+                        />
+                        <TextField label="Precio" placeholder='Ingrese el precio del producto' aria-label='Ingrese el precio del producto' value={precio.value} onValueChanged={(evt) => (precio.value = evt.detail.value)} suffix="$" style={{ width: '100%' }} />
+                        <ComboBox label="Categoría" placeholder="Seleccione la Categoría" items={Object.values(CategoriaEnum)} itemLabelPath="nombre" itemValuePath="id" value={categoria.value} onValueChanged={(evt) => (categoria.value = evt.detail.value)} style={{ width: '100%' }} />
+                        <TextField label="Stock" type="number" min={0} value={stock.value} onValueChanged={e => stock.value = parseInt(e.detail.value)} suffix="unidades" style={{ width: '100%' }} />
                     </VerticalLayout>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '2rem' }}>
+                        <Button onClick={close}>Cancelar</Button>
+                        <Button theme="registrar" onClick={updateProducto}>
+                            Actualizar
+                        </Button>
+                    </div>
                 </VerticalLayout>
             </Dialog>
             <Button theme="editar" onClick={open}>Editar</Button>
