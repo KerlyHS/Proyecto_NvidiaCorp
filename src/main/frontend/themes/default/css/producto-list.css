@@ -538,7 +538,6 @@ html, body, #root {
     color: #b3ff00 !important;
 }
 
-/* Contenedor principal con filtros laterales */
 .producto-main-container {
     display: flex;
     gap: 2rem;
@@ -547,7 +546,6 @@ html, body, #root {
     background: transparent;
 }
 
-/* Panel de filtros lateral */
 .filtros-panel {
     width: 280px;
     background: rgba(20, 20, 20, 0.95);
@@ -556,10 +554,10 @@ html, body, #root {
     padding: 1.5rem;
     height: fit-content;
     position: sticky;
-    top: 1rem; /* Puedes ajustar este valor para alinearlo mejor */
+    top: 1rem; 
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(118, 185, 0, 0.2);
-    z-index: 20; /* Asegura que quede encima del contenido */
+    z-index: 20; 
 }
 
 .filtros-titulo {
@@ -573,7 +571,6 @@ html, body, #root {
     padding-bottom: 0.5rem;
 }
 
-/* Secciones de filtros */
 .filtro-seccion {
     margin-bottom: 2rem;
 }
@@ -606,7 +603,6 @@ html, body, #root {
     overflow: hidden;
 }
 
-/* Opciones de filtro */
 .filtro-opcion {
     display: flex;
     align-items: center;
@@ -648,7 +644,6 @@ html, body, #root {
     font-weight: bold;
 }
 
-/* Botón limpiar filtros */
 .filtros-limpiar {
     width: 100%;
     background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%) !important;
@@ -671,7 +666,6 @@ html, body, #root {
     box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
 }
 
-/* Contenido principal */
 .contenido-principal {
     flex: 1;
     display: flex;
@@ -679,7 +673,6 @@ html, body, #root {
     gap: 1rem;
 }
 
-/* Indicadores de filtros activos */
 .filtros-activos {
     display: flex;
     flex-wrap: wrap;
@@ -714,7 +707,6 @@ html, body, #root {
     justify-content: center;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .producto-main-container {
         flex-direction: column;
@@ -730,7 +722,6 @@ html, body, #root {
     }
 }
 
-/* Scroll personalizado para filtros */
 .filtro-seccion-contenido::-webkit-scrollbar {
     width: 6px;
 }
@@ -749,7 +740,6 @@ html, body, #root {
     background: #b3ff00;
 }
 
-/* Stock field styles */
 .stock-field {
     margin-top: 1rem;
     display: flex;
@@ -824,7 +814,6 @@ vaadin-dialog-overlay,
   box-shadow: none !important;
 }
 
-/* Corrige fondo blanco en el header del Dialog si aparece */
 vaadin-dialog-overlay::part(header) {
   background: transparent !important;
   box-shadow: none !important;

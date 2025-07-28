@@ -20,7 +20,7 @@ type ProductoEntryFormPropsUpdate = {
 // Registrar Producto
 export function ProductoEntryForm(props: ProductoEntryFormProps) {
     const dialogOpened = useSignal(false);
-    const [Marca, setMarcas] = useState<Marca[]>([{ id: 0, nombre: 'Seleccione una marca' }]);
+    const [Marca, setMarcas] = useState<Marca[]>([]); // <-- solo array vacío
     const [imagenUrl, setImagenUrl] = useState('');
 
     const handleUploadSuccess = (event: any) => {
@@ -41,7 +41,8 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
     useEffect(() => {
         const fetchMarcas = async () => {
             const result = await MarcaService.listAllMarca();
-            setMarcas(result || []);
+            // Agrega la opción "Seleccione una marca" al inicio
+            setMarcas([{ id: 0, nombre: 'Seleccione una marca' }, ...(result || [])]);
         };
         fetchMarcas();
     }, []);
@@ -171,7 +172,23 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
                         />
                         <TextField label="Precio" placeholder='Ingrese el precio del producto' aria-label='Ingrese el precio del producto' value={precio.value} onValueChanged={(evt) => (precio.value = evt.detail.value)} suffix="$" style={{ width: '100%' }} />
                         <ComboBox label="Categoría" placeholder="Seleccione la Categoría" items={Object.values(CategoriaEnum)} itemLabelPath="nombre" itemValuePath="id" value={categoria.value} onValueChanged={(evt) => (categoria.value = evt.detail.value)} style={{ width: '100%' }} />
-                        <TextField label="Stock" type="number" min={0} value={stock.value} onValueChanged={e => stock.value = parseInt(e.detail.value)} suffix="unidades" style={{ width: '100%' }} />
+                        <TextField
+                            label="Stock"
+                            type="number"
+                            min={0}
+                            value={stock.value === 0 ? '' : stock.value}
+                            onValueChanged={e => {
+                                const val = e.detail.value;
+                                if (val === '' || val === null) {
+                                    stock.value = 0; // O puedes dejarlo vacío si prefieres
+                                } else {
+                                    const num = parseInt(val, 10);
+                                    stock.value = isNaN(num) ? 0 : num;
+                                }
+                            }}
+                            suffix="unidades"
+                            style={{ width: '100%' }}
+                        />
                     </VerticalLayout>
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '2rem' }}>
                         <Button onClick={close}>Cancelar</Button>
@@ -242,6 +259,14 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
         }
     };
 
+    useEffect(() => {
+        const fetchMarcas = async () => {
+            const result = await MarcaService.listAllMarca();
+            setMarcas([{ id: 0, nombre: 'Seleccione una marca' }, ...(result || [])]);
+        };
+        fetchMarcas();
+    }, []);
+
     return (
         <>
             <Dialog
@@ -264,7 +289,6 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                         }}
                     >
                         <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.7rem' }}>
-                            {/* Icono SVG de producto */}
                             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
                                 <circle cx="12" cy="12" r="12" fill="#232323"/>
                                 <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7.16 16l.94-2h7.8a2 2 0 0 0 1.92-1.44l2.12-7.06A1 1 0 0 0 19 4H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 5 17h14v-2H7.42a.5.5 0 0 1-.26-.08z" fill="#fff"/>
@@ -336,7 +360,23 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                         />
                         <TextField label="Precio" placeholder='Ingrese el precio del producto' aria-label='Ingrese el precio del producto' value={precio.value} onValueChanged={(evt) => (precio.value = evt.detail.value)} suffix="$" style={{ width: '100%' }} />
                         <ComboBox label="Categoría" placeholder="Seleccione la Categoría" items={Object.values(CategoriaEnum)} itemLabelPath="nombre" itemValuePath="id" value={categoria.value} onValueChanged={(evt) => (categoria.value = evt.detail.value)} style={{ width: '100%' }} />
-                        <TextField label="Stock" type="number" min={0} value={stock.value} onValueChanged={e => stock.value = parseInt(e.detail.value)} suffix="unidades" style={{ width: '100%' }} />
+                        <TextField
+                            label="Stock"
+                            type="number"
+                            min={0}
+                            value={stock.value === 0 ? '' : stock.value}
+                            onValueChanged={e => {
+                                const val = e.detail.value;
+                                if (val === '' || val === null) {
+                                    stock.value = 0; 
+                                } else {
+                                    const num = parseInt(val, 10);
+                                    stock.value = isNaN(num) ? 0 : num;
+                                }
+                            }}
+                            suffix="unidades"
+                            style={{ width: '100%' }}
+                        />
                     </VerticalLayout>
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '2rem' }}>
                         <Button onClick={close}>Cancelar</Button>

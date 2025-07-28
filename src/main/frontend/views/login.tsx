@@ -124,14 +124,14 @@ const password = useSignal('');
 const onLoginSuccess = () => {
   const from = location.state?.from || '/carrito-list';
   navigate(from, { replace: true });
-  // window.location.reload(); // Solo si el estado no se refresca solo
 };
 
 useEffect(() => {
   if (location.state?.notify) {
     Notification.show(location.state.notify, { duration: 3000, position: 'top-center', theme: 'error' });
   }
-}, [location.state]);
+  // eslint-disable-next-line
+}, [location.state?.ts]);
 
 return (
   <main className="flex justify-center items-center h-full w-full">
@@ -146,10 +146,7 @@ return (
         UsuarioServices.login(username, password).then(async function (data) {
           if(data?.success){
             Notification.show('Bienvenido', { duration: 5000, theme: 'success' });
-            // Forzar recarga para que useAuth detecte el usuario
             window.location.reload();
-            // O navega a la página principal:
-            // navigate('/');
           } else {
             Notification.show('Credenciales incorrectas', { duration: 3000, theme: 'error' });
             hasError.value = true;

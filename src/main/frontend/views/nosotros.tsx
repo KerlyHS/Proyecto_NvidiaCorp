@@ -30,7 +30,7 @@ export default function NosotrosView() {
       <section className="nosotros-section-anim nosotros-historia">
         <h2>Nuestra Historia</h2>
         <p>
-          NvidiaCorp nació en 2024 como un proyecto académico impulsado por estudiantes de la Universidad Nacional de Loja. Identificamos la falta de una plataforma especializada en la venta de productos Nvidia y decidimos desarrollar una solución moderna, escalable y centrada en la experiencia del usuario.
+          NvidiaCorp nació en 2025 como un proyecto académico impulsado por estudiantes de la Universidad Nacional de Loja. Identificamos la falta de una plataforma especializada en la venta de productos Nvidia y decidimos desarrollar una solución moderna, escalable y centrada en la experiencia del usuario.
         </p>
         <div className="historia-imagenes">
           <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Equipo NvidiaCorp en desarrollo" />
@@ -69,17 +69,6 @@ export default function NosotrosView() {
         </div>
       </section>
 
-      {/* Diferenciadores */}
-      <section className="nosotros-section-anim nosotros-diferenciadores">
-        <h2>¿Por qué elegir NvidiaCorp?</h2>
-        <div className="diferenciadores-list">
-          <div><span role="img" aria-label="Vanguardia">⚙️</span><span>Tecnología de vanguardia</span></div>
-          <div><span role="img" aria-label="Soporte">💬</span><span>Soporte personalizado</span></div>
-          <div><span role="img" aria-label="Automatización">🔐</span><span>Automatización segura</span></div>
-        </div>
-      </section>
-      
-
       {/* Equipo humano */}
       <section className="nosotros-section-anim nosotros-integrantes">
         <h2>Nuestro Equipo</h2>
@@ -88,35 +77,30 @@ export default function NosotrosView() {
             <article className="integrante-card card-anim">
               <img src="https://avatars.githubusercontent.com/u/166523346?v=4" alt="Cristian Tomalá - Backend Developer" />
               <h4>Cristian Tomalá</h4>
-              <p>Backend Developer. Especialista en arquitectura y lógica de servicios.</p>
             </article>
           </a>
           <a href="https://github.com/Josue082004" target="_blank" rel="noopener noreferrer" className="integrante-link">
             <article className="integrante-card card-anim">
               <img src="https://avatars.githubusercontent.com/u/148294876?s=64&v=4" alt="Josue Asanza - UI/UX y Frontend" />
               <h4>Josue Asanza</h4>
-              <p>Frontend Developer. Responsable del diseño, animaciones e interacción con el usuario.</p>
             </article>
           </a>
           <a href="https://github.com/Geky36" target="_blank" rel="noopener noreferrer" className="integrante-link">
             <article className="integrante-card card-anim">
               <img src="https://avatars.githubusercontent.com/u/166522885?v=4" alt="Kevin Nole - Fullstack Developer" />
               <h4>Kevin Nole</h4>
-              <p>Fullstack Developer. Conectando frontend y backend para una experiencia fluida.</p>
             </article>
           </a>
           <a href="https://github.com/luis-blacio" target="_blank" rel="noopener noreferrer" className="integrante-link">
             <article className="integrante-card card-anim">
               <img src="https://avatars.githubusercontent.com/u/170284848?v=4" alt="Luis Blacio - Integración y Seguridad" />
               <h4>Luis Blacio</h4>
-              <p>Encargado de integraciones y configuración de seguridad.</p>
             </article>
           </a>
           <a href="https://github.com/KerlyHS" target="_blank" rel="noopener noreferrer" className="integrante-link">
             <article className="integrante-card card-anim">
               <img src="https://avatars.githubusercontent.com/u/133796983?s=64&v=4" alt="Kerly Huachaca - Documentación y QA" />
               <h4>Kerly Huachaca</h4>
-              <p>Gestora de documentación y pruebas de calidad.</p>
             </article>
           </a>
         </div>
