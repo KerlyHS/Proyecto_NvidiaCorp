@@ -202,7 +202,7 @@ export default function FacturaView() {
     padding: '0.5rem 1rem',
     borderRadius: '90px'
   }}>
-    N.º {localStorage.getItem('id') || '---'}
+    N.º {localStorage.getItem('id') || '0001'}
   </div>
 </h1>
 
