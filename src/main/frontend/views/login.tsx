@@ -20,51 +20,6 @@ export const config: ViewConfig = {
   icon: 'vaadin:login',
   },
 };
-/* 
-export function LoginView() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const handleLogin = async () => {
-    try {
-      // Simulate a login request
-      if (username === 'admin' && password === 'admin') {
-        Notification.show('Login successful!', { duration: 3000 });
-      } else {
-        throw new Error('Invalid username or password');
-      }
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      setErrorMessage(message);
-      Notification.show(message, { duration: 3000, theme: 'error' });
-    }
-  };
-
-  return (
-    <VerticalLayout style={{ padding: '20px', maxWidth: '400px', margin: 'auto' }}>
-      <h2>Login</h2>  
-      <TextField
-        label="Username"
-        value={username}
-        onValueChanged={e => setUsername(e.detail.value)}
-        style={{ width: '100%' }}
-      />
-      <PasswordField
-        label="Password"
-        value={password}
-        onValueChanged={e => setPassword(e.detail.value)}
-        style={{ width: '100%' }}
-      />
-      {errorMessage && (
-        <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>
-      )}
-      <Button onClick={handleLogin} theme="primary" style={{ width: '100%' }}>
-        Login
-      </Button>
-    </VerticalLayout>
-  );
-} */
 
 export default function LoginVista(){
   console.log('hABER SI esta wea funciona');
@@ -87,7 +42,7 @@ export default function LoginVista(){
   const dataUser = ('');
 
   const {state, login} = useAuth();
-  const { user } = useAuth(); // <--- agrega esto
+  const { user } = useAuth(); 
   const[searchParams] = useSearchParams();
   const hasError = useSignal(false);
   const errores = searchParams.has('error');
@@ -124,7 +79,7 @@ const password = useSignal('');
 const onLoginSuccess = () => {
   const from = location.state?.from || '/carrito-list';
   navigate(from, { replace: true });
-  // window.location.reload(); // Solo si el estado no se refresca solo
+  // window.location.reload(); 
 };
 
 useEffect(() => {
@@ -146,10 +101,8 @@ return (
         UsuarioServices.login(username, password).then(async function (data) {
           if(data?.success){
             Notification.show('Bienvenido', { duration: 5000, theme: 'success' });
-            // Forzar recarga para que useAuth detecte el usuario
-            window.location.reload();
-            // O navega a la página principal:
-            // navigate('/');
+            //window.location.reload();
+            navigate('/');
           } else {
             Notification.show('Credenciales incorrectas', { duration: 3000, theme: 'error' });
             hasError.value = true;

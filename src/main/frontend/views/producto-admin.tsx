@@ -7,7 +7,7 @@ import { ProductoService } from 'Frontend/generated/endpoints';
 import Marca from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Marca';
 import CategoriaEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/CategoriaEnum';
 import { MarcaService } from 'Frontend/generated/endpoints';
-
+import { AdminOnly } from './proteccionRol';
 type ProductoEntryFormProps = {
     onProductoCreated?: () => void;
 };
@@ -181,7 +181,9 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
                     </div>
                 </VerticalLayout>
             </Dialog>
-            <Button theme="registrar" onClick={open}>Registrar</Button>
+            <AdminOnly>
+                <Button theme="registrar" onClick={open}>Registrar</Button>
+            </AdminOnly>
         </>
     );
 }
@@ -346,7 +348,9 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
                     </div>
                 </VerticalLayout>
             </Dialog>
+            <AdminOnly>
             <Button theme="editar" onClick={open}>Editar</Button>
+            </AdminOnly>
         </>
     );
 }

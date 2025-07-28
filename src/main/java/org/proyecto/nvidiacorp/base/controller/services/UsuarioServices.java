@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.proyecto.nvidiacorp.base.controller.Utiles;
+import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
+import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoPersona;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoRol;
 import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoUsuario;
@@ -46,6 +50,84 @@ public class UsuarioServices {
             .map(GrantedAuthority::getAuthority)
             .orElse("ROLE_GUEST");
     }
+
+    public Map<String, Object> getCurrentUser() throws Exception {
+    Utiles util = new Utiles();
+    Map<String, Object> response = new HashMap<>();
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    System.out.println("AUTH: " + auth);
+    if (auth != null) {
+    System.out.println("AUTH CLASS: " + auth.getClass().getName());
+    System.out.println("isAuthenticated: " + auth.isAuthenticated());
+    System.out.println("Principal: " + auth.getPrincipal());
+    System.out.println("Name: " + auth.getName());
+}
+
+    if (auth == null || !auth.isAuthenticated() || auth.getName() == null) {
+        response.put("success", false);
+    response.put("message", "No autenticado");
+    response.put("correo", null);
+    response.put("id", null);
+    response.put("Rol", null);
+    return response;
+    }
+    String correoBuscado = auth.getName();
+
+
+    try {
+
+        System.out.println("Buscando usuario con correo: " + correoBuscado); 
+        
+        LinkedList<Usuario> todosUsuarios = du.listAll();
+        System.out.println("Total usuarios: " + todosUsuarios.getLength()); 
+        
+        DaoPersona dp = new DaoPersona();
+        DaoRol dr = new DaoRol();
+        HashMap<String , AdapterDao> daos = new HashMap<>();
+        daos.put("Persona", dp);
+        daos.put("Rol", dr);
+        HashMap<String ,Object> [] array =  util.getHasMap("nombre",util.getAtributos(du.getUsuario()), du.listAll().quickSort("correo", 1, daos).toArray(), daos).toArray();
+        LinkedList<HashMap<String,Object>> users = util.searchL("correo", correoBuscado, null);
+        HashMap<String ,Object> usuarioEncontrado = du.login(users.get(0).get("correo").toString(), users.get(0).get("clave").toString());
+        /* for (Usuario u : todosUsuarios.toArray()) {
+            System.out.println("Comparando con: " + u.getCorreo()); 
+            if (correoBuscado.equalsIgnoreCase(u.getCorreo())) {
+                usuarioEncontrado = u;
+                break;
+            }
+        } */
+
+        if (usuarioEncontrado == null) {
+            System.out.println("Usuario no encontrado en la lista de usuarios"); 
+            response.put("success", false);
+            response.put("message", "Usuario no registrado en la lista de usuarios");
+            return response;
+        }
+
+        response.put("success", true);
+        response.put("correo", usuarioEncontrado.get("correo"));
+        response.put("id", usuarioEncontrado.get("id"));
+        response.put("estado", usuarioEncontrado.get("estado"));
+
+        Persona persona = new DaoPersona().get((Integer) usuarioEncontrado.get("id_Persona"));
+        if (persona != null) {
+            response.put("Persona", persona.getNombre());
+        }
+
+        Rol rol = new DaoRol().get((Integer) usuarioEncontrado.get("id_Rol"));
+        if (rol != null) {
+            response.put("Rol", rol.getNombre());
+        }
+
+    } catch (Exception e) {
+        System.err.println("Error en getCurrentUser: " + e.getMessage());
+        e.printStackTrace();
+        response.put("success", false);
+        response.put("message", "Error del servidor: " + e.getMessage());
+    }
+    return response;
+    }
+
 
     public HashMap<String, String> createRoles(){
         HashMap<String,String> map = new HashMap<>();
