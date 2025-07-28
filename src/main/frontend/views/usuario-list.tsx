@@ -8,6 +8,10 @@ import { useDataProvider } from '@vaadin/hilla-react-crud';
 import { UsuarioServices } from 'Frontend/generated/endpoints';
 import Usuario from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Usuario';
 import { useEffect, useState } from 'react';
+import { role } from 'Frontend/security/auth';
+import { logout } from 'Frontend/generated/UsuarioServices';
+import { useNavigate } from 'react-router';
+
 
 
 export const config: ViewConfig = {
@@ -30,6 +34,19 @@ type UsuarioEntryFormUpdateProps = {
 //Usuario CREATE
 function UsuarioEntryForm(props: UsuarioEntryFormProps) {
     const dialogOpened = useSignal(false);
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    role().then(async data =>{
+      if(data?.rol != 'ROLE_ADMIN'){
+        Notification.show('No tienes permisos de administrador', { duration: 5000, position: 'top-center', theme: 'error' });
+        await UsuarioServices.logout();
+        await logout();
+        navigate('/');
+      }
+    })
+  },[])
 
     const open = () => {
         dialogOpened.value = true;

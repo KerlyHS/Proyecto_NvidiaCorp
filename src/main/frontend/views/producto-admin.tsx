@@ -51,6 +51,7 @@ export function ProductoEntryForm(props: ProductoEntryFormProps) {
         try {
             if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl) {
                 await ProductoService.createProducto(nombre.value, descripcion.value, marca.value, precio.value, categoria.value, imagenUrl, stock.value);
+                window.location.reload();
                 if (props.onProductoCreated) props.onProductoCreated();
                 nombre.value = '';
                 descripcion.value = '';
@@ -243,6 +244,7 @@ export function ProductoEntryFormUpdate(props: ProductoEntryFormPropsUpdate) {
         try {
             if (nombre.value.trim().length > 0 && descripcion.value.trim().length > 0 && marca.value > 0 && precio.value > 0 && categoria.value.trim().length > 0 && imagenUrl.trim().length > 0) {
                 await ProductoService.updateProducto(parseInt(ident), nombre.value, descripcion.value, marca.value, precio.value, categoria.value, imagenUrl, stock.value);
+                window.location.reload();
                 if (props.onProductoUpdated) props.onProductoUpdated();
                 nombre.value = '';
                 descripcion.value = '';
