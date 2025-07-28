@@ -7,7 +7,6 @@ export default function IndexList() {
     const navigate = useNavigate();
 
     return (
-        
         <main className="main-nvidia">
             <div className="nvidia-card">
                 <h1 className="nvidia-title">Bienvenido a NvidiaCorp</h1>
@@ -23,6 +22,7 @@ export default function IndexList() {
                 </p>
                 {/* Aquí puedes seguir mejorando el contenido */}
             </div>
+            {/* Aquí agregas la tabla de personas */}
         </main>
     );
 }

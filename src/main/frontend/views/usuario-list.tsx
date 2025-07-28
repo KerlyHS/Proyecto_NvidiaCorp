@@ -350,7 +350,14 @@ export default function UsuarioListView() {
                 <GridColumn header="Nro" renderer={index} />
                 <GridColumn header="Correo" path="correo" />
                 <GridColumn header="Clave" path="clave" />
-                <GridColumn header="Estado" path="estado" />
+                <GridColumn
+                    header="Estado"
+                    renderer={({ item }) => (
+                        <span>
+                            {item.estado === true || item.estado === "true" ? "Activo" : "Inactivo"}
+                        </span>
+                    )}
+                />
                 <GridColumn header="Persona" path="persona" />
                 <GridColumn header="Identificacion" path="codIdent" />
                 <GridColumn header="Rol" path="rol" />
