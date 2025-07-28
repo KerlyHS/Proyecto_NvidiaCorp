@@ -5,11 +5,14 @@ import { useSignal } from '@vaadin/hilla-react-signals';
 import handleError from 'Frontend/views/_ErrorHandler';
 import { Group, ViewToolbar } from 'Frontend/components/ViewToolbar';
 import { useDataProvider } from '@vaadin/hilla-react-crud';
-import { PersonaServices } from 'Frontend/generated/endpoints';
+import { PersonaServices, UsuarioServices } from 'Frontend/generated/endpoints';
 import Persona from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/Persona';
 import { useEffect, useState } from 'react';
 import IdentificacionEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/IdentificacionEnum';
 import "themes/default/css/persona-list.css";
+import { useNavigate } from 'react-router';
+import { role } from 'Frontend/security/auth';
+import { logout } from 'Frontend/generated/UsuarioServices';
 
 
 export const config: ViewConfig = {
@@ -32,6 +35,21 @@ type PersonaEntryFormUpdateProps = {
 //Persona CREATE
 function PersonaEntryForm(props: PersonaEntryFormProps) {
     const dialogOpened = useSignal(false);
+
+    const navigate = useNavigate();
+    
+    
+      useEffect(() => {
+        role().then(async data =>{
+          if(data?.rol != 'ROLE_ADMIN'){
+            Notification.show('No tienes permisos de administrador', { duration: 5000, position: 'top-center', theme: 'error' });
+            await UsuarioServices.logout();
+            await logout();
+            navigate('/');
+          }
+        })
+      },[])
+    
 
     const open = () => {
         dialogOpened.value = true;
