@@ -1,11 +1,10 @@
-/* Fondo general */
+
 .pago-main {
   min-height: 100vh;
   background: linear-gradient(135deg, #0f0f0f 80%, #76b900 100%);
   padding: 32px;
 }
 
-/* Título */
 .pago-title {
   color: #76b900;
   font-size: 2.2rem;
@@ -15,7 +14,6 @@
   margin-bottom: 2rem;
 }
 
-/* Nueva clase para persona-title */
 .persona-title {
   color: #76b900;
   font-size: 2.3rem;
@@ -25,7 +23,6 @@
   margin-bottom: 2rem;
 }
 
-/* Barra de herramientas */
 .pago-toolbar {
   background: rgba(34, 34, 34, 0.95);
   border-radius: 16px;
@@ -42,7 +39,6 @@
   margin-bottom: 2.5rem;
 }
 
-/* Botones */
 .pago-btn-primary {
   background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
   color: #222 !important;
@@ -63,8 +59,6 @@
   padding: 0.5rem 1.5rem !important;
   font-size: 1.1rem !important;
 }
-
-/* Tabla de pagos */
 .pago-grid {
   background: rgba(20, 20, 20, 0.95);
   border-radius: 18px;
@@ -73,11 +67,9 @@
   margin: 0 auto;
   max-width: 1100px;
   color: #fff;
-  /* Para que el grid no sobresalga */
   overflow-x: auto;
 }
 
-/* Fondo oscuro para el grid y celdas */
 vaadin-grid {
   background: transparent !important;
   --vaadin-grid-background: transparent;
@@ -90,8 +82,6 @@ vaadin-grid {
   border: none !important;
   box-shadow: none !important;
 }
-
-/* Celdas y cabeceras */
 vaadin-grid-cell-content {
   background: transparent !important;
   color: #b3ff00;
@@ -108,7 +98,6 @@ vaadin-grid-header-cell {
   border-bottom: 2px solid #76b90044 !important;
 }
 
-/* Bordes verdes sutiles */
 vaadin-grid::part(row) {
   border-bottom: 1px solid #76b90022;
 }
@@ -118,7 +107,6 @@ vaadin-grid::part(row):hover {
   transition: background 0.2s;
 }
 
-/* Ajustes para inputs y selects si los usas */
 .pago-input, .pago-select {
   background: #fff !important;
   border-radius: 8px !important;
@@ -128,8 +116,6 @@ vaadin-grid::part(row):hover {
   min-width: 160px;
   margin-right: 1rem;
 }
-
-/* Nueva clase para persona-grid */
 .persona-grid {
   background: rgba(20, 20, 20, 0.98);
   border-radius: 18px;

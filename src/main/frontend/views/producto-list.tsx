@@ -211,7 +211,6 @@ export default function ProductoListView() {
 
     const aplicarFiltros = (productos: Producto[], filtros: FiltrosState): Producto[] => {
         return productos.filter(producto => {
-            // Filtro por categoría
             if (filtros.categorias.length > 0) {
                 const categoria = producto.categoria || 'Sin categoría';
                 if (!filtros.categorias.includes(categoria)) {
@@ -234,12 +233,10 @@ export default function ProductoListView() {
                         break;
                     }
                 }
-
                 if (!tipoEncontrado) {
                     return false;
                 }
             }
-
             if (filtros.series.length > 0) {
                 const nombre = producto.nombre?.toLowerCase() || '';
                 let serieEncontrada = false;
@@ -262,12 +259,10 @@ export default function ProductoListView() {
                         break;
                     }
                 }
-
                 if (!serieEncontrada) {
                     return false;
                 }
             }
-
             return true;
         });
     };
@@ -307,7 +302,7 @@ export default function ProductoListView() {
             }
             ProductoService.busqueda(criterio.value, text.value).then(function (data) {
                 setProductos(data);
-                console.log("Resultados de búsqueda:", data);
+                console.log("Resultados de busqueda:", data);
                 Notification.show(`Se encontraron ${data.length} resultado(s)`, {
                     duration: 3000,
                     position: 'bottom-end',
@@ -343,7 +338,6 @@ export default function ProductoListView() {
             series: true
         });
 
-        // Contadores para cada filtro
         const contarPorCategoria = () => {
             const contador: { [key: string]: number } = {};
             productos.forEach(producto => {
@@ -422,8 +416,6 @@ export default function ProductoListView() {
                 <h3 className="filtros-titulo">
                     🔍 Filtros {totalFiltrosActivos > 0 && `(${totalFiltrosActivos})`}
                 </h3>
-
-                {/* Categorías */}
                 <div className="filtro-seccion">
                     <div
                         className="filtro-seccion-titulo"
@@ -450,8 +442,6 @@ export default function ProductoListView() {
                         ))}
                     </div>
                 </div>
-
-                {/* Tipos de GPU */}
                 <div className="filtro-seccion">
                     <div
                         className="filtro-seccion-titulo"
@@ -478,8 +468,6 @@ export default function ProductoListView() {
                         ))}
                     </div>
                 </div>
-
-                {/* Series */}
                 <div className="filtro-seccion">
                     <div
                         className="filtro-seccion-titulo"
@@ -506,8 +494,6 @@ export default function ProductoListView() {
                         ))}
                     </div>
                 </div>
-
-                {/* Botón limpiar filtros */}
                 {totalFiltrosActivos > 0 && (
                     <Button
                         onClick={onLimpiarFiltros}

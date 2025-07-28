@@ -6,7 +6,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  console.log("Usuario autenticado:", user); // <-- Agrega esto
+  console.log("Usuario autenticado:", user); 
 
   return (
     <nav className="navbar">
@@ -23,7 +23,6 @@ export default function Navbar() {
           <i className="fas fa-shopping-cart"></i>
         </span>
         {user ? (
-          // Si está logueado, muestra un icono/avatar por defecto
           <span className="navbar-link" title="Usuario logueado">
             <img
               src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -32,7 +31,6 @@ export default function Navbar() {
             />
           </span>
         ) : (
-          // Si NO está logueado, muestra el botón de iniciar sesión
           <span className="navbar-link" onClick={() => navigate('/login', { state: { from: location.pathname } })}>
             Iniciar sesión
           </span>

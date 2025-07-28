@@ -64,8 +64,10 @@ export default function CarritoList() {
   const iniciarPago = async () => {
     const logueado = await isLogin();
     if (!logueado) {
-      // NO muestres la notificación aquí
-      navigate('/login', { state: { from: location.pathname, notify: 'Inicie sesión para continuar con el pago' } });
+      Notification.show('Inicie sesión para continuar con el pago', { duration: 3000, position: 'top-center', theme: 'error' });
+      setTimeout(() => {
+        navigate('/login', { state: { from: location.pathname } });
+      }, 500); // Espera 0.5s para que el usuario vea la notificación
       return;
     }
 

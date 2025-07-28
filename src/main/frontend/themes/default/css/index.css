@@ -15,8 +15,6 @@ body {
   box-sizing: inherit;
 }
 
-
-
 .nvidia-navbar {
   width: 100%;
   display: flex;
@@ -46,12 +44,14 @@ body {
 }
 
 .main-nvidia {
+  height: 100vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: center; 
   background: linear-gradient(135deg, #0f0f0f 80%, #76b900 100%);
+  padding: 0;
+  overflow: hidden; 
 }
 
 .nvidia-card {
@@ -60,13 +60,17 @@ body {
   border-radius: 24px;
   box-shadow: 0 8px 32px 0 rgba(34, 255, 0, 0.15);
   text-align: center;
-  margin-top: 7rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem; 
 }
 
 .nvidia-title {
   color: #76b900;
   font-size: 2.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem; 
   letter-spacing: 2px;
   font-weight: 900;
   text-shadow: 0 2px 8px #000;
@@ -75,7 +79,7 @@ body {
 .nvidia-desc {
   color: #fff;
   font-size: 1.2rem;
-  margin-bottom: 2.5rem;
+  margin: 0; 
 }
 
 .sobre-nosotros-section {
@@ -119,4 +123,52 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 0.7rem;
+}
+
+.producto-card {
+  background: #111;
+  border-radius: 18px;
+  border: 2px solid #76b900;
+  box-shadow: 0 4px 24px #76b90022;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 2rem auto 1.5rem auto;
+  width: 100%;
+  max-width: 480px;
+  min-height: 180px;
+  height: 220px; 
+  overflow: hidden;
+}
+
+.producto-imagen {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  background: #111;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Limita el tamaño del overlay de ComboBox y Select */
+vaadin-combo-box-overlay,
+vaadin-select-overlay {
+  max-height: 260px !important;
+  min-width: 180px !important;
+  width: auto !important;
+  border-radius: 12px !important;
+  background: #232323 !important;
+  color: #b3ff00 !important;
+  overflow-y: auto !important;
+}
+
+/* Opciones compactas */
+vaadin-combo-box-item,
+vaadin-select-item {
+  min-height: 36px !important;
+  font-size: 1rem !important;
+  color: #b3ff00 !important;
+  background: #232323 !important;
 }
