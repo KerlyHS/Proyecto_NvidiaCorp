@@ -51,26 +51,6 @@ public class SecurityConfig extends VaadinWebSecurity {
         super.configure(web);
          web.ignoring().requestMatchers(VaadinWebSecurity.getDefaultWebSecurityIgnoreMatcher())
         .requestMatchers(antMatchers("static/**")); 
-        
-        /* 
-        web.ignoring().requestMatchers(
-            // Rutas esenciales de Vaadin
-            new AntPathRequestMatcher("/VAADIN/**"),
-            new AntPathRequestMatcher("/frontend/**"),
-            new AntPathRequestMatcher("/themes/**"),
-            new AntPathRequestMatcher("/icons/**"),
-            new AntPathRequestMatcher("/images/**"),
-            
-            // Rutas públicas
-            new AntPathRequestMatcher("/"),
-            new AntPathRequestMatcher("/login"),
-            new AntPathRequestMatcher("/error"),
-            
-            // WebSockets para desarrollo
-            new AntPathRequestMatcher("/ws/**"),
-            
-            // Recursos estáticos
-            new AntPathRequestMatcher("/static/**")); */
     }
     
     @Bean
