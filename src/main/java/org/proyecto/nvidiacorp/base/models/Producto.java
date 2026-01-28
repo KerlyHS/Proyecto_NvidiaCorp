@@ -1,13 +1,21 @@
 package org.proyecto.nvidiacorp.base.models;
 
 import java.util.HashMap;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "productos")
 public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
     private Integer id_marca;
     private Double precio;
+    
+    @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
     private String imagen;
     private Integer stock;          // ← nuevo

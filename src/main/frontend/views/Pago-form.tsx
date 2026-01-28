@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PagoServices, ProductoService } from 'Frontend/generated/endpoints';
 import { Notification } from '@vaadin/react-components';
 import { useNavigate } from 'react-router';
-import { useCarrito } from './CarritoContext';
+import { useCarrito } from './_CarritoContext';
 import "themes/default/css/pago-list.css";
 
 export default function PagoForm() {

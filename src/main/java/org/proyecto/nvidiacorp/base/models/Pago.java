@@ -1,8 +1,17 @@
 package org.proyecto.nvidiacorp.base.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "pagos")
 public class Pago {
-     private Integer id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer nroTransaccion;
+
+    @Column(nullable = false)
     private Boolean estadoP;
 
     public Boolean getEstadoP() {

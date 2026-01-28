@@ -1,5 +1,5 @@
 import { AuthProvider } from 'Frontend/security/auth';
-import { CarritoProvider } from './CarritoContext';
+import { CarritoProvider } from './_CarritoContext';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import {
   AppLayout,

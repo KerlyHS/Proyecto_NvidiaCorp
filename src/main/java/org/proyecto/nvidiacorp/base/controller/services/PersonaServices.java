@@ -1,82 +1,87 @@
 package org.proyecto.nvidiacorp.base.controller.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
-import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoPersona;
-import org.proyecto.nvidiacorp.base.models.IdentificacionEnum;
 import org.proyecto.nvidiacorp.base.models.Persona;
-
+import org.proyecto.nvidiacorp.base.models.IdentificacionEnum;
+import org.proyecto.nvidiacorp.base.repositories.PersonaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
-
-import io.micrometer.common.lang.NonNull;
-import jakarta.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @BrowserCallable
 @AnonymousAllowed
+@Service
 public class PersonaServices {
-    private DaoPersona dp;
 
-    public PersonaServices() {
-        this.dp = new DaoPersona();
-    }
-
-    public void create(@NotEmpty String nombre, @NotEmpty String apellido, @NonNull String telefono, @NonNull String identificacion,
-        String direccion, @NonNull Integer edad, @NotEmpty String codIdent) throws Exception {
-    if (nombre.trim().length() > 0 && apellido.trim().length() > 0 && identificacion.trim().length() > 0
-            && edad != null && codIdent.trim().length() > 0) {
-        dp.getObj().setNombre(nombre);
-        dp.getObj().setApellido(apellido);
-        dp.getObj().setTelefono(telefono);
-        dp.getObj().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
-        dp.getObj().setDireccion(direccion);
-        dp.getObj().setEdad(edad);
-        dp.getObj().setCodIdent(codIdent);
-        if (identificacion.equals("CEDULA")) {
-            if (!codIdent.matches("\\d{10}")) {
-                throw new Exception("La cédula debe tener 10 dígitos numéricos");
-            }
-        } else if (identificacion.equals("PASAPORTE")) {
-            if (!codIdent.matches("[A-Za-z0-9]{6,15}")) {
-                throw new Exception("El pasaporte debe tener entre 6 y 15 caracteres alfanuméricos");
-            }
-        }
-        if (!dp.save()) {
-            throw new Exception("Error al guardar datos");
-        }
-    }
-}
-
-    public void update(Integer id, @NotEmpty String nombre, @NotEmpty String apellido, @NonNull String telefono ,@NonNull String identificacion,
-            String direccion, @NonNull Integer edad, @NotEmpty String codIdent) throws Exception {
-        if (id != null && nombre.trim().length() > 0 && apellido.trim().length() > 0
-                && identificacion.trim().length() > 0 && edad != null) {
-            dp.setObj(dp.listAll().get(id - 1));
-            dp.getObj().setNombre(nombre);
-            dp.getObj().setApellido(apellido);
-            dp.getObj().setTelefono(telefono);
-            dp.getObj().setIdentificacion(IdentificacionEnum.valueOf(identificacion));
-            dp.getObj().setDireccion(direccion);
-            dp.getObj().setEdad(edad);
-            dp.getObj().setCodIdent(codIdent); // Mantener el código de identificación
-            if (!dp.update(id - 1)) {
-                throw new Exception("Error al actualizar");
-            }
-        }
-    }
+    @Autowired
+    private PersonaRepository personaRepository;
 
     public List<Persona> listAllPersona() {
-        return Arrays.asList(dp.listAll().toArray());
+        return personaRepository.findAll();
+    }
+
+    // Usamos el Enum aquí
+    public void create(String nombre, String apellido, String telefono, 
+                       IdentificacionEnum identificacion, 
+                       String direccion, Integer edad, String codIdent) {
+        Persona p = new Persona();
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setTelefono(telefono);
+        p.setIdentificacion(identificacion);
+        p.setDireccion(direccion);
+        p.setEdad(edad);
+        p.setCodIdent(codIdent);
+        personaRepository.save(p);
+    }
+
+    public void update(Integer id, String nombre, String apellido, String telefono, 
+                       IdentificacionEnum identificacion, 
+                       String direccion, Integer edad, String codIdent) throws Exception {
+        Persona p = personaRepository.findById(id).orElseThrow(() -> new Exception("Persona no encontrada"));
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setTelefono(telefono);
+        p.setIdentificacion(identificacion);
+        p.setDireccion(direccion);
+        p.setEdad(edad);
+        p.setCodIdent(codIdent);
+        personaRepository.save(p);
     }
 
     public List<String> listID() {
-        List<String> lista = new ArrayList<>();
-        for (IdentificacionEnum identificacion : IdentificacionEnum.values()) {
-            lista.add(identificacion.toString());
+        return Arrays.stream(IdentificacionEnum.values())
+                     .map(Enum::name)
+                     .collect(Collectors.toList());
+    }
+    // PÉGALO AL FINAL DE UsuarioServices.java, ANTES DE LA ÚLTIMA '}'
+
+    public HashMap<String, Object> checkSession() {
+        org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Object> response = new HashMap<>();
+
+        // Verificamos si hay alguien logueado y que no sea "anónimo"
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+            response.put("isAuthenticated", true);
+            response.put("username", auth.getName());
+            
+            // Extraemos los roles
+            List<String> roles = auth.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+                
+            response.put("roles", roles);
+        } else {
+            response.put("isAuthenticated", false);
+            response.put("roles", new ArrayList<>());
         }
-        return lista;
+        return response;
     }
 }

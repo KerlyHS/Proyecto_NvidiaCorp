@@ -14,6 +14,9 @@ import { useEffect, useMemo, useState } from 'react';
 import jsPDF from 'jspdf';
 import "themes/default/css/factura-list.css";
 import { useNavigate } from 'react-router';
+import { FacturaServices } from 'Frontend/generated/endpoints';
+import MetodoPagoEnum from 'Frontend/generated/org/proyecto/nvidiacorp/base/models/MetodoPagoEnum';
+import { UsuarioServices } from 'Frontend/generated/endpoints';
 
 export const config: ViewConfig = {
   title: 'Factura',
@@ -45,7 +48,9 @@ export default function FacturaView() {
 
   const IVA_RATE = 0.15;
 
+  // --- AGREGA ESTE EFECTO ---
   useEffect(() => {
+    // 1. Cargar items del carrito (esto ya lo tenías)
     const storedItems = JSON.parse(localStorage.getItem('factura_items') || '[]').map((item: any) => ({
       ...item,
       precioUnitario: item.precioUnitario ?? item.precio ?? 0,
@@ -53,6 +58,24 @@ export default function FacturaView() {
       descripcion: item.descripcion ?? item.nombre ?? '',
     }));
     setItems(storedItems);
+
+    // 2. CARGAR DATOS DEL USUARIO DESDE LA BASE DE DATOS <--- NUEVO
+    UsuarioServices.getPersonaLogueada().then(persona => {
+        if (persona) {
+            // Llenamos los campos automáticamente
+            nombre.value = persona.nombre || '';
+            apellido.value = persona.apellido || '';
+            cedula.value = persona.codIdent || ''; // Ojo: en tu modelo es codIdent
+            direccion.value = persona.direccion || '';
+            telefono.value = persona.telefono || '';
+            
+            // El método de pago lo podemos fijar porque acabamos de pagar con tarjeta
+            metodoPago.value = 'Tarjeta (Online)'; 
+        } else {
+            console.log("No se encontró información de la persona logueada");
+        }
+    }).catch(console.error);
+
   }, []);
 
   const subtotal = useMemo(

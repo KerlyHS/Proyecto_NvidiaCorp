@@ -2,16 +2,29 @@ package org.proyecto.nvidiacorp.base.models;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "factura")
 public class Factura {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date Fecha;
     private Double SubTotal;
     private Double Total;
+    @Column(nullable = false)
     private Boolean Entregado;
+
+    @Enumerated(EnumType.STRING)
     private MetodoPagoEnum MetodoPago;
     private Double Iva;
+
+    @Column(name = "id_persona")
     private Integer Id_Persona;
+
+    @Column(name = "id_orden_pedido")
     private Integer Id_Orden_Pedido;
 
     public Integer getId() {

@@ -1,82 +1,72 @@
 package org.proyecto.nvidiacorp.base.controller.dao.Dao_Models;
 
+import org.proyecto.nvidiacorp.base.models.Persona;
+import org.proyecto.nvidiacorp.base.models.Rol;
+import org.proyecto.nvidiacorp.base.models.Usuario;
+import org.proyecto.nvidiacorp.base.repositories.PersonaRepository;
+import org.proyecto.nvidiacorp.base.repositories.RolRepository;
+import org.proyecto.nvidiacorp.base.repositories.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service; // <--- Importante
+
 import java.util.HashMap;
 
-import org.proyecto.nvidiacorp.base.controller.Utiles;
-import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
-import org.proyecto.nvidiacorp.base.controller.dao.AdapterDao;
-import org.proyecto.nvidiacorp.base.models.Usuario;
+@Service // <--- Esto lo convierte en una herramienta oficial de Spring
+public class DaoUsuario {
 
-public class DaoUsuario extends AdapterDao<Usuario> {
-    private Usuario obj;
+    // Inyectamos las conexiones a la base de datos
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private PersonaRepository personaRepository;
 
-    public DaoUsuario(){
-        super(Usuario.class);
-    }
+    @Autowired
+    private RolRepository rolRepository;
 
-     public HashMap<String , Object> login (String correo, String clave) throws Exception{
-        Utiles util = new Utiles();
-        DaoPersona dp = new DaoPersona();
-        DaoRol dr = new DaoRol();
-        HashMap<String , AdapterDao> daos = new HashMap<>();
-        daos.put("Persona", dp);
-        daos.put("Rol", dr);
-        if(this.listAll().isEmpty()) throw new Exception("No hay usuarios registrados");
-        if(!this.listAll().isEmpty()){
-            HashMap<String ,Object> [] array =  util.getHasMap("nombre",util.getAtributos(this.getUsuario()), this.listAll().quickSort("correo", 1, daos).toArray(), daos).toArray();
-            LinkedList< HashMap<String ,Object> >listsearch = util.searchL("correo", correo, array);
-            if(listsearch.isEmpty() || listsearch.get(0) == null )  throw new Exception("NO SE ECNOTRO ESA HUEVADA");
-            /* for (int i = 0 ; i < listsearch.getSize(); i++){
-                System.out.println(listsearch.get(i).toString() + "<<<<<<<<<<<<<<<<<<<< AQUI");
-            } */
-            HashMap<String ,Object> search = listsearch.get(0);
-            //System.out.println(this.listAll().getId((Integer) search.get("id")).getCorreo() + "<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            if (search != null) {
-                if((Boolean) search.get("estado")){
-                    if (search.get("clave").toString().equals(clave)) {
-                        Object data = this.listAll().get((Integer) search.get("id"));
-                        //System.out.println("dsdfasddadad"+util.createHasMao("id",util.getAtributos(this.getUsuario()), data, daos));
-                        HashMap<String ,Object> aux = util.createHasMao("id",util.getAtributos(this.getUsuario()),data, daos);
-                        Object c = aux.remove("clave");
-                        System.out.println(aux);
-                        return aux;
-                    } else throw new Exception("Su clave o usuario estan incorrectos");
-                }else throw new Exception("Cuenta desactivada"); 
-            } else throw new Exception("No se encontro el usuario");
-        } else return null;
-    }
+    public HashMap<String, Object> login(String correo, String clave) throws Exception {
+        // 1. Buscamos al usuario en la Base de Datos
+        Usuario usuario = usuarioRepository.findByCorreo(correo)
+                .orElseThrow(() -> new Exception("No se encontró el usuario con ese correo"));
 
-    public Boolean save(){
-        try {
-            obj.setId(listAll().getLength() + 1);
-            this.persist(obj);
-            return true;
-        } catch (Exception e) {
-            // Log de errores
-            e.printStackTrace();
-            System.out.println(e);
-            return false;
-            // TODO: handle exception
+        // 2. Verificamos la contraseña (simple por ahora)
+        if (!usuario.getClave().equals(clave)) {
+            throw new Exception("Clave incorrecta");
         }
-    }
 
-    public Boolean update(Integer pos){
-        try {
-            this.update(obj,pos);
-            return true;
-        } catch (Exception e) {
-            return false;
+        // 3. Verificamos si está activo
+        if (!Boolean.TRUE.equals(usuario.getEstado())) {
+             throw new Exception("Cuenta desactivada");
         }
-    }
 
-    public Usuario getUsuario(){
-        if(this.obj == null){
-            obj = new Usuario();
+        // 4. Recuperamos los datos extra (Persona y Rol) usando los IDs
+        Persona persona = personaRepository.findById(usuario.getId_Persona()).orElse(null);
+        Rol rol = rolRepository.findById(usuario.getId_Rol()).orElse(null);
+
+        // 5. Construimos el MAPA que espera tu Frontend
+        HashMap<String, Object> resultado = new HashMap<>();
+        
+        // Datos del Usuario
+        resultado.put("id", usuario.getId());
+        resultado.put("correo", usuario.getCorreo());
+        resultado.put("estado", usuario.getEstado());
+
+        // Datos de la Persona (nombre, apellido, etc.)
+        if (persona != null) {
+            resultado.put("nombre", persona.getNombre());
+            resultado.put("apellido", persona.getApellido());
+            resultado.put("identificacion", persona.getIdentificacion()); 
+            // Agrega aquí otros campos si tu frontend los usa (ej: direccion, telefono)
         }
-        return this.obj;
-    }
 
-    public void setUsuario(Usuario usuario){
-        this.obj = usuario;
+        // Datos del Rol
+        if (rol != null) {
+            resultado.put("rol", rol.getNombre());
+        }
+
+        return resultado;
     }
+    
+    // Métodos viejos para compatibilidad (puedes dejarlos vacíos o borrarlos si nadie más los usa)
+    public Boolean save() { return false; }
 }

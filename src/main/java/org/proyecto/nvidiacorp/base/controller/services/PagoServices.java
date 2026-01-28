@@ -1,101 +1,75 @@
 package org.proyecto.nvidiacorp.base.controller.services;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.proyecto.nvidiacorp.base.controller.DataEstruct.List.LinkedList;
-import org.proyecto.nvidiacorp.base.controller.PagoController;
-import org.proyecto.nvidiacorp.base.controller.dao.Dao_Models.DaoPago;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import org.proyecto.nvidiacorp.base.controller.PagoController; // <--- Importamos el controlador real
+import org.proyecto.nvidiacorp.base.models.Pago;
+import org.proyecto.nvidiacorp.base.repositories.PagoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import java.util.List;
+import java.util.HashMap;
 
 @BrowserCallable
-@Transactional(propagation = Propagation.REQUIRES_NEW)
 @AnonymousAllowed
+@Service
 public class PagoServices {
 
-    private DaoPago db;
+    @Autowired
+    private PagoRepository pagoRepository;
 
-    public PagoServices() {
-        db = new DaoPago();
+    public List<Pago> listAll() {
+        return pagoRepository.findAll();
     }
 
-    public void create(Integer nroTansaccion, Boolean estadoP) throws Exception {
-        if (nroTansaccion != null && nroTansaccion > 0 && estadoP != null) {
-            db.getObj().setNroTransaccion(nroTansaccion);
-            db.getObj().setEstadoP(estadoP);
-            if (!db.save()) {
-                throw new Exception("No se pudo guardar los datos de Pago");
-            }
-        } else {
-            throw new Exception("Datos incompletos para crear el pago");
-        }
-    }
-
-    public void update(Integer id, Integer nroTansaccion, Boolean estadoP) throws Exception {
-        if (id != null && nroTansaccion != null && nroTansaccion > 0 && estadoP != null) {
-            db.setObj(db.listAll().get(id));
-            db.getObj().setNroTransaccion(nroTansaccion);
-            db.getObj().setEstadoP(estadoP);
-            if (!db.update(id)) {
-                throw new Exception("No se pudo guardar los datos de Pago");
-            }
-        } else {
-            throw new Exception("Datos incompletos para actualizar el pago");
-        }
-    }
-
-    public List<HashMap> listAll() throws Exception {
-        return Arrays.asList(db.all().toArray());
-    }
-
-    public List<HashMap> order(String attribute, Integer type) throws Exception {
-        return Arrays.asList(db.orderByPago(type, attribute).toArray());
-    }
-
-    public List<HashMap> search(String attribute, String text, Integer type) throws Exception {
-        LinkedList<HashMap<String, Object>> lista = db.search(attribute, text, type);
-        if (!lista.isEmpty()) {
-            return Arrays.asList(lista.toArray());
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public void crearPago(Boolean estado) throws Exception {
-        System.out.println("Llamada a crearPago estado=" + estado);
-        if (estado == null) {
-            throw new Exception("Datos incompletos para crear el pago");
-        }
-        int nroTransaccion = db.listAll().getLength() + 1;
-        org.proyecto.nvidiacorp.base.models.Pago nuevoPago = new org.proyecto.nvidiacorp.base.models.Pago();
-        nuevoPago.setNroTransaccion(nroTransaccion);
-        nuevoPago.setEstadoP(estado);
-        db.setObj(nuevoPago);
-        if (!db.save()) {
-            throw new Exception("No se pudo guardar el pago");
-        }
-    }
-
-    public Map<String, Object> checkout(float total, String currency) {
+    // CORRECCIÓN: Ahora llamamos al PagoController real
+    public HashMap<String, String> checkout(Double monto, String moneda) {
+        HashMap<String, String> response = new HashMap<>();
         try {
-            HashMap<String, Object> response = new PagoController().request(total, currency);
-            System.out.println("Respuesta checkout backend: " + response);
-            return response;
+            // 1. Instanciamos tu controlador que tiene la lógica de conexión HTTP
+            PagoController controller = new PagoController();
+            
+            // 2. Le pedimos un ID real a la API (convertimos Double a float)
+            HashMap<String, Object> apiResponse = controller.request(monto.floatValue(), moneda);
+            
+            // 3. Extraemos el ID y lo mandamos al frontend
+            if (apiResponse != null && apiResponse.containsKey("id")) {
+                response.put("id", apiResponse.get("id").toString());
+            } else {
+                response.put("error", "La API no devolvió un ID válido");
+            }
+            
         } catch (Exception e) {
-            return Map.of("estado", "false", "error", e.getMessage());
+            e.printStackTrace();
+            response.put("error", "Error interno: " + e.getMessage());
         }
+        return response;
     }
 
-    public HashMap<String, Object> consultarEstadoPago(String idCheckout) throws IOException {
-        PagoController pagoControl = new PagoController();
-        return pagoControl.requestPay(idCheckout);
+    public HashMap<String, String> consultarEstadoPago(String checkoutId) {
+        HashMap<String, String> response = new HashMap<>();
+        try {
+            // También usamos el controller para verificar el estado real
+            PagoController controller = new PagoController();
+            HashMap<String, Object> apiResponse = controller.requestPay(checkoutId);
+            
+            if (apiResponse != null && apiResponse.containsKey("estado")) {
+                response.put("estado", apiResponse.get("estado").toString());
+            } else {
+                response.put("estado", "false");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("estado", "false");
+        }
+        return response;
     }
 
+    public List<Pago> search(String criterio, String texto, Integer dummy) {
+        return pagoRepository.findAll(); 
+    }
+
+    public List<Pago> order(String column, Integer dir) {
+        return pagoRepository.findAll(); 
+    }
 }

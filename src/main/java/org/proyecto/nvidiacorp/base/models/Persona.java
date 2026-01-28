@@ -1,14 +1,26 @@
 package org.proyecto.nvidiacorp.base.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "personas")
 public class Persona {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String apellido;
     private String telefono;
     private String direccion;
-    private IdentificacionEnum identificacion;
+
+    @Enumerated(EnumType.STRING)
+    private IdentificacionEnum identificacion; // Tipo (Cédula/RUC)
+
     private Integer edad;
-    private String codIdent;
+
+    @Column(nullable = false, unique = true) // <--- IMPORTANTE: Esto evita cédulas repetidas
+    private String codIdent; // Tu campo para el número (en String)
 
     public Integer getId() {
         return this.id;

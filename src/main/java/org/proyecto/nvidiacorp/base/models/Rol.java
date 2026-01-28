@@ -1,6 +1,13 @@
 package org.proyecto.nvidiacorp.base.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "roles")
 public class Rol {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
 

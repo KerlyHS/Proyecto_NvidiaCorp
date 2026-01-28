@@ -60,8 +60,8 @@
         </dependency>
         <dependency>
             <!-- Replace with the database you will be using in production -->
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
             <scope>runtime</scope>
         </dependency>
 

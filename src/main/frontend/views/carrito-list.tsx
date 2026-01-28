@@ -1,5 +1,5 @@
 import { Button, Notification } from '@vaadin/react-components';
-import { useCarrito } from './CarritoContext';
+import { useCarrito } from './_CarritoContext';
 import { ProductoCard } from './producto-list';
 import { useNavigate, useLocation } from 'react-router';
 import "themes/default/css/carrito-list.css";
