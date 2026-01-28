@@ -980,3 +980,180 @@ vaadin-dialog-overlay::part(header) {
   border-radius: 12px !important;
   box-shadow: 0 4px 24px #76b90044;
 }
+
+/* Contenedor del Chat */
+.chat-container-ia {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+.chat-ventana-ia {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    min-height: 400px;
+    width: 350px; /* Tamaño inicial */
+    height: 500px; /* Tamaño inicial */
+    resize: both;  /* Habilita agrandar/achicar */
+    overflow: hidden;
+    background: #1a1a1a;
+    border: 2px solid #76b900;
+    border-radius: 12px;
+    position: fixed;
+    bottom: 85px;
+    right: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.chat-header-ia {
+    background: #76b900;
+    color: black;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 12px 12px 0 0;
+}
+
+.chat-body-ia {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+}
+
+.chat-burbuja {
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 85%;
+    font-size: 0.9rem;
+}
+
+.chat-burbuja.usuario {
+    background: #333;
+    align-self: flex-end;
+}
+
+.chat-burbuja.ia {
+    background: #76b900;
+    color: black;
+    align-self: flex-start;
+}
+
+.chat-toggle-btn {
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50% !important;
+    background-color: #76b900 !important;
+    color: black !important;
+    box-shadow: 0 4px 15px rgba(118, 185, 0, 0.4);
+}
+
+
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    
+    /* Configuración para redimensionar */
+    min-width: 300px;  /* Ancho mínimo */
+    min-height: 400px; /* Alto mínimo */
+    max-width: 90vw;   /* No deja que se salga de la pantalla */
+    max-height: 80vh;
+    
+    width: 350px;      /* Tamaño inicial */
+    height: 500px;     /* Tamaño inicial */
+    
+    overflow: hidden;  /* Importante para el resize */
+    resize: both;      /* Permite agrandar en ambas direcciones */
+    
+    background: #1a1a1a;
+    border: 1px solid #76b900;
+    border-radius: 10px;
+    position: fixed;   /* Si lo tienes flotante */
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+/* 1. EL CUERPO DE MENSAJES: Debe ser el único que se estire */
+.chat-body-ia {
+    flex-grow: 1; /* Absorbe todo el espacio sobrante */
+    overflow-y: auto; /* Permite el scroll de mensajes */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.chat-chips-container {
+    display: flex;
+    flex-wrap: wrap; /* Los que no caben bajan o se ocultan */
+    gap: 6px;
+    padding: 8px 12px;
+    background: #252525;
+    flex-shrink: 0;
+    max-height: 85px; /* Limita para que no ocupen todo el chat */
+    overflow-y: auto;
+}
+
+.chat-chips-container::-webkit-scrollbar {
+    display: none; /* Esconde el scroll en Chrome/Safari */
+}
+
+.chat-chips-container button {
+    flex: 1 1 130px; /* Intenta medir 130px pero crece si hay espacio */
+    max-width: 180px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: #1a1a1a;
+    border: 1px solid #4e7a00;
+    color: #76b900;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.chat-chips-container button:hover {
+    border-color: #76b900;
+    background: #76b900;
+    color: black;
+}
+
+/* Marca visual en la esquina */
+.chat-resizer-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(135deg, transparent 50%, #76b900 50%);
+    cursor: nwse-resize;
+    pointer-events: none; /* No interfiere con el resize de la ventana */
+}
+
+/* 4. AREA DE INPUT: También fija abajo */
+.chat-input-area {
+    flex-shrink: 0;
+    padding: 10px;
+    background: #1a1a1a;
+}
+
+/* Estilo para los mensajes de la IA con saltos de línea */
+.chat-burbuja.ia {
+    white-space: pre-wrap; /* Esto permite que los saltos de línea de Gemini se vean */
+    border-left: 4px solid #4e7a00;
+}
+
+.chat-loading-dots {
+    color: #76b900;
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-left: 10px;
+}
