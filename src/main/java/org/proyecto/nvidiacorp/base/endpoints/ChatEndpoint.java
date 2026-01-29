@@ -2,7 +2,6 @@ package org.proyecto.nvidiacorp.base.endpoints;
 
 import org.proyecto.nvidiacorp.base.controller.services.GeminiService;
 import org.proyecto.nvidiacorp.base.controller.services.ProductoService;
-import org.proyecto.nvidiacorp.base.controller.services.ProductoService.ProductoDTO;
 import org.proyecto.nvidiacorp.base.models.Producto;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
@@ -20,13 +19,12 @@ public class ChatEndpoint {
     private ProductoService productoService; // Inyectamos tu servicio de base de datos
 
     public String getAsistencia(String mensaje) {
-        // CAMBIO 1: Usa ProductoDTO y el nombre de método correcto
-        List<ProductoDTO> listaProductos = productoService.listAllProductos();
+        List<Producto> listaProductos = productoService.listAll();
 
         StringBuilder contexto = new StringBuilder("Catálogo actual de NvidiaCorp:\n");
-        for (ProductoDTO p : listaProductos) { // CAMBIO 2: ProductoDTO aquí también
-            contexto.append(String.format("- ID: %d | %s | Marca: %s | Precio: $%.2f | Cat: %s\n",
-                    p.getId(), p.getNombre(), p.getMarcaNombre(), p.getPrecio(), p.getCategoria()));
+        for (Producto p : listaProductos) {
+            contexto.append(String.format("- ID: %d | %s | Precio: $%f | Cat: %s\n",
+                    p.getId(), p.getNombre(), p.getPrecio(), p.getCategoria()));
         }
 
         String promptFinal = "Eres el Asistente Experto de NvidiaCorp. Tu objetivo es asesorar al cliente.\n" +

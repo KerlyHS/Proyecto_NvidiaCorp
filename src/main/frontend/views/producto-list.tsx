@@ -17,7 +17,12 @@ import { useNavigate } from 'react-router';
 import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
 import { ChatEndpoint } from 'Frontend/generated/endpoints';
 
+export const config: ViewConfig = {
+    title: 'Catálogo',
+    menu: { icon: 'vaadin:cart', order: 0, title: 'Catálogo' },
+};
 
+// --- Notificación Estética del Código Base ---
 function CarritoNotification({ producto, isVisible, onClose }: {
     producto: any | null,
     isVisible: boolean,
@@ -585,6 +590,139 @@ export default function ProductoListView() {
         );
     }
 
+
+// --- Componente Principal Fusionado ---
+export default function ProductoListView() {
+    const [productos, setProductos] = useState<Producto[]>([]);
+    const [productosFiltrados, setProductosFiltrados] = useState<Producto[]>([]);
+    const [chatAbierto, setChatAbierto] = useState(false);
+    const [mensajeIA, setMensajeIA] = useState('');
+    const [historial, setHistorial] = useState<{ rol: string, texto: string }[]>([]);
+    const [cargandoIA, setCargandoIA] = useState(false);
+    const [filtrosActivos, setFiltrosActivos] = useState<FiltrosState>({
+        categorias: [], tiposGPU: [], series: []
+    });
+
+    const { agregarAlCarrito } = useCarrito();
+    useEffect(() => {
+        if (historial.length === 0) {
+            setHistorial([
+                { rol: 'ia', texto: '¡Hola! 🤖 Soy el asistente de NvidiaCorp. Estoy aquí para asesorarte en tu compra, comparar gráficas o resolver tus dudas técnicas. ¿En qué puedo ayudarte hoy?' }
+            ]);
+        }
+    }, []);
+    const enviarMensajeIA = async (mensajePredefinido?: string) => {
+        const textoAEnviar = mensajePredefinido || mensajeIA;
+        if (!textoAEnviar.trim()) return;
+
+        const nuevoHistorial = [...historial, { rol: 'usuario', texto: textoAEnviar }];
+        setHistorial(nuevoHistorial);
+        setMensajeIA('');
+        setCargandoIA(true);
+
+        try {
+            const respuesta = await ChatEndpoint.getAsistencia(textoAEnviar);
+
+            // --- Lógica de Añadir al Carrito ---
+            if (respuesta.includes("[ADD_TO_CART:")) {
+                const match = respuesta.match(/\[ADD_TO_CART:(\d+)\]/);
+                if (match) {
+                    const id = parseInt(match[1]);
+                    const prod = productos.find(p => p.id === id);
+                    if (prod) {
+                        agregarAlCarrito(prod);
+                        Notification.show(`🛒 ${prod.nombre} añadido al carrito`, { theme: 'success', position: 'bottom-start' });
+                    }
+                }
+            }
+
+            // Limpiamos el código del texto antes de mostrarlo
+            const textoLimpio = respuesta.replace(/\[ADD_TO_CART:.*?\]/g, "").trim();
+            setHistorial(prev => [...prev, { rol: 'ia', texto: textoLimpio }]);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setCargandoIA(false);
+        }
+    };
+    const criterio = useSignal('');
+    const text = useSignal('');
+    const navigate = useNavigate();
+
+    const itemSelect = [
+        { label: '🏷️ Nombre', value: 'nombre' },
+        { label: '📂 Categoría', value: 'categoria' }, // Ajustado para coincidir con backend
+        { label: '🏢 Marca', value: 'marcaNombre' }   // Ajustado al DTO
+    ];
+
+    // Funcionalidad Nueva: Cargar DTOs
+    const cargarProductos = async () => {
+        try {
+            const items = await ProductoService.listAllProductos();
+            setProductos(items);
+            // No seteamos filtrados aquí directamente para dejar que el useEffect de filtros maneje la lógica inicial
+        } catch (error) {
+            handleError(error);
+        }
+    };
+
+    useEffect(() => { cargarProductos(); }, []);
+
+    // Lógica de Filtros (Estética Base adaptada a DTOs Nuevos)
+    const aplicarFiltros = (lista: any[], filtros: FiltrosState) => {
+        return lista.filter(producto => {
+            // 1. Filtro por búsqueda de texto (del Nuevo)
+            const termino = text.value.toLowerCase();
+            if (termino) {
+                const val = producto[criterio.value];
+                if (!val || !String(val).toLowerCase().includes(termino)) return false;
+            }
+
+            // 2. Filtros Laterales (del Base)
+            if (filtros.categorias.length > 0) {
+                const cat = producto.categoria || 'Sin categoría'; // O toString() si es enum
+                if (!filtros.categorias.includes(cat.toString())) return false;
+            }
+            if (filtros.tiposGPU.length > 0) {
+                const nombre = producto.nombre?.toLowerCase() || '';
+                let match = false;
+                for (const t of filtros.tiposGPU) {
+                    if (t === 'RTX' && nombre.includes('rtx')) match = true;
+                    else if (t === 'GTX' && nombre.includes('gtx')) match = true;
+                    else if (t === 'Otros' && !nombre.includes('rtx') && !nombre.includes('gtx')) match = true;
+                }
+                if (!match) return false;
+            }
+            if (filtros.series.length > 0) {
+                const nombre = producto.nombre?.toLowerCase() || '';
+                let match = false;
+                for (const s of filtros.series) {
+                    if (s === 'Serie 5000' && (nombre.includes('50') || nombre.includes('5090'))) match = true;
+                    else if (s === 'Serie 4000' && (nombre.includes('40') || nombre.includes('4090'))) match = true;
+                    else if (s === 'Serie 3000' && (nombre.includes('30') || nombre.includes('3090'))) match = true;
+                    else if (s === 'Serie 2000' && (nombre.includes('20') || nombre.includes('2080'))) match = true;
+                    else if (s === 'Otras Series' && !nombre.match(/[2-5][0-9]/)) match = true;
+                }
+                if (!match) return false;
+            }
+            return true;
+        });
+    };
+
+    useEffect(() => {
+        const resultado = aplicarFiltros(productos, filtrosActivos);
+        setProductosFiltrados(resultado);
+    }, [productos, filtrosActivos, text.value, criterio.value]); // Escuchamos text.value también
+
+    const handleFiltrosChange = (nuevos: FiltrosState) => setFiltrosActivos(nuevos);
+    const handleRemoveFiltro = (tipo: keyof FiltrosState, valor: string) => {
+        const nuevos = { ...filtrosActivos };
+        nuevos[tipo] = nuevos[tipo].filter(i => i !== valor);
+        setFiltrosActivos(nuevos);
+    };
+    const limpiarFiltros = () => setFiltrosActivos({ categorias: [], tiposGPU: [], series: [] });
+
+    // Renderizado (Estructura Estética Base con Botones Nuevos)
     return (
         <div className="producto-main-container">
             <FiltrosPanel

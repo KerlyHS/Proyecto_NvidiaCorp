@@ -22014,3 +22014,316 @@ Caused by: java.lang.NullPointerException: null
 2026-01-28T22:35:49.758-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     661 |
 2026-01-28T22:35:49.758-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
 2026-01-28T22:35:49.758-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : [TypeScript] Found 29 errors. Watching for file changes.
+2026-01-28T22:40:26.369-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:40:26 p. m. [vite] (client) hmr update /views/producto-list.tsx
+2026-01-28T22:40:26.401-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:40:26 p. m. [vite] (client) hmr update /themes/default/css/producto-list.css
+2026-01-28T22:40:26.464-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:40:26 p. m. [vite] Internal server error: D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\src\main\frontend\views\producto-list.tsx: Unexpected token (17:1)
+2026-01-28T22:40:26.464-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:26.465-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   15 | import { Upload } from '@vaadin/react-components';
+2026-01-28T22:40:26.465-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   16 | import { useNavigate } from 'react-router';
+2026-01-28T22:40:26.465-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : > 17 | <<<<<<< HEAD
+2026-01-28T22:40:26.465-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      |  ^
+2026-01-28T22:40:26.465-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   19 | =======
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Plugin: vite:react-babel
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   File: D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:17:1
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   16 |  import { useNavigate } from 'react-router';
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   17 |  <<<<<<< HEAD
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   18 |  import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      |      ^
+2026-01-28T22:40:26.466-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   19 |  =======
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   20 |  import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at constructor (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:360:19)
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.raise (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:6613:19)
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.unexpected (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:6633:16)
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.jsxParseIdentifier (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4575:12)
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.jsxParseNamespacedName (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4582:23)
+2026-01-28T22:40:26.468-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.jsxParseElementName (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4591:21)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.jsxParseOpeningElementAt (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4667:22)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.jsxParseElementAt (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4692:33)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.jsxParseElement (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4755:17)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseExprAtom (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:4765:19)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseExprSubscripts (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10992:23)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseUpdate (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10977:21)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseMaybeUnary (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10957:23)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseMaybeUnary (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:9779:18)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10810:61)
+2026-01-28T22:40:26.469-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseExprOps (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10815:23)
+2026-01-28T22:40:26.470-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseMaybeConditional (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10792:23)
+2026-01-28T22:40:26.470-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseMaybeAssign (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10745:21)
+2026-01-28T22:40:26.470-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:9717:39
+2026-01-28T22:40:26.470-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.tryParse (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:6922:20)
+2026-01-28T22:40:26.470-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseMaybeAssign (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:9717:18)
+2026-01-28T22:40:26.471-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseExpressionBase (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10698:23)
+2026-01-28T22:40:26.471-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10694:39
+2026-01-28T22:40:26.471-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.allowInAnd (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:12329:16)
+2026-01-28T22:40:26.471-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseExpression (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10694:17)
+2026-01-28T22:40:26.471-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseStatementContent (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:12771:23)
+2026-01-28T22:40:26.472-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseStatementContent (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:9454:18)
+2026-01-28T22:40:26.472-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseStatementLike (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:12644:17)
+2026-01-28T22:40:26.472-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseModuleItem (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:12621:17)
+2026-01-28T22:40:26.472-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseBlockOrModuleBlockBody (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:13192:36)
+2026-01-28T22:40:26.472-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseBlockBody (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:13185:10)
+2026-01-28T22:40:26.472-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseProgram (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:12514:10)
+2026-01-28T22:40:26.473-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parseTopLevel (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:12504:25)
+2026-01-28T22:40:26.473-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parse (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:14364:10)
+2026-01-28T22:40:26.473-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at TypeScriptParserMixin.parse (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:10071:18)
+2026-01-28T22:40:26.473-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at parse (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\parser\lib\index.js:14398:38)
+2026-01-28T22:40:26.473-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at parser (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\core\lib\parser\index.js:41:34)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at parser.next (<anonymous>)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at normalizeFile (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at normalizeFile.next (<anonymous>)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at run (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\core\lib\transformation\index.js:22:50)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at run.next (<anonymous>)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at transform (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\@babel\core\lib\transform.js:22:33)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at transform.next (<anonymous>)
+2026-01-28T22:40:26.474-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at step (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\gensync\index.js:261:32)
+2026-01-28T22:40:26.475-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\gensync\index.js:273:13
+2026-01-28T22:40:26.475-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :       at async.call.result.err.err (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\gensync\index.js:223:11)
+2026-01-28T22:40:27.003-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.003-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Merge conflict marker encountered.
+2026-01-28T22:40:27.003-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:17:1
+2026-01-28T22:40:27.004-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.004-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     15 | import { Upload } from '@vaadin/react-components';
+2026-01-28T22:40:27.004-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     16 | import { useNavigate } from 'react-router';
+2026-01-28T22:40:27.004-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 17 | <<<<<<< HEAD
+2026-01-28T22:40:27.004-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        | ^^^^^^^
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     19 | =======
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Merge conflict marker encountered.
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:19:1
+2026-01-28T22:40:27.005-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.006-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     17 | <<<<<<< HEAD
+2026-01-28T22:40:27.006-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:40:27.006-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 19 | =======
+2026-01-28T22:40:27.006-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        | ^^^^^^^
+2026-01-28T22:40:27.006-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:40:27.006-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     21 | >>>>>>> 68e81b6edadf9a23f0c8b479f3ad6d6d42262e06
+2026-01-28T22:40:27.007-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     22 | import { ChatEndpoint } from 'Frontend/generated/endpoints';
+2026-01-28T22:40:27.007-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.007-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Merge conflict marker encountered.
+2026-01-28T22:40:27.007-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:21:1
+2026-01-28T22:40:27.007-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.007-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     19 | =======
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 21 | >>>>>>> 68e81b6edadf9a23f0c8b479f3ad6d6d42262e06
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        | ^^^^^^^
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     22 | import { ChatEndpoint } from 'Frontend/generated/endpoints';
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     23 |
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     24 |
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:40:27.008-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : [TypeScript] Found 3 errors. Watching for file changes.
+2026-01-28T22:40:28.931-05:00  INFO 29232 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-01-28T22:40:28.933-05:00  INFO 29232 --- [Thread-32] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-28T22:40:29.277-05:00  INFO 29232 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-28T22:40:29.280-05:00  INFO 29232 --- [Thread-32] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-28T22:40:29.281-05:00  INFO 29232 --- [Thread-32] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2026-01-28T22:40:29.284-05:00  INFO 29232 --- [Thread-32] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2026-01-28T22:45:46.659-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:45:46 p. m. [vite] (client) hmr update /themes/default/css/producto-list.css
+2026-01-28T22:46:33.164-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:46:33 p. m. [vite] (client) hmr update /themes/default/css/producto-list.css
+2026-01-28T22:46:55.320-05:00  INFO 29232 --- [restartedMain] org.proyecto.nvidiacorp.Application      : Starting Application using Java 17.0.14 with PID 29232 (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\target\classes started by LOQ in D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp)
+2026-01-28T22:46:55.320-05:00  INFO 29232 --- [restartedMain] org.proyecto.nvidiacorp.Application      : No active profile set, falling back to 1 default profile: "default"
+2026-01-28T22:46:56.041-05:00  INFO 29232 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-28T22:46:56.082-05:00  INFO 29232 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 8 JPA repository interfaces.
+2026-01-28T22:46:56.242-05:00  INFO 29232 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-28T22:46:56.243-05:00  INFO 29232 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-28T22:46:56.243-05:00  INFO 29232 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-01-28T22:46:56.320-05:00  INFO 29232 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-28T22:46:56.320-05:00  INFO 29232 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 998 ms
+2026-01-28T22:46:56.452-05:00  INFO 29232 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing AtmosphereFramework
+2026-01-28T22:46:57.199-05:00  INFO 29232 --- [restartedMain] c.v.f.s.VaadinServletContextInitializer  : Search for subclasses and classes with annotations took 657 ms
+2026-01-28T22:46:57.345-05:00  INFO 29232 --- [restartedMain] c.v.b.d.startup.DevModeStartupListener   : Starting dev-mode updaters in D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp folder.
+2026-01-28T22:46:57.352-05:00  INFO 29232 --- [restartedMain] c.v.f.s.f.s.FullDependenciesScanner      : Visited 111 classes. Took 3 ms.
+2026-01-28T22:46:57.866-05:00  INFO 29232 --- [vaadin-dev-server-1] c.v.f.s.frontend.TaskUpdatePackages      : Skipping `npm install` because the frontend packages are already installed in the folder 'D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules' and the hash in the file 'D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\node_modules\.vaadin\vaadin.json' is the same as in 'package.json'
+2026-01-28T22:46:57.866-05:00  INFO 29232 --- [vaadin-dev-server-1] c.v.f.s.frontend.TaskCopyFrontendFiles   : Copying frontend resources from jar files ...
+2026-01-28T22:46:57.924-05:00  INFO 29232 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-28T22:46:57.927-05:00  INFO 29232 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-28T22:46:57.936-05:00  INFO 29232 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-28T22:46:57.937-05:00  INFO 29232 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-01-28T22:46:57.942-05:00  INFO 29232 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.mariadb.jdbc.Connection@84343a
+2026-01-28T22:46:57.943-05:00  INFO 29232 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-01-28T22:46:57.944-05:00  WARN 29232 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-28T22:46:57.944-05:00  INFO 29232 --- [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 10.4.32
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-28T22:46:57.948-05:00  INFO 29232 --- [vaadin-dev-server-1] c.v.f.s.frontend.TaskCopyFrontendFiles   : Visited 22 resources. Took 82 ms.
+2026-01-28T22:46:57.966-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:46:57 p. m. [vite] target/vaadin-dev-server-settings.json changed, restarting server...
+2026-01-28T22:46:58.095-05:00  INFO 29232 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-28T22:46:58.120-05:00  INFO 29232 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-28T22:46:58.315-05:00  WARN 29232 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatEndpoint' defined in file [D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\target\classes\org\proyecto\nvidiacorp\base\endpoints\ChatEndpoint.class]: Failed to instantiate [org.proyecto.nvidiacorp.base.endpoints.ChatEndpoint]: Constructor threw exception
+2026-01-28T22:46:58.315-05:00  INFO 29232 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-28T22:46:58.317-05:00  INFO 29232 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2026-01-28T22:46:58.358-05:00  INFO 29232 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2026-01-28T22:46:58.358-05:00  INFO 29232 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-01-28T22:46:58.362-05:00  WARN 29232 --- [restartedMain] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [vaadin-dev-server-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.14/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.14/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)
+ java.base@17.0.14/java.util.concurrent.CompletableFuture$Signaller.block(CompletableFuture.java:1864)
+ java.base@17.0.14/java.util.concurrent.ForkJoinPool.unmanagedBlock(ForkJoinPool.java:3465)
+ java.base@17.0.14/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3436)
+ java.base@17.0.14/java.util.concurrent.CompletableFuture.waitingGet(CompletableFuture.java:1898)
+ java.base@17.0.14/java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2117)
+ app//com.vaadin.base.devserver.AbstractDevServerRunner.waitForDevServer(AbstractDevServerRunner.java:560)
+ app//com.vaadin.base.devserver.DevModeHandlerManagerImpl.lambda$initDevModeHandler$0(DevModeHandlerManagerImpl.java:109)
+ app//com.vaadin.base.devserver.DevModeHandlerManagerImpl$$Lambda$1198/0x0000026a9e6b8000.run(Unknown Source)
+ java.base@17.0.14/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
+ java.base@17.0.14/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+ java.base@17.0.14/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.14/java.lang.Thread.run(Thread.java:840)
+2026-01-28T22:46:58.371-05:00  INFO 29232 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-01-28T22:46:58.397-05:00 ERROR 29232 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatEndpoint' defined in file [D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\target\classes\org\proyecto\nvidiacorp\base\endpoints\ChatEndpoint.class]: Failed to instantiate [org.proyecto.nvidiacorp.base.endpoints.ChatEndpoint]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1349) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1234) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.proyecto.nvidiacorp.Application.main(Application.java:21) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.4.5.jar:3.4.5]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.proyecto.nvidiacorp.base.endpoints.ChatEndpoint]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:222) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1343) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 24 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	Syntax error on tokens, delete these tokens
+	Syntax error on tokens, delete these tokens
+	Syntax error on tokens, delete these tokens
+	Syntax error on tokens, delete these tokens
+	Duplicate local variable listaProductos
+	The method listAll() is undefined for the type ProductoService
+	Duplicate local variable contexto
+	Duplicate local variable p
+	Syntax error on tokens, delete these tokens
+	Syntax error, insert "}" to complete ClassBody
+
+	at org.proyecto.nvidiacorp.base.endpoints.ChatEndpoint.<init>(ChatEndpoint.java:5) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:196) ~[spring-beans-6.2.6.jar:6.2.6]
+	... 26 common frames omitted
+
+2026-01-28T22:46:58.437-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:46:58 p. m. [vite] server restarted.
+2026-01-28T22:46:59.160-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:46:59 p. m. [vite] (client) Pre-transform error: D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\src\main\frontend\views\producto-list.tsx: Unexpected token (17:1)
+2026-01-28T22:46:59.160-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:46:59.160-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   15 | import { Upload } from '@vaadin/react-components';
+2026-01-28T22:46:59.160-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   16 | import { useNavigate } from 'react-router';
+2026-01-28T22:46:59.160-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : > 17 | <<<<<<< HEAD
+2026-01-28T22:46:59.160-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      |  ^
+2026-01-28T22:46:59.162-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:46:59.162-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   19 | =======
+2026-01-28T22:46:59.162-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:46:59.162-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Plugin: vite:react-babel
+2026-01-28T22:46:59.162-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   File: D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:17:1
+2026-01-28T22:46:59.162-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   16 |  import { useNavigate } from 'react-router';
+2026-01-28T22:46:59.163-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   17 |  <<<<<<< HEAD
+2026-01-28T22:46:59.163-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   18 |  import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:46:59.163-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      |      ^
+2026-01-28T22:46:59.164-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   19 |  =======
+2026-01-28T22:46:59.164-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   20 |  import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:46:59.422-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 10:46:59 p. m. [vite] (client) Pre-transform error: D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\src\main\frontend\views\producto-list.tsx: Unexpected token (17:1)
+2026-01-28T22:46:59.422-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:46:59.422-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   15 | import { Upload } from '@vaadin/react-components';
+2026-01-28T22:46:59.422-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   16 | import { useNavigate } from 'react-router';
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : > 17 | <<<<<<< HEAD
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      |  ^
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   19 | =======
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Plugin: vite:react-babel
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   File: D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:17:1
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   16 |  import { useNavigate } from 'react-router';
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   17 |  <<<<<<< HEAD
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   18 |  import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      |      ^
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   19 |  =======
+2026-01-28T22:46:59.427-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   20 |  import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:46:59.464-05:00  INFO 29232 --- [ForkJoinPool.commonPool-worker-7] c.v.b.devserver.AbstractDevServerRunner  : Reusing Vite running at http://127.0.0.1:60238
+2026-01-28T22:47:02.548-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.548-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Merge conflict marker encountered.
+2026-01-28T22:47:02.548-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:17:1
+2026-01-28T22:47:02.548-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.548-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     15 | import { Upload } from '@vaadin/react-components';
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     16 | import { useNavigate } from 'react-router';
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 17 | <<<<<<< HEAD
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        | ^^^^^^^
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     19 | =======
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Merge conflict marker encountered.
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:19:1
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     17 | <<<<<<< HEAD
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     18 | import { ProductoEntryForm,ProductoEntryFormUpdate } from './_producto-admin';
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 19 | =======
+2026-01-28T22:47:02.550-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        | ^^^^^^^
+2026-01-28T22:47:02.552-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:47:02.552-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     21 | >>>>>>> 68e81b6edadf9a23f0c8b479f3ad6d6d42262e06
+2026-01-28T22:47:02.552-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     22 | import { ChatEndpoint } from 'Frontend/generated/endpoints';
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Merge conflict marker encountered.
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:21:1
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     19 | =======
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     20 | import { ProductoEntryForm, ProductoEntryFormUpdate } from './producto-admin';
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 21 | >>>>>>> 68e81b6edadf9a23f0c8b479f3ad6d6d42262e06
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        | ^^^^^^^
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     22 | import { ChatEndpoint } from 'Frontend/generated/endpoints';
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     23 |
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     24 |
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:02.553-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : [TypeScript] Found 3 errors. Watching for file changes.
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  '}' expected.
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:880:2
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     878 |     tiposGPU: string[];
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     879 |     series: string[];
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 880 | }
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |  ^
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:47:48.062-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : [TypeScript] Found 1 error. Watching for file changes.
+2026-01-28T22:48:05.744-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  '}' expected.
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:880:2
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     878 |     tiposGPU: string[];
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     879 |     series: string[];
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 880 | }
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |  ^
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-28T22:48:05.746-05:00  INFO 29232 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : [TypeScript] Found 1 error. Watching for file changes.
+2026-01-28T22:48:29.546-05:00  INFO 29232 --- [restartedMain] org.proyecto.nvidiacorp.Application      : Starting Application using Java 17.0.14 with PID 29232 (D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp\target\classes started by LOQ in D:\Users\LOQ\Desktop\Proyecto_NvidiaCorp)
+2026-01-28T22:48:29.547-05:00  INFO 29232 --- [restartedMain] org.proyecto.nvidiacorp.Application      : No active profile set, falling back to 1 default profile: "default"
