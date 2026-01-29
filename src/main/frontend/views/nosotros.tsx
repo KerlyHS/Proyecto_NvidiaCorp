@@ -91,12 +91,6 @@ export default function NosotrosView() {
               <h4>Kevin Nole</h4>
             </article>
           </a>
-          <a href="https://github.com/luis-blacio" target="_blank" rel="noopener noreferrer" className="integrante-link">
-            <article className="integrante-card card-anim">
-              <img src="https://avatars.githubusercontent.com/u/170284848?v=4" alt="Luis Blacio - Integración y Seguridad" />
-              <h4>Luis Blacio</h4>
-            </article>
-          </a>
           <a href="https://github.com/KerlyHS" target="_blank" rel="noopener noreferrer" className="integrante-link">
             <article className="integrante-card card-anim">
               <img src="https://avatars.githubusercontent.com/u/133796983?s=64&v=4" alt="Kerly Huachaca - Documentación y QA" />
