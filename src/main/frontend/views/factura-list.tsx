@@ -53,27 +53,27 @@ export default function FacturaView() {
     // 1. Cargar items del carrito (esto ya lo tenías)
     const storedItems = JSON.parse(localStorage.getItem('factura_items') || '[]').map((item: any) => ({
       ...item,
-      precioUnitario: item.precioUnitario ?? item.precio ?? 0,
-      cantidad: item.cantidad ?? 1,
-      descripcion: item.descripcion ?? item.nombre ?? '',
+      precioUnitario: Number(item.precioUnitario || item.precio || 0),
+      cantidad: Number(item.cantidad || 1),
+      nombre: item.nombre || item.descripcion || 'Producto sin nombre',
     }));
     setItems(storedItems);
 
     // 2. CARGAR DATOS DEL USUARIO DESDE LA BASE DE DATOS <--- NUEVO
     UsuarioServices.getPersonaLogueada().then(persona => {
-        if (persona) {
-            // Llenamos los campos automáticamente
-            nombre.value = persona.nombre || '';
-            apellido.value = persona.apellido || '';
-            cedula.value = persona.codIdent || ''; // Ojo: en tu modelo es codIdent
-            direccion.value = persona.direccion || '';
-            telefono.value = persona.telefono || '';
-            
-            // El método de pago lo podemos fijar porque acabamos de pagar con tarjeta
-            metodoPago.value = 'Tarjeta (Online)'; 
-        } else {
-            console.log("No se encontró información de la persona logueada");
-        }
+      if (persona) {
+        // Llenamos los campos automáticamente
+        nombre.value = persona.nombre || '';
+        apellido.value = persona.apellido || '';
+        cedula.value = persona.codIdent || ''; // Ojo: en tu modelo es codIdent
+        direccion.value = persona.direccion || '';
+        telefono.value = persona.telefono || '';
+
+        // El método de pago lo podemos fijar porque acabamos de pagar con tarjeta
+        metodoPago.value = 'Tarjeta (Online)';
+      } else {
+        console.log("No se encontró información de la persona logueada");
+      }
     }).catch(console.error);
 
   }, []);
@@ -107,28 +107,28 @@ export default function FacturaView() {
     const doc = new jsPDF();
     const marginLeft = 14;
     let y = 20;
-  
+
     const facturaId = localStorage.getItem('id') || '---';
-  
+
     // Agregar logo (demo rectángulo verde, reemplaza por tu imagen real si tienes base64)
     doc.setFillColor(118, 185, 0); // Verde Nvidia
     doc.rect(marginLeft, y, 30, 15, 'F'); // Rectángulo como logo
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
     doc.text('NVIDIA', marginLeft + 5, y + 10);
-  
+
     // Número de factura (a la derecha)
     doc.setTextColor(0);
     doc.setFontSize(12);
     doc.text(`N.º de Factura: ${facturaId}`, 150, y + 10);
-  
+
     y += 25;
-  
+
     // Título
     doc.setFontSize(18);
     doc.text('FACTURA ELECTRÓNICA', marginLeft, y);
     y += 10;
-  
+
     // Datos del cliente
     doc.setFontSize(12);
     doc.text(`Nombre: ${nombre.value} ${apellido.value}`, marginLeft, y); y += 8;
@@ -202,68 +202,72 @@ export default function FacturaView() {
   return (
     <VerticalLayout className="factura-main">
       <div className="factura-panel factura-print-area">
-      <h1 className="factura-title" style={{
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: '1rem',
-  flexWrap: 'wrap'
-}}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-    <img
-      src="https://logos-world.net/wp-content/uploads/2020/11/Nvidia-Symbol.jpg"
-      alt="Logo Nvidia"
-      style={{ height: '90px', borderRadius: '8px' }}
-    />
-    <span style={{ fontSize: '2rem' }}>Factura Electrónica</span>
-  </div>
-  <div style={{
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#b3ff00',
-    background: '#1a1a1a',
-    padding: '0.5rem 1rem',
-    borderRadius: '90px'
-  }}>
-    N.º {localStorage.getItem('id') || '0001'}
-  </div>
-</h1>
+        {/* CABECERA: Logo e Información de la Empresa */}
+        <HorizontalLayout style={{ justifyContent: 'space-between', alignItems: 'flex-start', width: '100%' }}>
+          <VerticalLayout style={{ padding: 0, gap: '0.5rem' }}>
+            <img
+              src="https://logos-world.net/wp-content/uploads/2020/11/Nvidia-Symbol.jpg"
+              alt="Logo Nvidia"
+              style={{ height: '60px', borderRadius: '4px' }}
+            />
+            <div style={{ color: '#76b900', fontSize: '0.9rem', fontWeight: 'bold' }}>
+              NVIDIACORP S.A. <br />
+              RUC: 1792456789001 <br />
+              Dirección: Av. Tecnológica 123, Silicon Valley
+            </div>
+          </VerticalLayout>
 
+          <div className="factura-numero-badge">
+            FACTURA ELECTRÓNICA <br />
+            <span style={{ fontSize: '1.4rem' }}>N.º {localStorage.getItem('id') || '0001'}</span>
+          </div>
+        </HorizontalLayout>
 
+        {/* SECCIÓN CLIENTE: Organizada en dos columnas */}
         <Card className="factura-card">
-          <HorizontalLayout theme="spacing" style={{ flexWrap: 'wrap', gap: '1em' }}>
-            <TextField label="Fecha" style={{ flex: 1, minWidth: '200px' }} value={new Date().toLocaleDateString()} readonly />
-            <TextField label="Nombre" style={{ flex: 1, minWidth: '200px' }} value={nombre.value} onValueChanged={e => nombre.value = e.detail.value} />
-            <TextField label="Apellido" style={{ flex: 1, minWidth: '200px' }} value={apellido.value} onValueChanged={e => apellido.value = e.detail.value} />
-            <TextField label="Cédula/RUC" style={{ flex: 1, minWidth: '200px' }} value={cedula.value} onValueChanged={e => cedula.value = e.detail.value} />
-            <TextField label="Dirección" style={{ flex: 1, minWidth: '200px' }} value={direccion.value} onValueChanged={e => direccion.value = e.detail.value} />
-            <TextField label="Teléfono" style={{ flex: 1, minWidth: '200px' }} value={telefono.value} onValueChanged={e => telefono.value = e.detail.value} />
-            <TextField label="Método de Pago"  style={{ flex: 1, minWidth: '200px' }} value={metodoPago.value} onValueChanged={e => metodoPago.value = e.detail.value} />
-          </HorizontalLayout>
+          <h3 style={{ borderBottom: '1px solid #ffffff', paddingBottom: '0.8rem', marginBottom: '1.5rem' }}>
+            DATOS DEL RECEPTOR
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <TextField label="Razón Social / Nombres" value={`${nombre.value} ${apellido.value}`} readonly />
+            <TextField label="Identificación (Cédula/RUC)" value={cedula.value} readonly />
+            <TextField label="Dirección" value={direccion.value} readonly />
+            <TextField label="Teléfono" value={telefono.value} readonly />
+            <TextField label="Fecha de Emisión" value={new Date().toLocaleDateString()} readonly />
+            <TextField label="Forma de Pago" value={metodoPago.value} readonly />
+          </div>
         </Card>
 
-        <Grid className="factura-grid" items={items} style={{ marginTop: '1rem' }}>
-          <GridColumn path="cantidad" header="Cantidad" />
-          <GridColumn header="Producto" renderer={({ item }) => <span>{item.nombre}</span>} />
-          <GridColumn header="Precio Unitario" renderer={({ item }) => <span>$ {item.precioUnitario.toFixed(2)}</span>} />
-          <GridColumn header="Precio Total" renderer={({ item }) => <span>$ {(item.precioUnitario * item.cantidad).toFixed(2)}</span>} />
+        {/* TABLA DE PRODUCTOS */}
+        <Grid className="factura-grid" items={items} allRowsVisible>
+          <GridColumn path="cantidad" header="Cant." width="80px" flexGrow={0} />
+          <GridColumn header="Descripción del Producto" renderer={({ item }) => (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ fontWeight: 'bold' }}>{item.nombre || item.descripcion}</span>
+            </div>
+          )} />
+          <GridColumn header="V. Unitario" renderer={({ item }) => <span>$ {item.precioUnitario.toFixed(2)}</span>} textAlign="end" />
+          <GridColumn header="V. Total" renderer={({ item }) => <span>$ {(item.precioUnitario * item.cantidad).toFixed(2)}</span>} textAlign="end" />
         </Grid>
 
-        <VerticalLayout className="factura-totales" style={{
-          background: '#060606',
-          alignSelf: 'flex-end',
-          minWidth: 350,
-        }}>
-          <div><strong>Subtotal:</strong> $ {subtotal.toFixed(2)}</div>
-          <div><strong>IVA (15%):</strong> $ {iva.toFixed(2)}</div>
-          <div><strong>Total:</strong> $ {total.toFixed(2)}</div>
-        </VerticalLayout>
+        {/* TOTALES Y NOTAS */}
+        <HorizontalLayout style={{ width: '100%', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <div style={{ color: '#888', fontSize: '0.8rem', maxWidth: '300px' }}>
+            <strong>Información Adicional:</strong> <br />
+            Esta factura es un documento tributario electrónico autorizado conforme a las leyes vigentes.
+          </div>
 
-        <HorizontalLayout style={{ justifyContent: 'end', marginTop: '1em', gap: '1em' }}>
-          
-          <Button className="factura-btn-secondary" theme="secondary" onClick={generarPDF}>
-            ⬇️ Descargar PDF
-          </Button>
+          <VerticalLayout className="factura-totales">
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+              <span>Subtotal:</span> <span>$ {subtotal.toFixed(2)}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+              <span>IVA (15%):</span> <span>$ {iva.toFixed(2)}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '10px', borderTop: '1px solid #333', paddingTop: '10px' }}>
+              <strong>TOTAL:</strong> <strong>$ {total.toFixed(2)}</strong>
+            </div>
+          </VerticalLayout>
         </HorizontalLayout>
       </div>
     </VerticalLayout>

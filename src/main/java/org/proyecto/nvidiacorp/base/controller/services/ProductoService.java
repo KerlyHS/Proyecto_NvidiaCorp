@@ -93,5 +93,38 @@ public class ProductoService {
     int nuevoStock = p.getStock() != null ? p.getStock() - cantidad : 0;
     p.setStock(nuevoStock < 0 ? 0 : nuevoStock);
     productoRepository.save(p);
-}
+    }
+
+public List<ProductoDTO> busqueda(String atributo, String valor) {
+        List<Producto> productosLista = productoRepository.findAll();
+        
+        return productosLista.stream()
+            .filter(producto -> {
+                if (valor == null || valor.trim().isEmpty()) return true;
+                
+                String valorProducto = getValorAtributo(producto, atributo);
+                return valorProducto != null && valorProducto.toLowerCase().contains(valor.toLowerCase());
+            })
+            .map(p -> {
+                String nombreMarca = "General";
+                if (p.getId_marca() != null) {
+                    nombreMarca = marcaRepository.findById(p.getId_marca())
+                        .map(m -> m.getNombre())
+                        .orElse("General");
+                }
+                return new ProductoDTO(p, nombreMarca);
+            })
+            .collect(Collectors.toList());
+    }
+
+    private String getValorAtributo(Producto producto, String atributo) {
+        if (atributo == null) return null;
+        switch (atributo.toLowerCase()) {
+            case "nombre": return producto.getNombre();
+            case "descripcion": return producto.getDescripcion();
+            case "precio": return producto.getPrecio() != null ? producto.getPrecio().toString() : null;
+            case "categoria": return producto.getCategoria() != null ? producto.getCategoria().toString() : null;
+            default: return null;
+        }
+    }
 }

@@ -236,14 +236,8 @@ export default function ProductoListView() {
             setCargandoIA(false);
         }
     };
-    const criterio = useSignal('');
     const text = useSignal('');
     const navigate = useNavigate();
-
-    const itemSelect = [
-        { label: '🏷️ Nombre', value: 'nombre' },
-        { label: '💰 Precio', value: 'precio' },
-    ];
 
     const cargarProductos = async () => {
         const data = await ProductoService.listAllProductos();
@@ -339,15 +333,15 @@ export default function ProductoListView() {
 
     const search = async () => {
         try {
-            if (!criterio.value || !text.value) {
-                Notification.show('Por favor, selecciona un criterio e ingresa texto para buscar', {
+            if (!text.value) {
+                Notification.show('Por favor, ingresa el nombre del producto para buscar', {
                     duration: 4000,
                     position: 'top-center',
                     theme: 'error'
                 });
                 return;
             }
-            ProductoService.busqueda(criterio.value, text.value).then(function (data) {
+            ProductoService.busqueda('nombre', text.value).then(function (data) {
                 setProductos(data);
                 console.log("Resultados de busqueda:", data);
                 Notification.show(`Se encontraron ${data.length} resultado(s)`, {
@@ -612,18 +606,9 @@ export default function ProductoListView() {
                 />
 
                 <div className="producto-barra-busqueda">
-                    <Select
-                        className="producto-select"
-                        items={itemSelect}
-                        value={criterio.value}
-                        onValueChanged={(e) => (criterio.value = e.detail.value)}
-                        label="🔍 Buscar por"
-                        placeholder="Selecciona criterio..."
-                    />
-
                     <TextField
                         className="producto-busqueda-input"
-                        placeholder="¿Qué producto estas buscando? 🎯"
+                        placeholder="Ingrese el nombre del producto"
                         value={text.value}
                         onValueChanged={(evt) => (text.value = evt.detail.value)}
                         onKeyDown={handleKeyPress}
@@ -636,7 +621,7 @@ export default function ProductoListView() {
                         onClick={search}
                         theme="primary"
                         className="producto-buscar-btn"
-                        disabled={!criterio.value || !text.value}
+                        disabled={!text.value}
                     >
                         <Icon icon="vaadin:search" style={{ marginRight: '8px', fontSize: '1.1rem' }} />
                         Buscar
