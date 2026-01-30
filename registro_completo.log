@@ -8245,3 +8245,335 @@ Vaadin is running in DEVELOPMENT mode - do not use for production deployments.
 2026-01-29T20:54:54.367-05:00  INFO 30708 --- [restartedMain] o.proyecto.nvidiacorp.base.DataLoader    : ? CARGA MASIVA FINALIZADA ?
 2026-01-29T20:54:54.371-05:00  INFO 30708 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
 2026-01-29T20:54:54.371-05:00  INFO 30708 --- [restartedMain] c.v.b.d.DevModeHandlerManagerImpl        : Application running at http://localhost:8080/
+2026-01-29T21:01:45.785-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 9:01:45 p. m. [vite] (client) hmr update /views/Pago-form.tsx
+2026-01-29T21:01:45.920-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 9:01:45 p. m. [vite] (client) hmr update /views/Pago-form.tsx
+2026-01-29T21:01:46.642-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.642-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Property 'user' does not exist on type 'AuthContextType'.
+2026-01-29T21:01:46.642-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/components/Navbar.tsx:12:11
+2026-01-29T21:01:46.642-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.642-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     10 |   const navigate = useNavigate();
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     11 |   const location = useLocation(); // <-- Obtiene el objeto location
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 12 |   const { user } = useAuth();
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |           ^^^^
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     13 |
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     14 |   console.log("Usuario autenticado:", user); // <-- Agrega esto
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     15 |
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'Marca | undefined' is not assignable to type 'Marca'.
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Type 'undefined' is not assignable to type 'Marca'.
+2026-01-29T21:01:46.643-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/_producto-admin.tsx:47:68
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     45 |         // Carga de marcas
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     46 |         MarcaService.listAllMarcas().then(result => {
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 47 |              setMarcas([{ id: 0, nombre: 'Seleccione una marca' }, ...(result || [])]);
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                                                                    ^^^^^^^^^^^^^^^^^
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     48 |         }).catch(console.error);
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     49 |     }, []);
+2026-01-29T21:01:46.645-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     50 |
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'number' is not assignable to type 'string'.
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/_producto-admin.tsx:98:25
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      96 |                         itemLabelPath="nombre"
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      97 |                         itemValuePath="id"
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   >  98 |                         value={marca.value}
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                         ^^^^^
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      99 |                         onValueChanged={e => marca.value = e.detail.value}
+2026-01-29T21:01:46.647-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     100 |                     />
+2026-01-29T21:01:46.649-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     101 |                     
+2026-01-29T21:01:46.649-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.649-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'string' is not assignable to type 'number'.
+2026-01-29T21:01:46.649-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/_producto-admin.tsx:99:46
+2026-01-29T21:01:46.649-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      97 |                         itemValuePath="id"
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :      98 |                         value={marca.value}
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   >  99 |                         onValueChanged={e => marca.value = e.detail.value}
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                                              ^^^^^^^^^^^
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     100 |                     />
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     101 |                     
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     102 |                     <TextField label="Precio" value={precio.value.toString()} onValueChanged={e => precio.value = parseFloat(e.detail.value) || 0} />
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'Marca | undefined' is not assignable to type 'Marca'.
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Type 'undefined' is not assignable to type 'Marca'.
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/_producto-admin.tsx:152:58
+2026-01-29T21:01:46.650-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.652-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     150 |     useEffect(() => {
+2026-01-29T21:01:46.652-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     151 |         MarcaService.listAllMarcas().then(result => {
+2026-01-29T21:01:46.652-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 152 |              setMarcas([{ id: 0, nombre: 'Seleccione' }, ...(result || [])]);
+2026-01-29T21:01:46.652-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                                                          ^^^^^^^^^^^^^^^^^
+2026-01-29T21:01:46.652-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     153 |         });
+2026-01-29T21:01:46.652-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     154 |     }, []);
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     155 |
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'total' implicitly has an 'any' type.
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:24:28
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     22 |   // Cálculos del carrito
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     23 |   const calcularSubtotal = () => {
+2026-01-29T21:01:46.653-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 24 |     return carrito.reduce((total, item) => {
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                            ^^^^^
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     25 |       const cantidad = cantidades[item.id] || 1;
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     26 |       return total + (item.precio * cantidad);
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     27 |     }, 0);
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'item' implicitly has an 'any' type.
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:24:35
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     22 |   // Cálculos del carrito
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     23 |   const calcularSubtotal = () => {
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 24 |     return carrito.reduce((total, item) => {
+2026-01-29T21:01:46.654-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                                   ^^^^
+2026-01-29T21:01:46.655-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     25 |       const cantidad = cantidades[item.id] || 1;
+2026-01-29T21:01:46.655-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     26 |       return total + (item.precio * cantidad);
+2026-01-29T21:01:46.655-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     27 |     }, 0);
+2026-01-29T21:01:46.656-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.656-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'p' implicitly has an 'any' type.
+2026-01-29T21:01:46.656-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:40:33
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     38 |   const handleCantidad = (id: number, valor: number) => {
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     39 |     setCantidades((prev) => {
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 40 |       const item = carrito.find(p => p.id === id);
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                                 ^
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     41 |       const stock = item?.stock ?? 1;
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     42 |       let nuevaCantidad = Math.max(1, (prev[id] || 1) + valor);
+2026-01-29T21:01:46.657-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     43 |       console.log("Stock:", stock, "Cantidad actual:", prev[id], "Nueva cantidad:", nuevaCantidad);
+2026-01-29T21:01:46.658-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.658-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'carritoActual' implicitly has an 'any' type.
+2026-01-29T21:01:46.658-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:52:19
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     50 |         nuevaCantidad = stock;
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     51 |       }
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 52 |       setCarrito((carritoActual) =>
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                   ^^^^^^^^^^^^^
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     53 |         carritoActual.map((item) =>
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     54 |           item.id === id ? { ...item, cantidad: nuevaCantidad } : item
+2026-01-29T21:01:46.659-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     55 |         )
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'item' implicitly has an 'any' type.
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:53:28
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     51 |       }
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     52 |       setCarrito((carritoActual) =>
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 53 |         carritoActual.map((item) =>
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                            ^^^^
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     54 |           item.id === id ? { ...item, cantidad: nuevaCantidad } : item
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     55 |         )
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     56 |       );
+2026-01-29T21:01:46.660-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Not all code paths return a value.
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:112:13
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     110 |   };
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     111 |
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 112 |   useEffect(() => {
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |             ^^^^^^^
+2026-01-29T21:01:46.663-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     113 |     if (checkoutId && showPagoModal) {
+2026-01-29T21:01:46.664-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     114 |       const script = document.createElement('script');
+2026-01-29T21:01:46.664-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     115 |       script.src = `https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId=${checkoutId}`;
+2026-01-29T21:01:46.664-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.664-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'item' implicitly has an 'any' type.
+2026-01-29T21:01:46.665-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:172:31
+2026-01-29T21:01:46.665-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.665-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     170 |             <div className="carrito-productos">
+2026-01-29T21:01:46.665-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     171 |               <div className="producto-grid">
+2026-01-29T21:01:46.665-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 172 |                 {carrito.map((item) => (
+2026-01-29T21:01:46.665-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                               ^^^^
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     173 |                   <div key={item.id} className="producto-card">
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     174 |                     <ProductoCard
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     175 |                       item={item}
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'item' implicitly has an 'any' type.
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/carrito-list.tsx:203:34
+2026-01-29T21:01:46.666-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.668-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     201 |                   <h3 className="carrito-mini-factura-titulo">Productos</h3>
+2026-01-29T21:01:46.668-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     202 |                   <ul className="carrito-mini-factura-lista">
+2026-01-29T21:01:46.668-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 203 |                     {carrito.map(item => (
+2026-01-29T21:01:46.668-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                                  ^^^^
+2026-01-29T21:01:46.668-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     204 |                       <li key={item.id} className="carrito-mini-factura-item">
+2026-01-29T21:01:46.668-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     205 |                         <span className="carrito-mini-factura-nombre">{item.nombre}</span>
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     206 |                         <span className="carrito-mini-factura-cantidad">{cantidades[item.id] || 1}</span>
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'acc' implicitly has an 'any' type.
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/Pago-form.tsx:32:44
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     30 |           localStorage.removeItem('carrito');
+2026-01-29T21:01:46.669-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     31 |
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 32 |           const subtotal = carrito.reduce((acc, item) => acc + (item.precio * (item.cantidad || 1)), 0);
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                                            ^^^
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     33 |           const iva = subtotal * 0.15;
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     34 |           const total = subtotal + iva;
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     35 |           localStorage.setItem('factura_items', JSON.stringify(carrito));
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.670-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'item' implicitly has an 'any' type.
+2026-01-29T21:01:46.671-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/Pago-form.tsx:32:49
+2026-01-29T21:01:46.671-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.671-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     30 |           localStorage.removeItem('carrito');
+2026-01-29T21:01:46.671-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     31 |
+2026-01-29T21:01:46.671-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 32 |           const subtotal = carrito.reduce((acc, item) => acc + (item.precio * (item.cantidad || 1)), 0);
+2026-01-29T21:01:46.673-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                                                 ^^^^
+2026-01-29T21:01:46.673-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     33 |           const iva = subtotal * 0.15;
+2026-01-29T21:01:46.673-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     34 |           const total = subtotal + iva;
+2026-01-29T21:01:46.673-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     35 |           localStorage.setItem('factura_items', JSON.stringify(carrito));
+2026-01-29T21:01:46.673-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Not all code paths return a value.
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/Pago-form.tsx:62:13
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     60 |   };
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     61 |
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 62 |   useEffect(() => {
+2026-01-29T21:01:46.674-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |             ^^^^^^^
+2026-01-29T21:01:46.675-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     63 |     if (checkoutId) {
+2026-01-29T21:01:46.675-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     64 |       const script = document.createElement('script');
+2026-01-29T21:01:46.675-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     65 |       script.src = `https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId=${checkoutId}`;
+2026-01-29T21:01:46.675-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.675-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'Element' is not assignable to type 'string'.
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/Pago_list.tsx:86:20
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     84 |   return (
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     85 |     <main className="pago-main">
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 86 |       <ViewToolbar title={<span className="pago-title">Lista de Pagos</span>}>
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |                    ^^^^^
+2026-01-29T21:01:46.676-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     87 |         <Group>
+2026-01-29T21:01:46.677-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     88 |           {/* Aquí puedes agregar filtros o botones si lo necesitas */}
+2026-01-29T21:01:46.677-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     89 |         </Group>
+2026-01-29T21:01:46.677-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.677-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'Promise<(Persona | undefined)[] | undefined>' is not assignable to type 'Promise<Persona[]>'.
+2026-01-29T21:01:46.677-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Type '(Persona | undefined)[] | undefined' is not assignable to type 'Persona[]'.
+2026-01-29T21:01:46.677-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     Type 'undefined' is not assignable to type 'Persona[]'.
+2026-01-29T21:01:46.678-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/persona-list.tsx:172:27
+2026-01-29T21:01:46.678-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.678-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     170 | export default function PersonaListView() {
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     171 |     const dataProvider = useDataProvider<Persona>({
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 172 |         list: (params) => PersonaServices.listAllPersona(),
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     173 |     });
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     174 |
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     175 |     return (
+2026-01-29T21:01:46.679-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.680-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Not all code paths return a value.
+2026-01-29T21:01:46.680-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:28:15
+2026-01-29T21:01:46.680-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.680-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     26 |     const navigate = useNavigate();
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     27 |
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 28 |     useEffect(() => {
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :        |               ^^^^^^^
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     29 |         if (isVisible && producto) {
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     30 |             const timer = setTimeout(() => {
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     31 |                 onClose();
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  'respuesta' is possibly 'undefined'.
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:218:17
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     216 |
+2026-01-29T21:01:46.681-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     217 |             // --- Lógica de Añadir al Carrito ---
+2026-01-29T21:01:46.682-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 218 |             if (respuesta.includes("[ADD_TO_CART:")) {
+2026-01-29T21:01:46.682-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                 ^^^^^^^^^
+2026-01-29T21:01:46.682-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     219 |                 const match = respuesta.match(/\[ADD_TO_CART:(\d+)\]/);
+2026-01-29T21:01:46.682-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     220 |                 if (match) {
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     221 |                     const id = parseInt(match[1]);
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  'respuesta' is possibly 'undefined'.
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:219:31
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     217 |             // --- Lógica de Añadir al Carrito ---
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     218 |             if (respuesta.includes("[ADD_TO_CART:")) {
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 219 |                 const match = respuesta.match(/\[ADD_TO_CART:(\d+)\]/);
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                               ^^^^^^^^^
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     220 |                 if (match) {
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     221 |                     const id = parseInt(match[1]);
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     222 |                     const prod = productos.find(p => p.id === id);
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.683-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  'respuesta' is possibly 'undefined'.
+2026-01-29T21:01:46.685-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:231:33
+2026-01-29T21:01:46.685-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.685-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     229 |
+2026-01-29T21:01:46.685-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     230 |             // Limpiamos el código del texto antes de mostrarlo
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 231 |             const textoLimpio = respuesta.replace(/\[ADD_TO_CART:.*?\]/g, "").trim();
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                                 ^^^^^^^^^
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     232 |             setHistorial(prev => [...prev, { rol: 'ia', texto: textoLimpio }]);
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     233 |         } catch (error) {
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     234 |             console.error(error);
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Argument of type '(ProductoDTO | undefined)[] | undefined' is not assignable to parameter of type 'SetStateAction<Producto[]>'.
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Type 'undefined' is not assignable to type 'SetStateAction<Producto[]>'.
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:250:22
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     248 |     const cargarProductos = async () => {
+2026-01-29T21:01:46.686-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     249 |         const data = await ProductoService.listAllProductos();
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 250 |         setProductos(data);
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                      ^^^^
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     251 |         setProductosFiltrados(data);
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     252 |         console.log("Productos recibidos:", data);
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     253 |     };
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.688-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Argument of type '(ProductoDTO | undefined)[] | undefined' is not assignable to parameter of type 'SetStateAction<Producto[]>'.
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Type 'undefined' is not assignable to type 'SetStateAction<Producto[]>'.
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:251:31
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     249 |         const data = await ProductoService.listAllProductos();
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     250 |         setProductos(data);
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 251 |         setProductosFiltrados(data);
+2026-01-29T21:01:46.689-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                               ^^^^
+2026-01-29T21:01:46.690-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     252 |         console.log("Productos recibidos:", data);
+2026-01-29T21:01:46.690-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     253 |     };
+2026-01-29T21:01:46.690-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     254 |
+2026-01-29T21:01:46.690-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.690-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Property 'busqueda' does not exist on type 'typeof import("D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/generated/ProductoService")'.
+2026-01-29T21:01:46.691-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:350:29
+2026-01-29T21:01:46.691-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.691-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     348 |                 return;
+2026-01-29T21:01:46.691-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     349 |             }
+2026-01-29T21:01:46.691-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 350 |             ProductoService.busqueda(criterio.value, text.value).then(function (data) {
+2026-01-29T21:01:46.692-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                             ^^^^^^^^
+2026-01-29T21:01:46.692-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     351 |                 setProductos(data);
+2026-01-29T21:01:46.692-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     352 |                 console.log("Resultados de busqueda:", data);
+2026-01-29T21:01:46.692-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     353 |                 Notification.show(`Se encontraron ${data.length} resultado(s)`, {
+2026-01-29T21:01:46.692-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.693-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Parameter 'data' implicitly has an 'any' type.
+2026-01-29T21:01:46.693-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:350:81
+2026-01-29T21:01:46.693-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.693-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     348 |                 return;
+2026-01-29T21:01:46.693-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     349 |             }
+2026-01-29T21:01:46.693-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 350 |             ProductoService.busqueda(criterio.value, text.value).then(function (data) {
+2026-01-29T21:01:46.694-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                                                                                 ^^^^
+2026-01-29T21:01:46.694-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     351 |                 setProductos(data);
+2026-01-29T21:01:46.694-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     352 |                 console.log("Resultados de busqueda:", data);
+2026-01-29T21:01:46.694-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     353 |                 Notification.show(`Se encontraron ${data.length} resultado(s)`, {
+2026-01-29T21:01:46.694-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.694-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type 'Element' is not assignable to type 'string'.
+2026-01-29T21:01:46.695-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:599:21
+2026-01-29T21:01:46.695-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.695-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     597 |             <div className="contenido-principal">
+2026-01-29T21:01:46.695-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     598 |                 <ViewToolbar
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 599 |                     title={
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                     ^^^^^
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     600 |                         <span className="producto-toolbar-titulo">
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     601 |                             Productos ({productosFiltrados.length})
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     602 |                         </span>
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.696-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type '(event: KeyboardEvent) => void' is not assignable to type 'KeyboardEventHandler<TextField>'.
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Types of parameters 'event' and 'event' are incompatible.
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     Type 'KeyboardEvent<TextField>' is missing the following properties from type 'KeyboardEvent': isComposing, initKeyboardEvent, DOM_KEY_LOCATION_STANDARD, DOM_KEY_LOCATION_LEFT, and 14 more.
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:629:25
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     627 |                         value={text.value}
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     628 |                         onValueChanged={(evt) => (text.value = evt.detail.value)}
+2026-01-29T21:01:46.697-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 629 |                         onKeyDown={handleKeyPress}
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                         ^^^^^^^^^
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     630 |                         clearButtonVisible
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     631 |                     >
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     632 |                         <Icon slot="prefix" icon="vaadin:search" style={{ color: '#76b900', fontSize: '1.2rem' }} />
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  ERROR(TypeScript)  Type '{ onProductoCreated: () => Promise<void>; className: string; }' is not assignable to type 'IntrinsicAttributes & ProductoEntryFormProps'.
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   Property 'className' does not exist on type 'IntrinsicAttributes & ProductoEntryFormProps'.
+2026-01-29T21:01:46.698-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :  FILE  D:/Users/LOQ/Desktop/Proyecto_NvidiaCorp/src/main/frontend/views/producto-list.tsx:658:25
+2026-01-29T21:01:46.699-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.699-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     656 |                     <ProductoEntryForm
+2026-01-29T21:01:46.699-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     657 |                         onProductoCreated={cargarProductos}
+2026-01-29T21:01:46.699-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :   > 658 |                         className="producto-btn-registrar"
+2026-01-29T21:01:46.699-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :         |                         ^^^^^^^^^
+2026-01-29T21:01:46.699-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     659 |                     />
+2026-01-29T21:01:46.700-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     660 |                 </div>
+2026-01-29T21:01:46.700-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   :     661 |
+2026-01-29T21:01:46.700-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : 
+2026-01-29T21:01:46.700-05:00  INFO 30708 --- [dev-server-output] c.v.b.devserver.DevServerOutputTracker   : [TypeScript] Found 29 errors. Watching for file changes.
