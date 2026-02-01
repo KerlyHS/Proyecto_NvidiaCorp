@@ -173,7 +173,8 @@ html, body, #root {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    max-width: 1200px;
+    max-width: 95%;
+    width: 70%;
     border: 2px solid rgba(118, 185, 0, 0.2);
     transition: all 0.3s ease;
 }
@@ -183,31 +184,10 @@ html, body, #root {
     border-color: rgba(118, 185, 0, 0.4);
 }
 
-.producto-select {
-    min-width: 180px;
-    flex-shrink: 0;
-}
-
-.producto-select vaadin-select-text-field,
-.producto-select {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%) !important;
-    border-radius: 12px !important;
-    border: 2px solid #76b900 !important;
-    color: #222 !important;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(118, 185, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.producto-select:hover {
-    border-color: #5a9000 !important;
-    box-shadow: 0 6px 16px rgba(118, 185, 0, 0.2);
-    transform: translateY(-1px);
-}
-
 /* Input de búsqueda */
 .producto-busqueda-input {
     flex: 1;
+    min-width: 300px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%) !important;
     border-radius: 12px !important;
     border: 2px solid #76b900 !important;
@@ -722,294 +702,86 @@ html, body, #root {
     }
 }
 
-.filtro-seccion-contenido::-webkit-scrollbar {
-    width: 6px;
+/* CAMPOS DE FORMULARIO - MÁS ANCHOS */
+vaadin-text-field,
+vaadin-text-area,
+vaadin-combo-box,
+vaadin-upload {
+  width: 100% !important;
+  --vaadin-text-field-default-padding: 0.8rem 1.2rem !important;
 }
 
-.filtro-seccion-contenido::-webkit-scrollbar-track {
-    background: rgba(118, 185, 0, 0.1);
-    border-radius: 10px;
-}
-
-.filtro-seccion-contenido::-webkit-scrollbar-thumb {
-    background: #76b900;
-    border-radius: 10px;
-}
-
-.filtro-seccion-contenido::-webkit-scrollbar-thumb:hover {
-    background: #b3ff00;
-}
-
-.stock-field {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.stock-field label {
-    color: #e0e7ff;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.stock-field input {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%) !important;
-    border-radius: 12px !important;
-    border: 2px solid #76b900 !important;
-    color: #222 !important;
-    font-weight: 600;
-    font-size: 1.1rem !important;
-    padding: 0.8rem 1.2rem !important;
-    box-shadow: 0 4px 12px rgba(118, 185, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.stock-field input:hover {
-    border-color: #5a9000 !important;
-    box-shadow: 0 6px 16px rgba(118, 185, 0, 0.2);
-    transform: translateY(-1px);
-}
-
-.stock-field input:focus {
-    border-color: #4a7c00 !important;
-    box-shadow: 0 8px 20px rgba(118, 185, 0, 0.3);
-    transform: translateY(-2px);
-}
-
-.producto-btn-registrar button,
-.producto-btn-registrar {
-  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
-  color: #222 !important;
-  font-weight: bold !important;
-  border-radius: 12px !important;
-  border: none !important;
-  padding: 0.8rem 2rem !important;
-  font-size: 1.1rem !important;
-  box-shadow: 0 4px 16px #76b90044;
-  transition: all 0.2s;
-}
-.producto-btn-registrar button:hover,
-.producto-btn-registrar:hover {
-  background: linear-gradient(90deg, #b3ff00 0%, #76b900 100%) !important;
-}
-
-/* Hace el fondo del overlay del Dialog translúcido y oscuro */
-vaadin-dialog-overlay::part(overlay) {
-  background: rgba(34, 34, 34, 0.92) !important; /* Fondo modal */
-  box-shadow: 0 8px 40px #76b90044 !important;
-  border-radius: 18px !important;
-}
-
-vaadin-dialog-overlay::part(backdrop) {
-  background: rgba(0,0,0,0.45) !important; /* Fondo detrás del modal */
-}
-
-vaadin-dialog-overlay::part(content),
-vaadin-dialog-overlay::part(overlay),
-vaadin-dialog-overlay::part(backdrop),
-vaadin-dialog-overlay,
-.vaadin-dialog-overlay__content {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-vaadin-dialog-overlay::part(header) {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.dialog-form-container {
-  background: rgba(20, 20, 20, 0.92);
-  border-radius: 22px;
-  box-shadow: 0 8px 40px #76b90055, 0 0 24px #23232322;
-  border: 2.5px solid #76b900;
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
-  margin: 0 auto;
-  color: #e0e7ff;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  min-width: 340px;
-  max-width: 480px;
-  position: relative;
-  backdrop-filter: blur(8px);
-  animation: fadeInScale 0.7s;
-}
-
-@keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.95);}
-  to { opacity: 1; transform: scale(1);}
-}
-
-.dialog-form-container h2 {
-  color: #b3ff00;
-  font-weight: 900;
-  font-size: 2em;
-  margin-bottom: 0;
-  text-align: center;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 16px #76b90055, 0 2px 8px #000;
-}
-
-.dialog-form-container span {
-  color: #b3ff00;
-  font-size: 1rem;
-  margin-top: 0.2rem;
-  text-align: center;
-  letter-spacing: 0.5px;
-}
-
-.dialog-form-container label,
-.dialog-form-container .vaadin-text-field-label,
-.dialog-form-container .vaadin-text-area-label,
-.dialog-form-container .vaadin-combo-box-label {
-  color: #b3ff00 !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.5px;
-}
-
-.dialog-form-container input,
-.dialog-form-container textarea,
-.dialog-form-container .vaadin-text-field-input,
-.dialog-form-container .vaadin-text-area-input,
-.dialog-form-container .vaadin-combo-box-input {
-  color: #e0e7ff !important;
+vaadin-text-field::part(input-field),
+vaadin-text-area::part(input-field),
+vaadin-combo-box::part(input-field) {
+  width: 100% !important;
   background: rgba(34,34,34,0.85) !important;
-  border-radius: 12px !important;
   border: 2px solid #76b900 !important;
-  font-weight: 600;
-  font-size: 1.08rem !important;
-  box-shadow: 0 2px 8px #76b90022;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-.dialog-form-container input:focus,
-.dialog-form-container textarea:focus {
-  border: 2.5px solid #b3ff00 !important;
-  box-shadow: 0 0 12px #b3ff0033;
-  outline: none;
-}
-
-.dialog-form-container input::placeholder,
-.dialog-form-container textarea::placeholder {
-  color: #76b900 !important;
-  opacity: 1 !important;
-  font-style: italic;
-}
-
-.dialog-form-container .vaadin-button,
-.dialog-form-container button {
-  font-weight: bold !important;
-  font-size: 1.13rem !important;
   border-radius: 12px !important;
-  padding: 0.7rem 2.2rem !important;
-  margin-top: 1.2rem;
-  margin-bottom: 0.2rem;
-  border: none !important;
-  box-shadow: 0 2px 12px #76b90044;
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  box-shadow: 0 2px 8px #76b90022 !important;
 }
 
-.dialog-form-container .vaadin-button[theme~="registrar"],
-.dialog-form-container button[theme~="registrar"] {
-  background: linear-gradient(90deg, #76b900 60%, #b3ff00 100%) !important;
-  color: #181818 !important;
-  border: 2px solid #b3ff00 !important;
-  box-shadow: 0 0 16px #b3ff0033;
+/* AUMENTAR ANCHO DEL DIALOG */
+vaadin-dialog-overlay::part(content) {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.98) 0%, rgba(15, 15, 15, 0.95) 100%) !important;
+  border-radius: 22px !important;
+  border: 3px solid #76b900 !important;
+  box-shadow: 0 12px 50px rgba(118, 185, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.8) !important;
+  padding: 2.5rem !important;
+  backdrop-filter: blur(12px) !important;
+  width: 500px !important;
+  min-width: 450px !important;
+  max-width: 90vw !important;
 }
 
-.dialog-form-container .vaadin-button[theme~="registrar"]:hover,
-.dialog-form-container button[theme~="registrar"]:hover {
-  background: linear-gradient(90deg, #b3ff00 0%, #76b900 100%) !important;
-  color: #232323 !important;
-  transform: scale(1.04);
-  box-shadow: 0 0 24px #b3ff0033;
-}
-
-.dialog-form-container .vaadin-button:not([theme~="registrar"]),
-.dialog-form-container button:not([theme~="registrar"]) {
-  background: #232323 !important;
-  color: #fff !important;
-  border: 2px solid #76b900 !important;
-}
-
-.dialog-form-container .vaadin-button:not([theme~="registrar"]):hover,
-.dialog-form-container button:not([theme~="registrar"]:hover) {
-  background: #181818 !important;
-  color: #b3ff00 !important;
-  border: 2px solid #b3ff00 !important;
-  transform: scale(1.04);
-}
-
-.dialog-form-container .vaadin-button[theme~="error"],
-.dialog-form-container button[theme~="error"] {
-  background: linear-gradient(90deg, #dc2626 60%, #ef4444 100%) !important;
-  color: #fff !important;
-  border: 2px solid #ef4444 !important;
-}
-
-.dialog-form-container .vaadin-button[theme~="error"]:hover,
-.dialog-form-container button[theme~="error"]:hover {
-  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%) !important;
-  color: #fff !important;
-  border: 2px solid #f87171 !important;
-}
-
-.dialog-form-container .vaadin-upload {
-  background: transparent !important;
-  border: none !important;
-  margin-bottom: 1rem;
-}
-
-.dialog-form-container img {
-  border: 2px solid #76b900;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px #76b90033;
-  margin-bottom: 8px;
-  max-width: 240px;
-  max-height: 180px;
-}
-
-.dialog-form-container .vaadin-combo-box-overlay {
-  background: #232323 !important;
-  color: #b3ff00 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 24px #76b90044;
-}
-
-/* Contenedor del Chat */
-.chat-container-ia {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-}
-
+/* CHAT BOT - RESTAURAR FONDO */
 .chat-ventana-ia {
     display: flex;
     flex-direction: column;
     min-width: 300px;
     min-height: 400px;
-    width: 350px; /* Tamaño inicial */
-    height: 500px; /* Tamaño inicial */
-    resize: both;  /* Habilita agrandar/achicar */
+    width: 350px;
+    height: 500px;
+    resize: both;
     overflow: hidden;
-    background: #1a1a1a;
-    border: 2px solid #76b900;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.98) 0%, rgba(15, 15, 15, 0.95) 100%);
+    border: 3px solid #76b900;
     border-radius: 12px;
     position: fixed;
     bottom: 85px;
-    right: 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    right: 30px;
+    box-shadow: 0 12px 50px rgba(118, 185, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    z-index: 9998;
+}
+
+.chat-toggle-btn {
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50% !important;
+    background-color: #76b900 !important;
+    color: black !important;
+    box-shadow: 0 4px 15px rgba(118, 185, 0, 0.4);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.chat-toggle-btn:hover {
+    background-color: #8bd400 !important;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(118, 185, 0, 0.6);
 }
 
 .chat-header-ia {
-    background: #76b900;
-    color: black;
+    background: linear-gradient(90deg, #76b900 0%, #8bd400 100%);
+    color: #1a1a1a;
     padding: 12px;
     font-weight: bold;
     display: flex;
@@ -1044,16 +816,6 @@ vaadin-dialog-overlay::part(header) {
     color: black;
     align-self: flex-start;
 }
-
-.chat-toggle-btn {
-    width: 65px !important;
-    height: 65px !important;
-    border-radius: 50% !important;
-    background-color: #76b900 !important;
-    color: black !important;
-    box-shadow: 0 4px 15px rgba(118, 185, 0, 0.4);
-}
-
 
 .chat-window {
     display: flex;
@@ -1156,4 +918,12 @@ vaadin-dialog-overlay::part(header) {
     font-size: 0.8rem;
     font-style: italic;
     margin-left: 10px;
+}
+
+/* Contenedor del Chat - FLOTANTE */
+.chat-container-ia {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
 }

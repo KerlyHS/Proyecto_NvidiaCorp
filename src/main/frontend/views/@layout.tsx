@@ -1,19 +1,6 @@
-import { AuthProvider } from 'Frontend/security/auth';
-import { CarritoProvider } from './_CarritoContext';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import {
-  AppLayout,
-  Avatar,
-  Icon,
-  MenuBar,
-  MenuBarItem,
-  MenuBarItemSelectedEvent,
-  ProgressBar,
-  Scroller,
-  SideNav,
-  SideNavItem,
-} from '@vaadin/react-components';
-import { Suspense } from 'react';
+import { AppLayout, Avatar, Icon, MenuBar, MenuBarItem, MenuBarItemSelectedEvent, ProgressBar, SideNav, SideNavItem } from '@vaadin/react-components';
+import { Suspense, ReactNode } from 'react';
 import { createMenuItems } from '@vaadin/hilla-file-router/runtime.js';
 import Navbar from 'Frontend/components/Navbar';
 
@@ -71,28 +58,27 @@ function UserMenu() {
 
 export default function MainLayout() {
   return (
-      <CarritoProvider>
+    // ¡YA NO PONGAS <AuthProvider> NI <CarritoProvider> AQUÍ!
+    // Solo deja el diseño visual:
+    <>
         <Navbar />
         <div style={{ paddingTop: 56 }}>
           <AppLayout>
-            {/* <Header /> */}
-            {/* <UserMenu /> */}
             <Suspense fallback={<ProgressBar indeterminate={true} className="m-0" />}>
               <Outlet />
             </Suspense>
           </AppLayout>
         </div>
-      </CarritoProvider>
+    </>
   );
 }
 
-import { ReactNode } from 'react';
-
+// Haz lo mismo con la función de abajo si la tienes
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Navbar />
-      <div style={{ paddingTop: 56 }}>{children}</div>
+        <Navbar />
+        <div style={{ paddingTop: 56 }}>{children}</div>
     </>
   );
 }

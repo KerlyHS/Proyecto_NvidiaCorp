@@ -15,12 +15,21 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { router } from 'Frontend/generated/routes.js';
 import { AuthProvider } from './security/auth';
+// Asegúrate de que la ruta a tu Carrito sea correcta (quizás está en views)
+import { CarritoProvider } from './views/_CarritoContext'; 
 
 function App() {
-    return <AuthProvider><RouterProvider router={router} /></AuthProvider>;}
+    return (
+        // AQUÍ VIVEN LOS PROVIDERS GLOBALES (Una sola vez para toda la app)
+        <AuthProvider>
+            <CarritoProvider>
+                <RouterProvider router={router} />
+            </CarritoProvider>
+        </AuthProvider>
+    );
+}
 
 const outlet = document.getElementById('outlet')!;
 let root = (outlet as any)._root ?? createRoot(outlet);
 (outlet as any)._root = root;
 root.render(createElement(App));
-
