@@ -544,3 +544,108 @@
   min-width: 80px;
   text-align: right;
 }
+
+/* Modal de confirmación de eliminación */
+.modal-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-confirm-content {
+  background: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  padding: 2.5rem;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  border: 2px solid #ff4444;
+  animation: slideInScale 0.4s ease-out;
+}
+
+.modal-confirm-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  animation: bounce 0.6s ease-in-out;
+}
+
+.modal-confirm-titulo {
+  color: #ff4444;
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.modal-confirm-mensaje {
+  color: #e0e7ff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.modal-confirm-mensaje strong {
+  color: #76b900;
+  font-weight: 700;
+}
+
+.modal-confirm-botones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-confirm-btn-cancelar {
+  background: #444444 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.9rem 2rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 140px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.modal-confirm-btn-cancelar:hover {
+  background: #555555 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.modal-confirm-btn-eliminar {
+  background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.9rem 2rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 140px !important;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3) !important;
+}
+
+.modal-confirm-btn-eliminar:hover {
+  background: linear-gradient(135deg, #ff6666 0%, #ff8888 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(255, 68, 68, 0.4) !important;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}

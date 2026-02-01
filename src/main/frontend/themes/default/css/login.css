@@ -1,4 +1,3 @@
-
 .login-bg, body, html {
   min-height: 100vh;
   width: 100vw;
@@ -53,4 +52,10 @@ vaadin-login-form vaadin-button[theme~="primary"]:hover {
   color: #181818 !important;
   transform: scale(1.04);
   box-shadow: 0 8px 32px #b3ff0033;
+}
+
+[part='description'] {
+    line-height: var(--lumo-line-height-s);
+    color: hsla(0, 93%, 48%, 0.77);
+    margin-bottom: 0;
 }

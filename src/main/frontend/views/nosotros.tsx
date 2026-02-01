@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import "themes/default/css/nosotros.css";
 
 export default function NosotrosView() {
+  const location = useLocation();
+
   useEffect(() => {
     const sections = document.querySelectorAll(".nosotros-section-anim");
     sections.forEach((sec, i) => {
       setTimeout(() => sec.classList.add("visible"), 200 + i * 200);
     });
-  }, []);
+
+    // ← NUEVO: Si viene del login, desplazarse a contacto
+    if (location.state?.scrollTo === 'contacto') {
+      setTimeout(() => {
+        const contactoSection = document.querySelector('.nosotros-contacto');
+        if (contactoSection) {
+          contactoSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    }
+  }, [location.state]);
 
   return (
     <main className="nosotros-main">
