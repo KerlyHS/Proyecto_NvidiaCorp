@@ -23,6 +23,7 @@ type PersonaEntryFormUpdateProps = { onPersonaUpdated?: () => void; arguments: a
 
 // --- CREAR PERSONA ---
 function PersonaEntryForm(props: PersonaEntryFormProps) {
+    
     const dialogOpened = useSignal(false);
     const navigate = useNavigate();
     
