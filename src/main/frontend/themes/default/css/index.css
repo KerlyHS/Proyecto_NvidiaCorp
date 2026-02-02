@@ -159,7 +159,7 @@ vaadin-select-overlay {
   min-width: 180px !important;
   width: auto !important;
   border-radius: 12px !important;
-  background: #232323 !important;
+  background: #ffffff !important;
   color: #b3ff00 !important;
   overflow-y: auto !important;
 }
@@ -170,5 +170,30 @@ vaadin-select-item {
   min-height: 36px !important;
   font-size: 1rem !important;
   color: #b3ff00 !important;
-  background: #232323 !important;
+  background: #ffffff !important;
+}
+
+
+vaadin-button.btn-productos {
+  background-color: #ffffff !important; 
+  color: #000000 !important;          
+  font-weight: 700 !important;        
+  text-transform: uppercase;          
+  letter-spacing: 1px;                
+  border-radius: 12px !important;     
+  padding: 1.5rem 2rem !important;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+vaadin-button.btn-productos:hover {
+  transform: translateY(-2px) !important;
+  background-color: #f0f0f0 !important;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4) !important;
+}
+
+vaadin-button.btn-productos:active {
+  transform: scale(0.95) !important;
 }

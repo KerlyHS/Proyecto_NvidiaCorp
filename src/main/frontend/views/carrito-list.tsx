@@ -18,6 +18,8 @@ export default function CarritoList() {
   const [mensaje, setMensaje] = useState<string | null>(null);
   const [showPagoModal, setShowPagoModal] = useState(false);
   const [aceptaTerminos, setAceptaTerminos] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false); // ← NUEVO
+  const [productoAEliminar, setProductoAEliminar] = useState<any>(null); // ← NUEVO
 
   // Cálculos del carrito
   const calcularSubtotal = () => {
@@ -59,6 +61,32 @@ export default function CarritoList() {
         [id]: nuevaCantidad,
       };
     });
+  };
+
+  // ← NUEVO: Función para abrir el modal de confirmación
+  const handleEliminarProducto = (item: any) => {
+    setProductoAEliminar(item);
+    setShowConfirmDelete(true);
+  };
+
+  // ← NUEVO: Función para confirmar eliminación
+  const confirmarEliminacion = () => {
+    if (productoAEliminar) {
+      eliminar(productoAEliminar.id);
+      Notification.show(`✅ ${productoAEliminar.nombre} eliminado del carrito`, {
+        position: 'top-center',
+        duration: 3000,
+        theme: 'success'
+      });
+      setShowConfirmDelete(false);
+      setProductoAEliminar(null);
+    }
+  };
+
+  // ← NUEVO: Función para cancelar eliminación
+  const cancelarEliminacion = () => {
+    setShowConfirmDelete(false);
+    setProductoAEliminar(null);
   };
 
   const iniciarPago = async () => {
@@ -173,7 +201,7 @@ export default function CarritoList() {
                   <div key={item.id} className="producto-card">
                     <ProductoCard
                       item={item}
-                      onEliminar={() => eliminar(item.id)}
+                      onEliminar={() => handleEliminarProducto(item)} 
                     />
                     <div className="carrito-cantidad-selector">
                       <Button
@@ -280,6 +308,33 @@ export default function CarritoList() {
             </div>
           </div>
         </>
+      )}
+
+      {/* ← NUEVO: Modal de confirmación de eliminación */}
+      {showConfirmDelete && (
+        <div className="modal-confirm-overlay">
+          <div className="modal-confirm-content">
+            <div className="modal-confirm-icon">⚠️</div>
+            <h2 className="modal-confirm-titulo">¿Eliminar producto?</h2>
+            <p className="modal-confirm-mensaje">
+              ¿Estás seguro de que deseas eliminar <strong>{productoAEliminar?.nombre}</strong> del carrito?
+            </p>
+            <div className="modal-confirm-botones">
+              <Button
+                onClick={cancelarEliminacion}
+                className="modal-confirm-btn-cancelar"
+              >
+                Cancelar
+              </Button>
+              <Button
+                onClick={confirmarEliminacion}
+                className="modal-confirm-btn-eliminar"
+              >
+                Sí, Eliminar
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
 
       {showPagoModal && (

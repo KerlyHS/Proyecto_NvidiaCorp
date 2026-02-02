@@ -3,8 +3,6 @@ import { useAuth } from '../security/auth';
 import "themes/default/css/navbar.css";
 import { UsuarioServices } from 'Frontend/generated/endpoints';
 import { Notification } from '@vaadin/react-components/Notification';
-import { logout } from 'Frontend/generated/UsuarioServices';
-
 
 export default function Navbar() {
   const navigate = useNavigate();
